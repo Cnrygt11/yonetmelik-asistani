@@ -1,23 +1,22 @@
 # Derlem manifesti (plan bölüm 5.2 ve 6). Manifest'te olmayan hiçbir dosya indekslenmez.
 #
-# DURUM: TASLAK. Kayıtlar ön araştırmadan geldi; hiçbiri henüz doğrulanmadı.
-# Faz 1'de her kayıt KAYSİS / Resmî Gazete ile karşılaştırılıp
-# dogrulayan + dogrulama_tarihi doldurulacak, kaynak adresleri ve sha256 eklenecek.
+# Kaynak politikası (karar K-09): işlenmiş (konsolide) metin KAYSİS'ten alınır.
+# Resmî Gazete yalnızca güncellik kontrolüne girdi verir: PDF'in sonundaki "Yayımlandığı Resmî
+# Gazete" tablosu, aşağıdaki yayim/degisiklikler alanlarıyla otomatik karşılaştırılır
+# (python -m yonetmelik_asistani.ingest extract).
+#
+# İndirilen dosyaların özeti ve tarihi configs/corpus_lock.json'dadır (betik yazar).
+# KAYSİS listesi: https://kms.kaysis.gov.tr/Home/Kurum/92662996  (kaynaklar.id = Goster kimliği)
 #
 # Alanlar:
-#   id               : kalıcı kimlik (parça kimliklerinin ön eki olur)
-#   baslik           : resmî tam ad
-#   tur              : kanun | yok_yonetmeligi | kurum_yonetmeligi | senato_yonergesi | birim_yonergesi | duyuru
-#   hiyerarsi        : 1 kanun … 6 duyuru/takvim (plan 6.1)
-#   birim            : [tum] veya birim kimlikleri
-#   duzey            : onlisans | lisans | lisansustu | hazirlik
-#   oncelik          : P1 | P2 | P3
-#   yayim            : ilk yayım {tarih, rg_sayi}
-#   degisiklikler    : tarih sırasıyla değişiklik metinleri {tarih, rg_sayi}
-#   durum            : yururlukte | kaldirildi | arsiv
-#   kaynaklar        : tercih sırasıyla adresler (önce Resmî Gazete HTML, sonra KAYSİS/mevzuat.gov.tr, en son PDF)
-#   sha256           : indirilen dosyanın özeti (Faz 1'de doldurulur)
-#   dogrulayan, dogrulama_tarihi, notlar
+#   id          kalıcı kimlik (parça kimliklerinin ön eki)
+#   tur         kanun | yok_yonetmeligi | kurum_yonetmeligi | senato_yonergesi | birim_yonergesi | usul_esas
+#   hiyerarsi   1 kanun … 6 duyuru/takvim (plan 6.1)
+#   birim       [tum] veya birim kimlikleri
+#   duzey       onlisans | lisans | lisansustu | hazirlik
+#   oncelik     P1 (MVP) | P2 (v1.0) | P3 (v2)
+#   durum       yururlukte | kaldirildi | arsiv | inceleme (yürürlüğü teyit edilmeden indekslenmez)
+#   yayim, degisiklikler   {tarih, rg_sayi}; yalnızca Resmî Gazete'de yayımlananlar için
 
 belgeler:
   # ---------------- P1 · MVP kapsamı ----------------
@@ -25,103 +24,124 @@ belgeler:
     baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Eğitim Öğretim Yönetmeliği
     tur: kurum_yonetmeligi
     hiyerarsi: 3
-    birim: [tum]
     duzey: [onlisans, lisans]
     oncelik: P1
+    durum: yururlukte
     yayim: {tarih: 2020-09-20, rg_sayi: 31250}
     degisiklikler:
-      - {tarih: 2024-08-18, rg_sayi: 32636}   # 21 madde (md. 4, 19, 21, 39 vb.)
-    durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
-    notlar: Konsolide metin hazırlanacak. 2024 sonrası başka değişiklik olup olmadığı kontrol edilecek.
+      - {tarih: 2023-03-07, rg_sayi: 32125}
+      - {tarih: 2024-08-18, rg_sayi: 32636}
+    kaynaklar:                       # 1. birincil, 2. çapraz kontrol (crosscheck)
+      - {tur: kaysis, id: 167318}
+      - {tur: url, url: "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34870&mevzuatTur=UniversiteYonetmeligi&mevzuatTertip=5"}
 
   - id: buu-yaz-ogretimi
     baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Yaz Öğretimi Yönetmeliği
     tur: kurum_yonetmeligi
     hiyerarsi: 3
-    birim: [tum]
     duzey: [onlisans, lisans]
     oncelik: P1
+    durum: yururlukte
     yayim: {tarih: 2020-09-01, rg_sayi: 31231}
     degisiklikler: []
-    durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
-    notlar: Sonraki değişiklikler kontrol edilecek.
-
-  - id: buu-gecis-cap-yandal-yonergesi
-    baslik: Programlar Arası Geçiş, Çift Anadal, Yan Dal ve Kurumlar Arası Kredi Transferi Yönergesi
-    tur: senato_yonergesi
-    hiyerarsi: 4
-    birim: [tum]
-    duzey: [onlisans, lisans]
-    oncelik: P1
-    yayim: {tarih: null, rg_sayi: null}
-    degisiklikler: []
-    durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
-    notlar: Resmî adı, güncel sürümü ve yatay geçiş yönergesiyle ilişkisi teyit edilecek.
-
-  - id: buu-yatay-gecis-yonergesi
-    baslik: Bursa Uludağ Üniversitesi Ön Lisans ve Lisans Programları Yatay Geçiş Yönergesi
-    tur: senato_yonergesi
-    hiyerarsi: 4
-    birim: [tum]
-    duzey: [onlisans, lisans]
-    oncelik: P1
-    yayim: {tarih: null, rg_sayi: null}
-    degisiklikler: []
-    durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
-    notlar: İntibak ve muafiyet hükümleri.
+    kaynaklar:
+      - {tur: kaysis, id: 167130}
+      - {tur: url, url: "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34815&mevzuatTur=UniversiteYonetmeligi&mevzuatTertip=5"}
+    # KAYSİS bu yönetmeliği ilk yayım nüshası olarak veriyor; değişmediği ayrıca teyit edildi.
+    degisiklik_teyidi:
+      tarih: 2026-10-11
+      kaynaklar:
+        - "mevzuat.gov.tr mevzuatNo=34815: değişiklik tablosu yok"
 
   - id: buu-ydyo-yabanci-dil
     baslik: Bursa Uludağ Üniversitesi Yabancı Diller Yüksekokulu Yabancı Dil Eğitim-Öğretim ve Sınav Yönetmeliği
     tur: kurum_yonetmeligi
     hiyerarsi: 3
-    birim: [tum]
     duzey: [hazirlik, onlisans, lisans]
     oncelik: P1
-    yayim: {tarih: null, rg_sayi: null}
-    degisiklikler: []
     durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
-    notlar: RG tarihi ve sayısı teyit edilecek.
+    yayim: {tarih: 2020-08-23, rg_sayi: 31222}
+    degisiklikler: []
+    kaynaklar: [{tur: kaysis, id: 167045}]
+    degisiklik_teyidi:
+      tarih: 2026-10-11
+      kaynaklar:
+        - "Lexpera konsolide metin: sürüm 1, değişiklik yok"
+
+  - id: buu-gecis-cap-yandal-yonergesi
+    baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Düzeyindeki Programlar Arasında Geçiş, Çift Anadal, Yan Dal ve Kurumlar Arası Kredi Transferi Yapılmasına İlişkin Yönerge
+    tur: senato_yonergesi
+    hiyerarsi: 4
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    durum: yururlukte
+    kaynaklar: [{tur: kaysis, id: 212480}]
+    notlar: Yatay geçiş hükümleri de bu yönergede; ayrı bir "Yatay Geçiş Yönergesi" KAYSİS'te yok.
+
+  - id: buu-muafiyet-intibak-yonergesi
+    baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Programları Muafiyet ve İntibak İşlemleri Yönergesi
+    tur: senato_yonergesi
+    hiyerarsi: 4
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    durum: yururlukte
+    kaynaklar: [{tur: kaysis, id: 206796}]
 
   - id: kanun-2547
-    baslik: 2547 sayılı Yükseköğretim Kanunu (md. 44 ve md. 54)
+    baslik: 2547 sayılı Yükseköğretim Kanunu (öğrencileri ilgilendiren maddeler, md. 44 ve md. 54)
     tur: kanun
     hiyerarsi: 1
-    birim: [tum]
     duzey: [onlisans, lisans, lisansustu, hazirlik]
     oncelik: P1
-    yayim: {tarih: 1981-11-06, rg_sayi: 17506}
-    degisiklikler: []
     durum: yururlukte
-    kaynaklar: []
-    sha256: null
-    dogrulayan: null
-    dogrulama_tarihi: null
+    kaynaklar: [{tur: url, url: "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2547.pdf"}]
+    maddeler: [44, 54]       # Faz 2'de yalnızca bu maddeler parçalanacak
     notlar: >-
-      Yalnızca öğrencileri ilgilendiren maddeler alınacak. md. 54 7437 sayılı Kanunla
-      yeniden düzenlendi; AYM 22.02.2024 tarihli kısmi iptal kararı teyit edilecek.
-      İlk yayım tarihi/sayısı teyit edilecek.
+      KAYSİS'te değil; mevzuat.gov.tr işlenmiş metni kullanılıyor.
+      md. 54 7437 sayılı Kanunla yeniden düzenlendi; AYM 22.02.2024 kısmi iptal kararı teyit edilecek.
 
-# Yürürlükten kalkmış metinler: indekslenmez, soru gelirse uyarı verilir (plan 6.2).
+  # ---------------- P2 · v1.0 kapsamı ----------------
+  - {id: buu-lisansustu, baslik: Bursa Uludağ Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği, tur: kurum_yonetmeligi, hiyerarsi: 3, duzey: [lisansustu], oncelik: P2, durum: yururlukte, yayim: {tarih: 2020-06-28, rg_sayi: 31169}, kaynaklar: [{tur: kaysis, id: 163365}]}
+  - {id: buu-lisansustu-uygulama-esaslari, baslik: Bursa Uludağ Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği Uygulama Esasları, tur: usul_esas, hiyerarsi: 4, duzey: [lisansustu], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208708}]}
+  - {id: buu-ozel-ogrenci-yonergesi, baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Programları Özel Öğrenci Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, duzey: [onlisans, lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208397}]}
+  - {id: buu-akademik-danismanlik-yonergesi, baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Akademik Danışmanlık Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, duzey: [onlisans, lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 199070}]}
+  - {id: buu-engelli-sinav-yonergesi, baslik: Bursa Uludağ Üniversitesi Engelli Öğrenciler İçin Sınav Uygulamaları Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, duzey: [onlisans, lisans, lisansustu], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 207857}]}
+  - {id: buu-uygulamali-egitimler-yonergesi, baslik: Bursa Uludağ Üniversitesi Uygulamalı Eğitimler Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, duzey: [onlisans, lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 187826}]}
+  - {id: buu-myo-isyeri-egitimi, baslik: Bursa Uludağ Üniversitesi Meslek Yüksekokulları İş Yeri Eğitimi I-II Derslerinin Uygulama Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [myo], duzey: [onlisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 156151}]}
+  - {id: buu-tip-egitim-sinav, baslik: Bursa Uludağ Üniversitesi Tıp Fakültesi Eğitim-Öğretim ve Sınav Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [tip-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208260}]}
+  - {id: buu-tip-olcme-degerlendirme, baslik: Bursa Uludağ Üniversitesi Tıp Fakültesi Ölçme ve Değerlendirme Usul ve Esasları, tur: usul_esas, hiyerarsi: 5, birim: [tip-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208259}]}
+  - {id: buu-tip-intornluk, baslik: Bursa Uludağ Üniversitesi Tıp Fakültesi İntörnlük Dönemi Eğitim Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [tip-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 212443}]}
+  - {id: buu-dis-mezuniyet-oncesi, baslik: Bursa Uludağ Üniversitesi Diş Hekimliği Fakültesi Mezuniyet Öncesi Eğitim-Öğretim ve Sınav Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [dis-hekimligi-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 200601}]}
+  - {id: buu-veteriner-egitim-sinav, baslik: Bursa Uludağ Üniversitesi Veteriner Fakültesi Eğitim-Öğretim ve Sınav Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [veteriner-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 205523}]}
+  - {id: buu-konservatuvar-muzik-lisans, baslik: Bursa Uludağ Üniversitesi Devlet Konservatuvarı Müzik Bölümü Lisans Öğretim Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [devlet-konservatuvari], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208261}]}
+  - {id: buu-mimarlik-staj, baslik: Bursa Uludağ Üniversitesi Mimarlık Fakültesi Staj Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [mimarlik-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 158062}]}
+  - {id: buu-muhendislik-bitirme, baslik: Bursa Uludağ Üniversitesi Mühendislik Fakültesi Bitirme Projesi Dersi Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [muhendislik-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 183187}]}
+  - {id: buu-fen-edebiyat-bitirme, baslik: Bursa Uludağ Üniversitesi Fen-Edebiyat Fakültesi Lisans Programları Bitirme Çalışması Uygulama Esasları Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [fen-edebiyat-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208137}]}
+
+  # ---------------- P3 · v2 kapsamı ----------------
+  - {id: buu-yurtlar, baslik: Bursa Uludağ Üniversitesi Yurtlar Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 158058}]}
+  - {id: buu-ucretsiz-yemek-bursu, baslik: Bursa Uludağ Üniversitesi Ücretsiz Yemek Bursu Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 174364}]}
+  - {id: buu-ogrenci-topluluklari, baslik: Bursa Uludağ Üniversitesi Öğrenci Toplulukları Kuruluş, İşleyiş ve Etkinlik Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 204087}]}
+  - {id: buu-ogrenci-konseyi, baslik: Bursa Uludağ Üniversitesi Öğrenci Konseyi ve Öğrenci Temsilcisi Seçimi Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 183183}]}
+  - {id: buu-sosyal-transkript, baslik: Bursa Uludağ Üniversitesi Sosyal Transkript Uygulama Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208123}]}
+  - {id: buu-engelli-ogrenci-birimi, baslik: Bursa Uludağ Üniversitesi Engelli Öğrenci Birimi Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 196149}]}
+  - {id: buu-yabanci-uyruklu-kabul, baslik: Bursa Uludağ Üniversitesi Yurt Dışından veya Yabancı Uyruklu Öğrenci Kabulü Hakkında Yönerge, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 202297}]}
+
+  # ---------------- İnceleme · yürürlüğü teyit edilecek ----------------
+  # KAYSİS'te "Uludağ Üniversitesi" adıyla (2018 öncesi) duran belgeler. Bazıları sonraki
+  # düzenlemelerle yerini yenisine bırakmış olabilir (ör. yabancı dil sınavları artık YDYO
+  # yönetmeliğinde, "Sağlık Yüksekokulu" adı değişmiş). Teyit edilene kadar indekslenmez.
+  - {id: uu-merkezi-yabanci-dil-yeterlik, baslik: Uludağ Üniversitesi Merkezi Yabancı Dil Yeterlik Sınavı Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61272}]}
+  - {id: uu-yabanci-dil-seviye-tespit, baslik: Uludağ Üniversitesi Yabancı Dil Seviye Tespit (Muafiyet) Sınav Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61682}]}
+  - {id: uu-egitim-fak-ogretmenlik-uygulamasi, baslik: Uludağ Üniversitesi Eğitim Fakültesi Öğretmenlik Uygulaması Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [egitim-fakultesi], oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61262}]}
+  - {id: uu-shmyo-staj, baslik: Uludağ Üniversitesi Sağlık Hizmetleri Meslek Yüksekokulu Ön Lisans Eğitim-Öğretim Staj Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [saglik-hizmetleri-myo], oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61285}]}
+  - {id: uu-saglik-yo-staj, baslik: Uludağ Üniversitesi Sağlık Yüksekokulu Staj Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61641}]}
+  - {id: uu-tip-ogrenci-danismanligi, baslik: Uludağ Üniversitesi Tıp Fakültesi Öğrenci Danışmanlığı Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [tip-fakultesi], oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 61663}]}
+  - {id: uu-katki-payi-usul-esas, baslik: Uludağ Üniversitesi Öğrencilerinin Katkı Paylarından Yararlandırılma Usul ve Esasları, tur: usul_esas, hiyerarsi: 4, oncelik: P3, durum: inceleme, kaynaklar: [{tur: kaysis, id: 64731}]}
+  - {id: uu-ogrenci-kultur-sanat-spor, baslik: Uludağ Üniversitesi Öğrenci Kültür-Sanat, Spor ve Bilim Etkinlikleri Yönetmeliği, tur: kurum_yonetmeligi, hiyerarsi: 3, oncelik: P3, durum: inceleme, kaynaklar: [{tur: kaysis, id: 36477}]}
+  - {id: buu-dis-egitim-sinav-eski, baslik: Bursa Uludağ Üniversitesi Diş Hekimliği Fakültesi Eğitim-Öğretim ve Sınav Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [dis-hekimligi-fakultesi], oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 183194}], notlar: "Daha yeni 'Mezuniyet Öncesi' yönergesi (200601) var; bu metnin yerine mi geçtiği teyit edilecek."}
+
+# Yürürlükten kalkmış metinler: indekslenmez; soru gelirse uyarı verilir (plan 6.2).
 kaldirilmis:
   - id: yok-ogrenci-disiplin
     baslik: Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği
@@ -130,8 +150,6 @@ kaldirilmis:
     yonlendir: kanun-2547
   - id: uu-onlisans-lisans-ogretim-2014
     baslik: Uludağ Üniversitesi Önlisans ve Lisans Öğretim Yönetmeliği
-    yayim: {tarih: 2014-08-24, rg_sayi: null}
-    kaldirilma: {tarih: null, rg_sayi: null}   # 2020 yönetmeliğiyle yerine geçildiği teyit edilecek
+    yayim: {tarih: 2014-08-24, rg_sayi: 29098}
+    kaldirilma: {tarih: 2020-09-20, rg_sayi: 31250}   # yeni yönetmeliğin 44. maddesiyle
     yonlendir: buu-onlisans-lisans-eoy
-
-# P2 ve P3 belgeler Faz 6 öncesinde eklenecek (plan 6.2).

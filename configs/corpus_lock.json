@@ -1,0 +1,56 @@
+{
+  "buu-gecis-cap-yandal-yonergesi": {
+    "kaynak": "kaysis:212480",
+    "url": "https://kms.kaysis.gov.tr/Home/Goster/212480",
+    "dosya": "buu-gecis-cap-yandal-yonergesi/kaysis_212480.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 507768,
+    "sha256": "3d4fa44702cbc9787caff6e57184a77d907dfae8b9acec6c1eefa432221da46a",
+    "indirme": "2026-10-11T23:51:35"
+  },
+  "buu-muafiyet-intibak-yonergesi": {
+    "kaynak": "kaysis:206796",
+    "url": "https://kms.kaysis.gov.tr/Home/Goster/206796",
+    "dosya": "buu-muafiyet-intibak-yonergesi/kaysis_206796.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 413859,
+    "sha256": "9aa43c03fac7a76845604b96b1a0b6c44361dba0ca9dd20381d0a915ee6eafac",
+    "indirme": "2026-10-11T23:51:35"
+  },
+  "buu-onlisans-lisans-eoy": {
+    "kaynak": "kaysis:167318",
+    "url": "https://kms.kaysis.gov.tr/Home/Goster/167318",
+    "dosya": "buu-onlisans-lisans-eoy/kaysis_167318.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 549571,
+    "sha256": "7d09beb67a690b7a489ee0dc98f4607012759ee203169f56b4c8b689ffec5f74",
+    "indirme": "2026-10-11T23:51:35"
+  },
+  "buu-yaz-ogretimi": {
+    "kaynak": "kaysis:167130",
+    "url": "https://kms.kaysis.gov.tr/Home/Goster/167130",
+    "dosya": "buu-yaz-ogretimi/kaysis_167130.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 595304,
+    "sha256": "16a3e97a30e4bdfe0e188b8f5cd127a186116a258fa37dc14f09ac19e92b07c4",
+    "indirme": "2026-10-11T23:51:35"
+  },
+  "buu-ydyo-yabanci-dil": {
+    "kaynak": "kaysis:167045",
+    "url": "https://kms.kaysis.gov.tr/Home/Goster/167045",
+    "dosya": "buu-ydyo-yabanci-dil/kaysis_167045.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 678385,
+    "sha256": "da258d2c9cedab099e3adb04fab39af6bc8950f901dcba7d8976d6e38ea94854",
+    "indirme": "2026-10-11T23:51:35"
+  },
+  "kanun-2547": {
+    "kaynak": "url",
+    "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2547.pdf",
+    "dosya": "kanun-2547/url.pdf",
+    "icerik_turu": "application/pdf",
+    "bayt": 1116012,
+    "sha256": "5dc4ce222a505df8b3442835af57d1ab9681d2c69b372770721d9306939a6430",
+    "indirme": "2026-10-11T23:55:07"
+  }
+}
