@@ -94,13 +94,16 @@ class LLMClient:
         }
         if self.cfg.seed is not None:
             options["seed"] = self.cfg.seed
-        return {
+        payload: dict[str, Any] = {
             "model": model,
             "messages": messages,
             "stream": False,
             "think": self.cfg.think,
             "options": options,
         }
+        if self.cfg.keep_alive is not None:
+            payload["keep_alive"] = self.cfg.keep_alive
+        return payload
 
     def _openai_payload(self, messages: list[Message], model: str) -> dict[str, Any]:
         payload: dict[str, Any] = {

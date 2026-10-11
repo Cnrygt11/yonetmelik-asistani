@@ -32,6 +32,7 @@ class LLMConfig:
     think: bool = False
     max_tokens: int = 700
     timeout_s: float = 180.0
+    keep_alive: int | str | None = -1  # yalnızca ollama; -1 = modeli bellekte tut
 
     def __post_init__(self) -> None:
         if self.backend not in ("ollama", "openai"):

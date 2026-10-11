@@ -17,10 +17,32 @@ kurulumu, Ollama ile ilk model testi, paydaş görüşme talepleri.
 
 ### Ortam
 - [x] VS Code'a Google Colab uzantısı kuruldu
-- [ ] `notebooks/colab_runner.ipynb` T4 üzerinde baştan sona çalıştı
-- [ ] Ollama `qwen3.5:9b` etiketi doğrulandı (gerekirse `configs/default.yaml` güncellendi)
-- [ ] `smoke` kontrolü geçti; rapor `eval/reports/` altına eklendi
-- [ ] İlk ölçümler not edildi: üretim hızı (token/sn), soru başına süre, GPU belleği
+- [x] `notebooks/colab_runner.ipynb` T4 üzerinde baştan sona çalıştı (11.10.2026)
+- [x] Ollama `qwen3.5:9b` etiketi doğrulandı (6,6 GB, ID 56671c2ab938)
+- [x] `smoke` kontrolü geçti
+- [ ] Rapor (`smoke_20261011_142929.json`) Drive'dan `eval/reports/` altına eklendi
+- [x] İlk ölçümler not edildi (aşağıda)
+
+### İlk ölçümler · T4, qwen3.5:9b, 11.10.2026
+
+| Ölçüm | Sonuç | Hedef |
+|---|---|---|
+| Üretim hızı | 29,5–31,7 token/sn | tahmin 20–35 |
+| Soru başına süre (ısınmış model) | 4,9–10,1 sn | ≤ 20 sn (NFR-03) |
+| İlk yükleme (soğuk başlangıç) | 127,6 sn | — |
+| Boş bağlamda ret | doğru, birime yönlendirdi | FR-03 |
+| GPU belleği (yalnız LLM) | 6.579 / 15.360 MiB | bütçe 6,6 GB |
+
+### Gözlemler ve sonraki fazlara aktarılanlar
+- **Soğuk başlangıç:** Ollama boşta kalan modeli varsayılan olarak 5 dk sonra bellekten
+  çıkarıyor; sonraki soru ~2 dk bekliyor. Çözüldü: `keep_alive: -1`, kurulum sonunda modelin
+  önceden yüklenmesi ve smoke'ta ayrı ısınma adımı. Faz 5'te arayüz açılışında da ısınma yapılacak.
+- **Genel bilgiyle cevaplar yanlış (Faz 4 girdisi):** bağlamsız sorularda model bütünlemeyi
+  "öğrencinin isteği veya ihmali" ile, yan dalı "daha derinlemesine uzmanlık" ile açıkladı;
+  ikisi de yanlış. Bu, "yalnızca bağlamdan cevap" kuralının ve çıktı denetiminin zorunlu
+  olduğunu doğruluyor. Bu iki soru altın sette "genel bilgi tuzağı" örneği olarak kullanılacak.
+- **Türkçe akıcılık:** dil bilgisi ve akıcılık yeterli; biçimlendirmede kalın yazı ve madde
+  işaretini yoğun kullanıyor (Faz 4'te istemle düzenlenecek).
 
 ### Paydaşlar ve onay
 - [ ] Proje tüzüğündeki köşeli parantezli alanlar dolduruldu

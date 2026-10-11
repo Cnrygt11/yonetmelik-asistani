@@ -69,6 +69,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Mevcut modeller: {', '.join(available) or '(yok)'}")
             return 2
 
+        # Modeli GPU'ya yükler; bu süre soru gecikmesine karıştırılmaz.
+        warm = client.chat([{"role": "user", "content": "Merhaba"}], model=model)
+        print(f"[Isınma] {warm.wall_s:5.1f} sn (model yükleme dahil)\n")
+
         for i, q in enumerate(FLUENCY_QUESTIONS, 1):
             r = client.chat([{"role": "user", "content": q}], model=model)
             leaked = "<think>" in r.text
@@ -98,7 +102,8 @@ def main(argv: list[str] | None = None) -> int:
     report.write_text(
         json.dumps(
             {"tarih": datetime.now().isoformat(timespec="seconds"), "gpu": gpu_report(),
-             "model": model, "llm_ayarlari": asdict(cfg.llm), "sonuclar": results,
+             "model": model, "llm_ayarlari": asdict(cfg.llm),
+             "isinma_s": round(warm.wall_s, 2), "sonuclar": results,
              "hatalar": failures},
             ensure_ascii=False, indent=2,
         ),

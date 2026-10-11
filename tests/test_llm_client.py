@@ -29,6 +29,7 @@ def test_ollama_payload_disables_thinking_and_sets_context():
     assert seen["body"]["stream"] is False
     assert seen["body"]["options"]["num_ctx"] == 8192
     assert seen["body"]["options"]["seed"] == 42
+    assert seen["body"]["keep_alive"] == -1
     assert r.text == "Merhaba"
     assert r.gen_tokens_per_s == pytest.approx(25.0)
 

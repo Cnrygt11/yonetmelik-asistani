@@ -5,6 +5,8 @@ set -euo pipefail
 
 MODEL="${1:-qwen3.5:9b}"
 export OLLAMA_CONTEXT_LENGTH="${OLLAMA_CONTEXT_LENGTH:-8192}"
+# Varsayılan 5 dk; boşta kalan model bellekten çıkar ve sonraki soru ~2 dk bekler.
+export OLLAMA_KEEP_ALIVE="${OLLAMA_KEEP_ALIVE:--1}"
 # OLLAMA_MODELS ayarlıysa (ör. Drive) modeller oraya yazılır; değilse yerel diske.
 [[ -n "${OLLAMA_MODELS:-}" ]] && mkdir -p "$OLLAMA_MODELS" && export OLLAMA_MODELS
 
@@ -28,4 +30,8 @@ curl -sf http://localhost:11434/api/tags >/dev/null \
 
 echo ">> Model indiriliyor: $MODEL"
 ollama pull "$MODEL"
-ollama list
+
+echo ">> Model GPU'ya yükleniyor (ilk yükleme 1-2 dk sürebilir)"
+curl -sf http://localhost:11434/api/generate \
+  -d "{\"model\": \"$MODEL\", \"prompt\": \"\", \"keep_alive\": -1}" >/dev/null
+ollama ps

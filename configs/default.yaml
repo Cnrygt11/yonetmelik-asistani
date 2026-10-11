@@ -15,6 +15,7 @@ llm:
   think: false             # RAG'de düşünme modu kapalı
   max_tokens: 700
   timeout_s: 180
+  keep_alive: -1           # modeli bellekte tut; yoksa 5 dk boşta kalınca ilk soru ~2 dk bekler
 
 embedding:                 # Faz 2
   model: BAAI/bge-m3
