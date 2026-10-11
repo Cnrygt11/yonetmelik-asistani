@@ -96,3 +96,17 @@ def test_reranker_decides_final_order_and_low_priority_is_penalised():
 def test_unknown_mode_rejected():
     with pytest.raises(ValueError):
         _retriever().search("x", mode="sihirli")
+
+
+def test_reranker_halves_batch_on_oom():
+    from yonetmelik_asistani.index.dense import CrossEncoderReranker
+
+    class FakeModel:
+        def predict(self, pairs, batch_size, show_progress_bar):
+            if batch_size > 2:
+                raise RuntimeError("CUDA out of memory. Tried to allocate 490.00 MiB")
+            return [0.5] * len(pairs)
+
+    rr = CrossEncoderReranker(batch_size=8, _model=FakeModel())
+    assert rr.score("soru", ["a", "b", "c"]) == [0.5, 0.5, 0.5]
+    assert rr.batch_size == 2  # sonraki çağrılar küçük yığınla başlar

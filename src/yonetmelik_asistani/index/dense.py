@@ -6,6 +6,7 @@ T4 bf16 desteklemediği için modeller fp16 çalışır (plan 7.2).
 
 from __future__ import annotations
 
+import sys
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -49,7 +50,7 @@ class BGEM3Embedder:
 class CrossEncoderReranker:
     model_name: str = "BAAI/bge-reranker-v2-m3"
     dtype: str = "float16"
-    batch_size: int = 16
+    batch_size: int = 8
     max_length: int = 1024
     _model: object = None
 
@@ -62,15 +63,29 @@ class CrossEncoderReranker:
             self._model = CrossEncoder(self.model_name, device=device, max_length=self.max_length)
             if device == "cuda" and self.dtype == "float16":
                 self._model.model.half()
+            if device == "cuda":
+                free, total = torch.cuda.mem_get_info()
+                print(f"[reranker] GPU boş {free / 2**30:.1f} / {total / 2**30:.1f} GiB, "
+                      f"PyTorch ayrılmış {torch.cuda.memory_allocated() / 2**30:.1f} GiB", file=sys.stderr)
         return self._model
 
     def score(self, query: str, passages: Sequence[str]) -> list[float]:
         """0-1 arası alaka skorları (tek etiketli modelde varsayılan aktivasyon sigmoid'dir)."""
         if not passages:
             return []
-        scores = self._load().predict([(query, p) for p in passages], batch_size=self.batch_size,
-                                      show_progress_bar=False)
-        return [float(s) for s in scores]
+        model, pairs, batch = self._load(), [(query, p) for p in passages], self.batch_size
+        while True:
+            try:
+                scores = model.predict(pairs, batch_size=batch, show_progress_bar=False)
+                return [float(s) for s in scores]
+            except RuntimeError as e:  # torch.OutOfMemoryError, RuntimeError'ın alt sınıfı
+                if "out of memory" not in str(e).lower() or batch == 1:
+                    raise
+                if "torch" in sys.modules:
+                    sys.modules["torch"].cuda.empty_cache()
+                batch //= 2
+                self.batch_size = batch
+                print(f"[reranker] GPU belleği yetmedi, yığın boyu {batch}", file=sys.stderr)
 
 
 class QdrantStore:

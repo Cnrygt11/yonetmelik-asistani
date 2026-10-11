@@ -124,7 +124,12 @@ def main(argv: list[str] | None = None) -> int:
             runs.append((mode, lambda q, k, m=mode: [(h.chunk_id, h.score)
                                                        for h in retriever.search(q, mode=m, k=k)]))
     for name, search in runs:
-        r = evaluate(search, subset, madde_of)
+        try:
+            r = evaluate(search, subset, madde_of)
+        except RuntimeError as e:  # ör. GPU belleği; önceki kiplerin sonuçları kaybolmasın
+            print(f"  {name:15} HATA: {type(e).__name__}: {str(e)[:300]}")
+            results[name] = {"hata": f"{type(e).__name__}: {e}"}
+            continue
         results[name] = r
         print(f"  {name:15} Recall@5 {r['recall@5']:.3f}  MRR@10 {r['mrr@10']:.3f}  "
               f"kaçırılan: {', '.join(r['kacirilan']) or '-'}")

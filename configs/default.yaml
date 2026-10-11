@@ -29,6 +29,7 @@ embedding:                 # Faz 2
 reranker:                  # Faz 2
   model: BAAI/bge-reranker-v2-m3
   dtype: float16
+  batch_size: 8            # bellek yetmezse kendiliğinden yarıya iner
   top_n: 6
   reject_threshold: null   # Faz 4'te altın setle kalibre edilecek
 

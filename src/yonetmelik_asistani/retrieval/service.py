@@ -44,5 +44,5 @@ def load_retriever(cfg: Config, *, dense: bool = True, rerank: bool = True) -> H
 
         rr = cfg.section("reranker")
         retriever.reranker = CrossEncoderReranker(rr.get("model", "BAAI/bge-reranker-v2-m3"),
-                                                  rr.get("dtype", "float16"))
+                                                  rr.get("dtype", "float16"), rr.get("batch_size", 8))
     return retriever

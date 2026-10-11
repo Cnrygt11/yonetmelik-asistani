@@ -95,8 +95,8 @@ class HybridRetriever:
             for r, (c, s) in enumerate(den, 1):
                 traces.setdefault(c, {})["dense"] = (r, round(s, 4))
 
-        fused = rrf(lists, self.rrf_k) if len(lists) > 1 else [
-            (c, 1.0 / (self.rrf_k + r)) for r, c in enumerate(lists[0], 1)]
+        # tek liste kiplerinde ham skor korunur (dense: kosinüs); ret eşiği kalibrasyonu buna bakar
+        fused = rrf(lists, self.rrf_k) if len(lists) > 1 else (lex if mode == "bm25" else den)
         if mode == "hybrid_rerank" and self.reranker is not None and fused:
             ids = [c for c, _ in fused[: self.candidates]]
             scores = self.reranker.score(query, [self.chunks[c]["text"] for c in ids])
