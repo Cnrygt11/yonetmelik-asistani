@@ -13,6 +13,8 @@ __pycache__/
 data/raw/*
 data/processed/*
 data/index/
+# Kişisel veri içeren ham kaynaklar (ör. WhatsApp dışa aktarımları); asla depoya girmez
+data/private/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
