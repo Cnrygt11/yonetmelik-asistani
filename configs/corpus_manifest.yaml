@@ -1,0 +1,137 @@
+# Derlem manifesti (plan bölüm 5.2 ve 6). Manifest'te olmayan hiçbir dosya indekslenmez.
+#
+# DURUM: TASLAK. Kayıtlar ön araştırmadan geldi; hiçbiri henüz doğrulanmadı.
+# Faz 1'de her kayıt KAYSİS / Resmî Gazete ile karşılaştırılıp
+# dogrulayan + dogrulama_tarihi doldurulacak, kaynak adresleri ve sha256 eklenecek.
+#
+# Alanlar:
+#   id               : kalıcı kimlik (parça kimliklerinin ön eki olur)
+#   baslik           : resmî tam ad
+#   tur              : kanun | yok_yonetmeligi | kurum_yonetmeligi | senato_yonergesi | birim_yonergesi | duyuru
+#   hiyerarsi        : 1 kanun … 6 duyuru/takvim (plan 6.1)
+#   birim            : [tum] veya birim kimlikleri
+#   duzey            : onlisans | lisans | lisansustu | hazirlik
+#   oncelik          : P1 | P2 | P3
+#   yayim            : ilk yayım {tarih, rg_sayi}
+#   degisiklikler    : tarih sırasıyla değişiklik metinleri {tarih, rg_sayi}
+#   durum            : yururlukte | kaldirildi | arsiv
+#   kaynaklar        : tercih sırasıyla adresler (önce Resmî Gazete HTML, sonra KAYSİS/mevzuat.gov.tr, en son PDF)
+#   sha256           : indirilen dosyanın özeti (Faz 1'de doldurulur)
+#   dogrulayan, dogrulama_tarihi, notlar
+
+belgeler:
+  # ---------------- P1 · MVP kapsamı ----------------
+  - id: buu-onlisans-lisans-eoy
+    baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Eğitim Öğretim Yönetmeliği
+    tur: kurum_yonetmeligi
+    hiyerarsi: 3
+    birim: [tum]
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    yayim: {tarih: 2020-09-20, rg_sayi: 31250}
+    degisiklikler:
+      - {tarih: 2024-08-18, rg_sayi: 32636}   # 21 madde (md. 4, 19, 21, 39 vb.)
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: Konsolide metin hazırlanacak. 2024 sonrası başka değişiklik olup olmadığı kontrol edilecek.
+
+  - id: buu-yaz-ogretimi
+    baslik: Bursa Uludağ Üniversitesi Önlisans ve Lisans Yaz Öğretimi Yönetmeliği
+    tur: kurum_yonetmeligi
+    hiyerarsi: 3
+    birim: [tum]
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    yayim: {tarih: 2020-09-01, rg_sayi: 31231}
+    degisiklikler: []
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: Sonraki değişiklikler kontrol edilecek.
+
+  - id: buu-gecis-cap-yandal-yonergesi
+    baslik: Programlar Arası Geçiş, Çift Anadal, Yan Dal ve Kurumlar Arası Kredi Transferi Yönergesi
+    tur: senato_yonergesi
+    hiyerarsi: 4
+    birim: [tum]
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    yayim: {tarih: null, rg_sayi: null}
+    degisiklikler: []
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: Resmî adı, güncel sürümü ve yatay geçiş yönergesiyle ilişkisi teyit edilecek.
+
+  - id: buu-yatay-gecis-yonergesi
+    baslik: Bursa Uludağ Üniversitesi Ön Lisans ve Lisans Programları Yatay Geçiş Yönergesi
+    tur: senato_yonergesi
+    hiyerarsi: 4
+    birim: [tum]
+    duzey: [onlisans, lisans]
+    oncelik: P1
+    yayim: {tarih: null, rg_sayi: null}
+    degisiklikler: []
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: İntibak ve muafiyet hükümleri.
+
+  - id: buu-ydyo-yabanci-dil
+    baslik: Bursa Uludağ Üniversitesi Yabancı Diller Yüksekokulu Yabancı Dil Eğitim-Öğretim ve Sınav Yönetmeliği
+    tur: kurum_yonetmeligi
+    hiyerarsi: 3
+    birim: [tum]
+    duzey: [hazirlik, onlisans, lisans]
+    oncelik: P1
+    yayim: {tarih: null, rg_sayi: null}
+    degisiklikler: []
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: RG tarihi ve sayısı teyit edilecek.
+
+  - id: kanun-2547
+    baslik: 2547 sayılı Yükseköğretim Kanunu (md. 44 ve md. 54)
+    tur: kanun
+    hiyerarsi: 1
+    birim: [tum]
+    duzey: [onlisans, lisans, lisansustu, hazirlik]
+    oncelik: P1
+    yayim: {tarih: 1981-11-06, rg_sayi: 17506}
+    degisiklikler: []
+    durum: yururlukte
+    kaynaklar: []
+    sha256: null
+    dogrulayan: null
+    dogrulama_tarihi: null
+    notlar: >-
+      Yalnızca öğrencileri ilgilendiren maddeler alınacak. md. 54 7437 sayılı Kanunla
+      yeniden düzenlendi; AYM 22.02.2024 tarihli kısmi iptal kararı teyit edilecek.
+      İlk yayım tarihi/sayısı teyit edilecek.
+
+# Yürürlükten kalkmış metinler: indekslenmez, soru gelirse uyarı verilir (plan 6.2).
+kaldirilmis:
+  - id: yok-ogrenci-disiplin
+    baslik: Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği
+    yayim: {tarih: 2012-08-18, rg_sayi: 28388}
+    kaldirilma: {tarih: 2023-03-11, rg_sayi: 32129}
+    yonlendir: kanun-2547
+  - id: uu-onlisans-lisans-ogretim-2014
+    baslik: Uludağ Üniversitesi Önlisans ve Lisans Öğretim Yönetmeliği
+    yayim: {tarih: 2014-08-24, rg_sayi: null}
+    kaldirilma: {tarih: null, rg_sayi: null}   # 2020 yönetmeliğiyle yerine geçildiği teyit edilecek
+    yonlendir: buu-onlisans-lisans-eoy
+
+# P2 ve P3 belgeler Faz 6 öncesinde eklenecek (plan 6.2).

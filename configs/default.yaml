@@ -1,0 +1,48 @@
+# Varsayılan ayarlar. Değerler proje planındaki kararlardan gelir (bölüm 5 ve 7).
+# Yerel değişiklikler için configs/local.yaml oluşturun (Git dışındadır);
+# yalnızca değiştirmek istediğiniz anahtarları yazmanız yeterli.
+
+corpus_version: "0.0.0"   # Faz 1'deki ilk doğrulanmış derlemle 2026.10.1 olacak
+
+llm:
+  backend: ollama          # ollama (yerel API) | openai (llama.cpp, vLLM vb. OpenAI uyumlu sunucular)
+  base_url: http://localhost:11434
+  model: qwen3.5:9b        # K-01; etiket kurulumda ollama.com/library üzerinden doğrulanacak
+  fallback_model: gemma4:e4b
+  temperature: 0.1
+  seed: 42
+  num_ctx: 8192            # Ollama varsayılanı küçük olabilir; açıkça ayarlanır
+  think: false             # RAG'de düşünme modu kapalı
+  max_tokens: 700
+  timeout_s: 180
+
+embedding:                 # Faz 2
+  model: BAAI/bge-m3
+  dtype: float16           # T4 bf16 desteklemez
+  batch_size: 16
+
+reranker:                  # Faz 2
+  model: BAAI/bge-reranker-v2-m3
+  dtype: float16
+  top_n: 6
+  reject_threshold: null   # Faz 4'te altın setle kalibre edilecek
+
+retrieval:                 # Faz 2
+  bm25:
+    k1: 1.2
+    b: 0.75
+    candidates: 30
+    stemmer: turkish
+  dense:
+    candidates: 30
+  rrf_k: 60
+  context_token_budget: 5000
+
+paths:
+  # Colab'da YA_DATA_DIR ortam değişkeni Drive'daki dizini gösterir.
+  data_dir: data
+  manifest: configs/corpus_manifest.yaml
+  glossary: data/glossary.yaml
+
+logging:
+  retention_days: 180      # en fazla bir dönem (bölüm 11.1)

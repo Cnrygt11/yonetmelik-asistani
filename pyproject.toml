@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yonetmelik-asistani"
+version = "0.0.1"
+description = "Bursa Uludağ Üniversitesi öğrenci mevzuatı için açık kaynaklı RAG asistanı"
+readme = "README.md"
+requires-python = ">=3.11"
+# Faz 0 yalnızca yapılandırma ve LLM istemcisini içerir.
+# Diğer bağımlılıklar ilgili fazda ekstra grup olarak eklenecek (ingest, index, ui).
+dependencies = [
+  "httpx>=0.27",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+ya-smoke = "yonetmelik_asistani.smoke:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yonetmelik_asistani"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["notebooks"]  # ince Colab çalıştırıcısı; IPython komutları içerir

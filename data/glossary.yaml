@@ -1,0 +1,28 @@
+# Öğrenci dili → mevzuat terimi sözlüğü (FR-10, plan Ek C).
+# Tohum liste; Faz 3'te toplanan gerçek sorularla genişletilecek, Faz 6'da aramaya bağlanacak.
+# Mevzuat terimi her zaman yönetmelikteki ifadeyle yazılır.
+
+- ifadeler: [bütü, bütünleme]
+  terimler: [bütünleme sınavı]
+- ifadeler: [kaydı dondurmak, kaydımı dondurmak, kayıt dondurmak]
+  terimler: [kayıt dondurma, izin]
+- ifadeler: [okuldan atılmak, atılmak]
+  terimler: [ilişik kesme, kaydın silinmesi]
+- ifadeler: [dersten kalmak, FF almak, kalmak]
+  terimler: [başarısız, harf notu]
+- ifadeler: [ortalama, gano, agno]
+  terimler: [genel not ortalaması]
+- ifadeler: [yaz okulu]
+  terimler: [yaz öğretimi]
+- ifadeler: [devamsızlık]
+  terimler: [devam zorunluluğu]
+- ifadeler: [ÇAP, çap]
+  terimler: [çift anadal programı]
+- ifadeler: [üstten ders almak, üstten ders]
+  terimler: [üst yarıyıldan ders alma]
+- ifadeler: [hazırlıktan muaf olmak, hazırlık muafiyeti]
+  terimler: [yabancı dil muafiyet sınavı, yeterlik sınavı]
+- ifadeler: [tek ders]
+  terimler: [tek ders sınavı]
+- ifadeler: [not itirazı]
+  terimler: [sınav sonucuna itiraz, maddi hata]

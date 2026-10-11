@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Notebook
+.ipynb_checkpoints/
+
+# Ham ve işlenmiş belgeler Git dışında tutulur; envanter configs/corpus_manifest.yaml'dadır
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Kişisel/yerel ayarlar
+configs/local.yaml
+.env
+
+# Kayıtlar (maskelenmiş olsalar bile depoya girmez)
+*.log
+logs/
+*.sqlite
+*.db
