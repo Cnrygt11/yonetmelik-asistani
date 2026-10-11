@@ -9,12 +9,18 @@ Kök bulma yöntemi yapılandırılabilir; hangisinin kullanılacağına altın 
 from __future__ import annotations
 
 import json
+import os
 import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
 from yonetmelik_asistani.ingest.normalize import turkish_lower
+
+# bm25s içe aktarılırken (selection.py) kuruluysa bir JAX işlemi çalıştırır; Colab'da JAX hazır
+# kurulu gelir ve GPU'yu ilk kullanımda belleğin %75'ini ayırır (T4'te ~11 GiB, 12.10.2026).
+# Biz JAX kullanmıyoruz (skorlar numpy ile seçilir), bu yüzden JAX işlemciyle sınırlanır.
+os.environ.setdefault("JAX_PLATFORMS", "cpu")
 
 _WORD_RE = re.compile(r"[0-9a-zçğıöşüâîû]+")
 STOPWORDS = frozenset(["acaba", "ama", "ancak", "bazı", "belki", "ben", "bir", "biri", "birkaç", "birçok", "biz", "bu", "bunu", "bunun", "buna", "da", "daha", "de", "defa", "diye", "en", "gibi", "hem", "hep", "her", "hiç", "için", "ile", "ise", "işte", "kadar", "ki", "kim", "mı", "mi", "mu", "mü", "nasıl", "ne", "neden", "nerede", "niçin", "o", "olan", "olarak", "olduğu", "olması", "olup", "onun", "ona", "sadece", "siz", "şey", "şu", "tüm", "ve", "veya", "ya", "yani", "yine", "yoksa", "çok", "göre"])

@@ -61,8 +61,7 @@ class CrossEncoderReranker:
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
             _gpu_report("yükleme öncesi")
-            # Önce CPU'ya yüklenip fp16'ya çevrilir, sonra GPU'ya taşınır: Colab'da doğrudan GPU'ya
-            # yükleme sırasında T4 doluyordu (PyTorch 3,2 GiB sayarken 14,3 GiB dolu; 12.10.2026)
+            # CPU'da fp16'ya çevrilip GPU'ya taşınır: GPU'da fp32 kopya için yer ayrılmaz
             self._model = CrossEncoder(self.model_name, device="cpu", max_length=self.max_length)
             if device == "cuda":
                 if self.dtype == "float16":

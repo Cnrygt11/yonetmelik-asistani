@@ -110,3 +110,11 @@ def test_reranker_halves_batch_on_oom():
     rr = CrossEncoderReranker(batch_size=8, _model=FakeModel())
     assert rr.score("soru", ["a", "b", "c"]) == [0.5, 0.5, 0.5]
     assert rr.batch_size == 2  # sonraki çağrılar küçük yığınla başlar
+
+
+def test_bm25_module_keeps_jax_off_gpu():
+    import os
+
+    import yonetmelik_asistani.index.bm25  # noqa: F401
+
+    assert os.environ.get("JAX_PLATFORMS") == "cpu"

@@ -75,9 +75,10 @@ kesme, "tek ders"/ek sınav. Yoğun arama ve öğrenci dili sözlüğü bu açı
 Karar K-11: Plan hattı (hibrit + reranker) korunur; ret eşiği reranker skoruna kalibre edilir.
 Altın set 150 soruya ulaşınca ve sözlük bağlanınca dense ile yeniden karşılaştırılır.
 
-Colab notu: reranker yüklenmeden önce GPU'da yalnızca 0,9 GiB boş kaldı (PyTorch 1,1 GiB
-ayırmıştı). Reranker artık CPU'da fp16'ya çevrilip GPU'ya taşınıyor (1,0 GiB). Belleği dolduran
-başka süreç (ör. bölüm 4'te başlatılan Ollama) Faz 4'teki bellek bütçesi için doğrulanacak.
+Colab notu: değerlendirmede GPU'nun ~11 GiB'ı PyTorch dışında doluyordu. Neden: `bm25s` içe
+aktarılırken bir JAX işlemi çalıştırıyor; Colab'da hazır kurulu JAX da GPU'yu ilk kullanımda
+belleğin %75'ini ayırıyor. JAX artık işlemciyle sınırlanıyor (`JAX_PLATFORMS=cpu`). Ölçüm: BGE-M3 +
+reranker birlikte ~2,6 GiB; Qwen3.5-9B için yaklaşık 12 GiB kalıyor.
 
 ## Faz 2'de bulunan ve düzeltilen metin çıkarma hataları
 
