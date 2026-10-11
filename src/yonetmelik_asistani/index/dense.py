@@ -60,13 +60,19 @@ class CrossEncoderReranker:
             from sentence_transformers import CrossEncoder
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
-            self._model = CrossEncoder(self.model_name, device=device, max_length=self.max_length)
-            if device == "cuda" and self.dtype == "float16":
-                self._model.model.half()
+            _gpu_report("yükleme öncesi")
+            # Önce CPU'ya yüklenip fp16'ya çevrilir, sonra GPU'ya taşınır: Colab'da doğrudan GPU'ya
+            # yükleme sırasında T4 doluyordu (PyTorch 3,2 GiB sayarken 14,3 GiB dolu; 12.10.2026)
+            self._model = CrossEncoder(self.model_name, device="cpu", max_length=self.max_length)
             if device == "cuda":
-                free, total = torch.cuda.mem_get_info()
-                print(f"[reranker] GPU boş {free / 2**30:.1f} / {total / 2**30:.1f} GiB, "
-                      f"PyTorch ayrılmış {torch.cuda.memory_allocated() / 2**30:.1f} GiB", file=sys.stderr)
+                if self.dtype == "float16":
+                    self._model.model.half()
+                if isinstance(self._model, torch.nn.Module):  # sentence-transformers >= 4
+                    self._model.to(device)
+                else:
+                    self._model.model.to(device)
+                    self._model._target_device = torch.device(device)
+                _gpu_report("yükleme sonrası")
         return self._model
 
     def score(self, query: str, passages: Sequence[str]) -> list[float]:
@@ -86,6 +92,14 @@ class CrossEncoderReranker:
                 batch //= 2
                 self.batch_size = batch
                 print(f"[reranker] GPU belleği yetmedi, yığın boyu {batch}", file=sys.stderr)
+
+
+def _gpu_report(stage: str) -> None:
+    torch = sys.modules.get("torch")
+    if torch is not None and torch.cuda.is_available():
+        free, total = torch.cuda.mem_get_info()
+        print(f"[reranker] {stage}: GPU boş {free / 2**30:.1f} / {total / 2**30:.1f} GiB, "
+              f"PyTorch ayrılmış {torch.cuda.memory_allocated() / 2**30:.1f} GiB", file=sys.stderr, flush=True)
 
 
 class QdrantStore:
