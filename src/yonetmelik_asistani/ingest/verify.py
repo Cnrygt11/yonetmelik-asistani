@@ -98,6 +98,9 @@ class CrossCheck:
     yalniz_ikincide: list[str] = field(default_factory=list)
     farkli: list[tuple[str, float]] = field(default_factory=list)  # (madde, benzerlik)
     bilinen: dict[str, str] = field(default_factory=dict)  # manifest'te açıklanmış farklar
+    # Bilinen farklı maddelerde bile ikinci kaynaktaki her satır birincil metinde bulunmalı
+    # (ör. ikinci kaynakta yalnızca resimler eksik): (madde, birincilde olmayan satır)
+    eksik_satirlar: list[tuple[str, str]] = field(default_factory=list)
 
     @property
     def issues(self) -> list[str]:
@@ -107,6 +110,8 @@ class CrossCheck:
                 for k, r in self.farkli if k not in self.bilinen]
         out += [f"md {k} bilinen fark olarak kayıtlı ama artık fark yok; manifest'ten silin"
                 for k in self.bilinen if k not in dict(self.farkli)]
+        out += [f"md {k}: ikinci kaynaktaki satır birincil metinde yok (içerik kaybı?): {line[:80]!r}"
+                for k, line in self.eksik_satirlar]
         return out
 
 
@@ -114,16 +119,22 @@ def cross_check(primary_text: str, secondary_text: str,
                 bilinen: dict[str, str] | None = None) -> CrossCheck:
     a, b = split_maddeler(primary_text), split_maddeler(secondary_text)
     common = [k for k in a if k in b]
+    known = dict(bilinen or {})
     differing = []
+    missing: list[tuple[str, str]] = []
     for k in common:
         ca, cb = _canon(a[k]), _canon(b[k])
         if ca != cb:
             differing.append((k, difflib.SequenceMatcher(None, ca, cb).ratio()))
+            if k in known:
+                missing += [(k, line) for line in b[k].split("\n")
+                            if len(_canon(line)) > 20 and _canon(line) not in ca]
     return CrossCheck(
         ortak=len(common),
         ayni=len(common) - len(differing),
         yalniz_birincide=[k for k in a if k not in b],
         yalniz_ikincide=[k for k in b if k not in a],
         farkli=differing,
-        bilinen=dict(bilinen or {}),
+        bilinen=known,
+        eksik_satirlar=missing,
     )

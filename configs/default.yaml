@@ -2,7 +2,11 @@
 # Yerel değişiklikler için configs/local.yaml oluşturun (Git dışındadır);
 # yalnızca değiştirmek istediğiniz anahtarları yazmanız yeterli.
 
-corpus_version: "0.0.0"   # Faz 1'deki ilk doğrulanmış derlemle 2026.10.1 olacak
+corpus_version: "2026.10.1"   # derlem v1: P1 belgeler, Faz 1'de doğrulandı (12.10.2026)
+
+chunking:                  # plan 6.4
+  short_madde_tokens: 350  # bu boyutun altındaki maddeler bölünmez
+  max_tokens: 450          # daha uzun fıkralar bent gruplarına bölünür
 
 llm:
   backend: ollama          # ollama (yerel API) | openai (llama.cpp, vLLM vb. OpenAI uyumlu sunucular)

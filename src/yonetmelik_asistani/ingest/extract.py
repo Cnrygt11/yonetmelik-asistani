@@ -33,6 +33,7 @@ _MADDE_LINE_RE = re.compile(r"^\s*" + MADDE_RE.pattern[1:], re.MULTILINE)  # blo
 RG_TABLE_START = re.compile(r"Yayımlandığı\s+Resm[iî]\s+Gazete")
 _RG_ROW_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})[\s|]*(\d{4,5})")  # düz metin veya Markdown tablo
 TABLE_MARK = "\x00TABLO\n"  # Markdown tabloya çevrilmiş bloğun öneki; satırları birleştirilmez
+_PAGE_NO_RE = re.compile(r"^\s*\d{1,3}\s*$")
 ANNOTATION_RE = re.compile(
     r"\((?:Değişik|Mülga|Ek|İptal)[^)]*?RG-\s*(\d{1,2})/(\d{1,2})/(\d{4})-(\d{4,5})[^)]*\)"
 )
@@ -92,8 +93,8 @@ def _join_structural_lines(blocks: str | list[str]) -> list[str]:
     """PDF bloklarının satırlarını mantıksal satırlara (başlık, madde, fıkra, bent) birleştirir.
 
     Bloklar tek bir akış olarak işlenir: madde başlığı bir bloğun son satırında, "MADDE" satırı
-    sonraki blokta olabilir (ör. sayfa sonu). Bir blok, sayfa geçişinde devam eden bir cümle
-    (küçük harfle başlayan) değilse yeni satırla başlar.
+    sonraki blokta olabilir (ör. sayfa sonu). Yeni bir blok, önceki satır cümleyi bitirmişse
+    (. : ; ! ?) yeni satırla başlar; bitirmemişse sayfa geçişinde süren cümle olarak eklenir.
     """
     if isinstance(blocks, str):
         blocks = [blocks]
@@ -104,14 +105,16 @@ def _join_structural_lines(blocks: str | list[str]) -> list[str]:
             continue
         lines = [" ".join(ln.split()) for ln in _SPLIT_MADDE_RE.sub(r"\1 \2 \3", block).split("\n")]
         lines = [ln for ln in lines if ln]
-        raw.extend((ln, j == 0 and not ln[0].islower()) for j, ln in enumerate(lines))
+        raw.extend((ln, j == 0) for j, ln in enumerate(lines))
     out: list[str] = []
     after_bolum = False
     for i, (line, block_start) in enumerate(raw):
         next_is_madde = i + 1 < len(raw) and bool(MADDE_RE.match(raw[i + 1][0]))
         starts_new = (
             not out
-            or block_start
+            # yeni blok: önceki satır cümleyi bitirdiyse yeni satır, yoksa sayfa geçişinde süren cümle
+            or (block_start and out[-1].endswith((".", ":", ";", "!", "?")))
+            or (block_start and line.startswith("|"))
             or out[-1].startswith("|")  # tablodan sonra gelen metin tabloya eklenmez
             or MADDE_RE.match(line)
             or BOLUM_RE.match(line)
@@ -205,13 +208,34 @@ def _page_blocks(page) -> tuple[list[str], int]:
     with contextlib.redirect_stdout(io.StringIO()):  # PyMuPDF'in tavsiye mesajını sustur
         tables = page.find_tables().tables
     boxes = [t.bbox for t in tables]
+    h = page.rect.height
 
-    def inside(b) -> bool:
-        cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
+    def inside(bbox) -> bool:
+        cx, cy = (bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2
         return any(x0 <= cx <= x1 and y0 <= cy <= y1 for x0, y0, x1, y1 in boxes)
 
-    items = [(b[1], b[0], unicodedata.normalize("NFC", b[4]))
-             for b in page.get_text("blocks", sort=True) if b[6] == 0 and not inside(b)]
+    # Ayıklama satır düzeyindedir: PyMuPDF bir tabloyu ve ardından gelen paragrafı aynı bloğa
+    # koyabilir; bloğu bütün olarak atmak paragrafı da kaybettirir (YDYO md. 8/5'te oldu).
+    items: list[tuple[float, float, str]] = []
+    for block in page.get_text("dict", sort=True)["blocks"]:
+        if block.get("type") != 0:
+            continue
+        segment: list[str] = []
+        seg_pos: tuple[float, float] | None = None
+        for line in block["lines"]:
+            text = "".join(span["text"] for span in line["spans"])
+            if inside(line["bbox"]):
+                if segment:
+                    items.append((*seg_pos, "\n".join(segment)))
+                segment, seg_pos = [], None
+                continue
+            if seg_pos is None:
+                seg_pos = (line["bbox"][1], line["bbox"][0])
+            segment.append(text)
+        if segment:
+            items.append((*seg_pos, "\n".join(segment)))
+    items = [(y, x, unicodedata.normalize("NFC", t)) for y, x, t in items
+             if not (_PAGE_NO_RE.match(t) and (y > h * 0.88 or y < h * 0.10))]  # sayfa numarası
     for t in tables:
         md = table_markdown(t.extract())
         if md:
