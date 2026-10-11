@@ -1,8 +1,9 @@
 # Faz 0 · Başlangıç (1. hafta)
 
 Plan bölüm 13'teki faz tanımı: kapsamın netleştirilmesi, depo iskeleti, Colab ve VS Code
-kurulumu, Ollama ile ilk model testi, paydaş görüşme talepleri.
-**Çıktı:** proje tüzüğü ve çalışan ilk notebook. **Çıkış ölçütü:** danışman onayı.
+kurulumu, Ollama ile ilk model testi.
+**Çıktı:** çalışan ilk notebook ve smoke raporu.
+**Çıkış ölçütü:** smoke kontrolü T4'te geçti ve aşağıdaki listenin tamamı işaretli.
 
 ## Kontrol listesi
 
@@ -44,11 +45,9 @@ kurulumu, Ollama ile ilk model testi, paydaş görüşme talepleri.
 - **Türkçe akıcılık:** dil bilgisi ve akıcılık yeterli; biçimlendirmede kalın yazı ve madde
   işaretini yoğun kullanıyor (Faz 4'te istemle düzenlenecek).
 
-### Paydaşlar ve onay
-- [ ] Proje tüzüğündeki köşeli parantezli alanlar dolduruldu
-- [ ] Plan sayfası danışmanla paylaşıldı (Share menüsü)
-- [ ] Görüşme talepleri gönderildi: Öğrenci İşleri, KVKK birimi, Bilgi İşlem
-- [ ] **Danışman onayı alındı → Faz 1'e geçiş**
+### Kapanış
+- [x] Plan sürüm 1.1: bireysel projeye uyarlandı (dış onaylar yerine faz kapıları, K-08)
+- [ ] **Smoke raporu depoda → Faz 0 kapandı, Faz 1'e geçiş**
 
 ## Smoke raporunu okuma
 

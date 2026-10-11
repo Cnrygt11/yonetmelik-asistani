@@ -6,8 +6,8 @@ bir soru-cevap (RAG) sistemi.
 
 > Bu proje Bursa Uludağ Üniversitesi'nin resmî bir hizmeti değildir.
 
-- **Proje planı (v1.0):** https://claude.ai/artifact/U8QJsVHXf3HtWBYQzY1Xau
-- **Proje tüzüğü:** [docs/PROJE_TUZUGU.md](docs/PROJE_TUZUGU.md)
+- **Proje planı (v1.1):** https://claude.ai/artifact/U8QJsVHXf3HtWBYQzY1Xau
+- **Çalışma biçimi:** bireysel proje; her faz `docs/FAZ_n.md` içindeki çıkış ölçütleriyle kapanır
 - **Güncel faz:** Faz 0 · Başlangıç ([kontrol listesi](docs/FAZ_0.md))
 
 ## Mimari özeti
@@ -49,7 +49,7 @@ Türkçe akıcılık, hız ve boş bağlamda ret davranışı.
 ```
 configs/            default.yaml (ayarlar) · corpus_manifest.yaml (belge envanteri)
 data/               raw/ ve processed/ Git dışında · glossary.yaml (öğrenci dili sözlüğü)
-docs/               tüzük, faz kontrol listeleri, paydaş yazışma taslakları
+docs/               faz kontrol listeleri (FAZ_n.md)
 eval/               altın set ve değerlendirme raporları
 notebooks/          Colab çalıştırıcı
 scripts/            Colab kurulum betiği
