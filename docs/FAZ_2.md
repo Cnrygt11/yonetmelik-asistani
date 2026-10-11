@@ -14,6 +14,10 @@ python eval/run_eval.py                      # geliştirme seti; --split test ya
 python eval/run_eval.py --methods bm25,dense,hybrid,hybrid_rerank   # GPU
 ```
 
+Colab `.gov.tr` adreslerini çözemiyor (12.10.2026: `Temporary failure in name resolution`).
+İndirme ve çapraz kontrol yerelde yapılır; yerel `data/raw` Drive'a yüklenir, `extract` her dosyanın
+sha256 özetini `configs/corpus_lock.json` ile karşılaştırır. Notebook 6.1 bu durumu kendisi algılar.
+
 Karar K-10: BM25 belirteci **F5** (ilk 5 harf); Snowball'dan 10 puan iyi ölçüldü. Plan PyStemmer
 öneriyordu; aynı Snowball algoritması saf Python `snowballstemmer` ile karşılaştırmada kaldı.
 

@@ -110,7 +110,17 @@ def cmd_extract(belgeler: list[Belge], raw_dir: Path, out_dir: Path) -> int:
             print(f"  ! {b.id}: indirilmemiş (önce download)")
             problems += 1
             continue
-        ex = extract_pdf(raw_dir / entry["dosya"])
+        path = raw_dir / entry["dosya"]
+        if not path.exists():
+            print(f"  ! {b.id}: dosya yok: {path}")
+            problems += 1
+            continue
+        # Elle kopyalanan dosyalar (ör. Colab'da Drive'a yüklenen) kilitteki sürümle aynı olmalı
+        if hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
+            print(f"  ! {b.id}: dosya kilitteki sha256 ile uyuşmuyor (önce download)")
+            problems += 1
+            continue
+        ex = extract_pdf(path)
         (out_dir / f"{b.id}.txt").write_text(ex.text + "\n", encoding="utf-8")
         issues = verify(b, ex)
         meta = {
