@@ -78,7 +78,7 @@ Altın set 150 soruya ulaşınca ve sözlük bağlanınca dense ile yeniden kar�
 Colab notu: değerlendirmede GPU'nun ~11 GiB'ı PyTorch dışında doluyordu. Neden: `bm25s` içe
 aktarılırken bir JAX işlemi çalıştırıyor; Colab'da hazır kurulu JAX da GPU'yu ilk kullanımda
 belleğin %75'ini ayırıyor. JAX artık işlemciyle sınırlanıyor (`JAX_PLATFORMS=cpu`). Ölçüm: BGE-M3 +
-reranker birlikte ~2,6 GiB; Qwen3.5-9B için yaklaşık 12 GiB kalıyor.
+reranker birlikte ~2,6 GiB; Colab'da doğrulandı (reranker öncesi 11,8 GiB boş), Qwen3.5-9B için yer var.
 
 ## Faz 2'de bulunan ve düzeltilen metin çıkarma hataları
 
