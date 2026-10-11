@@ -92,3 +92,20 @@ reranker birlikte ~2,6 GiB; Colab'da doğrulandı (reranker öncesi 11,8 GiB bo�
 
 Resmî metindeki bir numaralandırma hatası da kayda geçti: YDYO md. 8'de iki ayrı (4) numaralı
 fıkra var (KAYSİS ve mevzuat.gov.tr'de aynı).
+
+## Faz 3'e devredilenler (12.10.2026)
+
+- **Güncellik açığı · 7592 sayılı Kanun (RG 9/8/2026):** 2547 md. 44'teki değişiklik derlemde var
+  (indirme 11.10.2026). Ama öğrenim affını getiren **geçici md. 85** derlem dışında; manifest yalnızca
+  md. 44 ve 54'ü alıyor. Bahar başvurusu 9.12.2026'da kapanıyor. Ayrıştırıcının "Geçici Madde N-"
+  biçimini tanıması ve manifestin geçici maddeleri seçebilmesi gerekiyor.
+- **Fakülteye özgü kurallar:** P2'de Tıp, Diş Hekimliği, Veteriner ve Konservatuvarın kendi
+  eğitim-sınav yönergeleri, Mühendislik ve Mimarlık gibi birimlerin staj/bitirme yönergeleri var.
+  Profil filtresi (FR-04) birim belirtilince başka birimin belgesini dışarıda bırakıyor; birim
+  belirtilmezse bırakmıyor. P2 belgeleri eklenmeden önce: bağlam başlığında "Yalnızca: <birim>"
+  etiketi, istemde "birime özgü kuralı genel kural gibi sunma" kuralı, arayüzde profil sorusu ve
+  bunları sınayan altın set soruları.
+- **Gerçek soru kaynakları:** Merkezî bir ÖİDB SSS sayfası bulunamadı. Aday kaynaklar: SHMYO SSS
+  (2025), ÖİDB duyuruları (kayıt yenileme, ÇAP, yan dal, öğrenim affı), öğrenci forumları.
+- **Uçtan uca deneme:** `eval/e2e_deneme.py`, notebook bölüm 7.
+
