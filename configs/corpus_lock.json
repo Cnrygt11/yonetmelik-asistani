@@ -36,13 +36,13 @@
     "indirme": "2026-10-11T23:51:35"
   },
   "buu-ydyo-yabanci-dil": {
-    "kaynak": "kaysis:167045",
-    "url": "https://kms.kaysis.gov.tr/Home/Goster/167045",
-    "dosya": "buu-ydyo-yabanci-dil/kaysis_167045.pdf",
+    "kaynak": "url",
+    "url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34783&mevzuatTur=UniversiteYonetmeligi&mevzuatTertip=5",
+    "dosya": "buu-ydyo-yabanci-dil/url.pdf",
     "icerik_turu": "application/pdf",
-    "bayt": 678385,
-    "sha256": "da258d2c9cedab099e3adb04fab39af6bc8950f901dcba7d8976d6e38ea94854",
-    "indirme": "2026-10-11T23:51:35"
+    "bayt": 63756,
+    "sha256": "bae5c930ee575af53ad8e081f70d11a5c8ecec4b2c7fd176ffa706ca48332c8f",
+    "indirme": "2026-10-12T00:07:05"
   },
   "kanun-2547": {
     "kaynak": "url",

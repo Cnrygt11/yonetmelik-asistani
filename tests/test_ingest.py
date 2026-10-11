@@ -215,3 +215,23 @@ def test_real_manifest_p1_entries_have_sources():
     assert all(b.kaynaklar for b in p1)
     eoy = next(b for b in belgeler if b.id == "buu-onlisans-lisans-eoy")
     assert eoy.degisiklikler == [R2023, R2024]
+
+
+def test_required_phrases_are_enforced():
+    ex = build_extracted(["Madde 54 – (Değişik:2/2/2023-7437/2 md.) (1) Disiplin."], 1)
+    ok = _belge(tur="kanun", yayim=None, degisiklikler=[], zorunlu_ifadeler=["7437/2 md."])
+    missing = _belge(tur="kanun", yayim=None, degisiklikler=[], zorunlu_ifadeler=["E: 2023/78"])
+    assert verify(ok, ex) == []
+    assert any("2023/78" in i for i in verify(missing, ex))
+
+
+def test_images_are_flagged_and_tables_render_as_markdown():
+    from yonetmelik_asistani.ingest.extract import TABLE_MARK, table_markdown
+
+    md = table_markdown([["Sınav", "Puan"], ["YDS", "60"], [None, None]])
+    assert md == "| Sınav | Puan |\n|---|---|\n| YDS | 60 |"
+    ex = build_extracted(["MADDE 8 – (1) Eşdeğerler:", TABLE_MARK + md, "(2) Sonraki fıkra."], 1)
+    assert ex.text.split("\n") == ["MADDE 8 – (1) Eşdeğerler:", "| Sınav | Puan |", "|---|---|",
+                                   "| YDS | 60 |", "(2) Sonraki fıkra."]
+    ex.image_pages = [3]
+    assert any("resim" in i for i in verify(_belge(tur="senato_yonergesi"), ex))

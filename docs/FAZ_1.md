@@ -50,12 +50,26 @@ python -m yonetmelik_asistani.ingest crosscheck   # ikinci kaynakla madde madde 
 |---|---|---|---|---|
 | Önlisans ve Lisans Eğitim Öğretim Yönetmeliği | işlenmiş | 50 | 2 değişiklik, notlar tam | mevzuat.gov.tr 50/50 aynı |
 | Yaz Öğretimi Yönetmeliği | ilk yayım nüshası | 17 | değişiklik yok (mevzuat.gov.tr) | mevzuat.gov.tr 17/17 aynı |
-| YDYO Yabancı Dil Yönetmeliği | ilk yayım nüshası | 37 | değişiklik yok (Lexpera) | — |
+| YDYO Yabancı Dil Yönetmeliği | mevzuat.gov.tr (34783), 3 tablo | 37 | değişiklik yok (mevzuat.gov.tr, Lexpera) | KAYSİS 36/37 aynı + 1 bilinen fark |
 | Geçiş, ÇAP, Yan Dal, Kredi Transferi Yönergesi | yönerge | 34 | KAYSİS | — |
 | Muafiyet ve İntibak Yönergesi | yönerge | 12 | KAYSİS | — |
-| 2547 sayılı Kanun | işlenmiş (mevzuat.gov.tr) | 229 | — | — |
+| 2547 sayılı Kanun | işlenmiş (mevzuat.gov.tr) | 229 | 7437 değişikliği ve AYM iptali metinde (zorunlu ifade) | — |
 
 - [x] P1 belgelerin tamamı `extract` kontrolünden geçti
-- [ ] YDYO yönetmeliği için mevzuat.gov.tr numarası bulunup çapraz kaynak eklenecek
-- [ ] AYM'nin 22.02.2024 tarihli 2547 md. 54 kısmi iptal kararının metne yansıdığı kontrol edilecek
-- [ ] **M1 → Faz 2: parçalama ve indeks**
+- [x] YDYO yönetmeliğinin mevzuat.gov.tr numarası bulundu (34783) ve çapraz kontrole eklendi
+- [x] AYM'nin 22.02.2024 tarihli kararı (E: 2023/78, K: 2024/55) md. 54'e işlenmiş: 1-a(3), b(7),
+      d(2) alt bentleri ve f bendi iptal notlu. `zorunlu_ifadeler` ile kalıcı kontrol altında.
+- [x] **M1 tamamlandı (12.10.2026) → Faz 2: parçalama ve indeks**
+
+## Bulgular ve Faz 2'ye aktarılanlar
+
+- **Resim olarak gömülü tablolar:** KAYSİS'teki YDYO nüshasında hazırlık muafiyeti için eşdeğer
+  sınav puanları ve harf notu tabloları resimdi; metin çıkarımında sessizce kayboluyordu. Çapraz
+  kontrol yakaladı. Birincil kaynak mevzuat.gov.tr yapıldı; artık resim içeren her sayfa için
+  `extract` uyarı veriyor.
+- **Tablolar Markdown'a çevriliyor** (plan 6.4). Faz 2'de tablo satırları bölünmeyecek; tablo,
+  içinde bulunduğu fıkrayla tek parça tutulacak.
+- **2547 md. 54 çok uzun** (~17.000 karakter, 98 satır). Faz 2'de fıkra/bent düzeyinde parçalanmalı.
+- **Kanunun başında künye, sonunda "işlenemeyen hükümler" tabloları var**; Faz 2'de yalnızca
+  `maddeler: [44, 54]` kullanılacak.
+- **Colab:** `data/` Git dışında. Faz 2'nin Colab'daki ilk adımı `download` + `extract` olacak.

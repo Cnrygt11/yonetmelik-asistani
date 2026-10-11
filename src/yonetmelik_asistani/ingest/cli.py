@@ -116,7 +116,7 @@ def cmd_extract(belgeler: list[Belge], raw_dir: Path, out_dir: Path) -> int:
         meta = {
             "id": b.id, "kaynak": entry["kaynak"], "sha256": entry["sha256"], "sayfa": ex.pages,
             "karakter": len(ex.text), "madde": sum(1 for line in ex.text.split("\n") if MADDE_RE.match(line)),
-            "bicim": ex.bicim,
+            "bicim": ex.bicim, "tablo": ex.tables, "resimli_sayfalar": ex.image_pages,
             "pdf_yayim": str(ex.yayim) if ex.yayim else None,
             "pdf_degisiklikler": [str(r) for r in ex.degisiklikler],
             "notlar_rg": {str(k): v for k, v in sorted(ex.annotation_counts.items(), key=lambda kv: kv[0].tarih)},
@@ -127,7 +127,7 @@ def cmd_extract(belgeler: list[Belge], raw_dir: Path, out_dir: Path) -> int:
         )
         mark = "OK " if not issues else "SORUN"
         print(f"  {mark} {b.id}: {ex.bicim}, {ex.pages} sayfa, {meta['madde']} madde, "
-              f"{len(ex.degisiklikler)} değişiklik")
+              f"{ex.tables} tablo, {len(ex.degisiklikler)} değişiklik")
         for issue in issues:
             print(f"        - {issue}")
         problems += bool(issues)
@@ -150,9 +150,11 @@ def cmd_crosscheck(belgeler: list[Belge], raw_dir: Path, out_dir: Path) -> int:
             content, _, label, _ = _fetch(b.kaynaklar[1], client, web)
             dest = raw_dir / b.id / "capraz.pdf"
             dest.write_bytes(content)
-            cc = cross_check(primary.read_text(encoding="utf-8"), extract_pdf(dest).text)
+            cc = cross_check(primary.read_text(encoding="utf-8"), extract_pdf(dest).text,
+                             b.capraz_bilinen_farklar)
             mark = "OK " if not cc.issues else "SORUN"
-            print(f"  {mark} {b.id} ↔ {label}: {cc.ayni}/{cc.ortak} madde aynı")
+            known = f", {len(cc.bilinen)} bilinen fark" if cc.bilinen else ""
+            print(f"  {mark} {b.id} ↔ {label}: {cc.ayni}/{cc.ortak} madde aynı{known}")
             for issue in cc.issues:
                 print(f"        - {issue}")
             problems += bool(cc.issues)

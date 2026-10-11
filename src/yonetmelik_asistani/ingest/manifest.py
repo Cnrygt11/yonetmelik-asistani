@@ -53,6 +53,8 @@ class Belge:
     kaynaklar: list[Kaynak] = field(default_factory=list)
     degisiklik_teyidi: Teyit | None = None
     maddeler: list[int] | None = None  # yalnızca bu maddeler kullanılır (ör. kanunlarda)
+    capraz_bilinen_farklar: dict[str, str] = field(default_factory=dict)  # madde → açıklama
+    zorunlu_ifadeler: list[str] = field(default_factory=list)  # metinde geçmesi gereken (ör. AYM notu)
     notlar: str | None = None
 
 
@@ -85,6 +87,8 @@ def _belge(raw: dict[str, Any]) -> Belge:
             Teyit(_date(t["tarih"]), list(t["kaynaklar"])) if (t := raw.get("degisiklik_teyidi")) else None
         ),
         maddeler=[int(m) for m in raw["maddeler"]] if raw.get("maddeler") else None,
+        zorunlu_ifadeler=list(raw.get("zorunlu_ifadeler") or []),
+        capraz_bilinen_farklar={str(k): v for k, v in (raw.get("capraz_bilinen_farklar") or {}).items()},
         notlar=raw.get("notlar"),
     )
 

@@ -11,6 +11,8 @@ Ayrıca iki yana yaslı metin PyMuPDF'te kelime kelime ayrı satırlara düşebi
 
 from __future__ import annotations
 
+import contextlib
+import io
 import re
 import unicodedata
 from dataclasses import dataclass, field
@@ -29,7 +31,8 @@ BENT_RE = re.compile(r"^(?:[a-zçğıöşü]|\d{1,2})[).]\s")  # "a) " yönetmel
 _SPLIT_MADDE_RE = re.compile(r"((?:GEÇİCİ\s+|EK\s+)?MADDE)\s*\n\s*(\d+)\s*\n?\s*([–-])")
 _MADDE_LINE_RE = re.compile(r"^\s*" + MADDE_RE.pattern[1:], re.MULTILINE)  # blok içinde satır başı
 RG_TABLE_START = re.compile(r"Yayımlandığı\s+Resm[iî]\s+Gazete")
-_RG_ROW_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})\s*\n?\s*(\d{4,5})")
+_RG_ROW_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})[\s|]*(\d{4,5})")  # düz metin veya Markdown tablo
+TABLE_MARK = "\x00TABLO\n"  # Markdown tabloya çevrilmiş bloğun öneki; satırları birleştirilmez
 ANNOTATION_RE = re.compile(
     r"\((?:Değişik|Mülga|Ek|İptal)[^)]*?RG-\s*(\d{1,2})/(\d{1,2})/(\d{4})-(\d{4,5})[^)]*\)"
 )
@@ -61,6 +64,20 @@ class Extracted:
     yayim: RGRef | None
     degisiklikler: list[RGRef] = field(default_factory=list)
     annotation_counts: dict[RGRef, int] = field(default_factory=dict)
+    image_pages: list[int] = field(default_factory=list)  # resim içeren sayfalar (içerik kaybı riski)
+    tables: int = 0
+
+
+def table_markdown(rows: list[list[str | None]]) -> str:
+    """PDF tablosunu Markdown'a çevirir; ilk satır başlık kabul edilir."""
+    cells = [[" ".join((c or "").split()) for c in row] for row in rows if any(row)]
+    if not cells:
+        return ""
+    width = max(len(r) for r in cells)
+    cells = [r + [""] * (width - len(r)) for r in cells]
+    lines = ["| " + " | ".join(cells[0]) + " |", "|" + "---|" * width]
+    lines += ["| " + " | ".join(r) + " |" for r in cells[1:]]
+    return "\n".join(lines)
 
 
 def parse_rg_header(block: str) -> RGRef | None:
@@ -82,6 +99,9 @@ def _join_structural_lines(blocks: str | list[str]) -> list[str]:
         blocks = [blocks]
     raw: list[tuple[str, bool]] = []  # (satır, blok başı mı)
     for block in blocks:
+        if block.startswith(TABLE_MARK):  # tablo satırları olduğu gibi kalır
+            raw.extend((ln, True) for ln in block[len(TABLE_MARK):].split("\n") if ln)
+            continue
         lines = [" ".join(ln.split()) for ln in _SPLIT_MADDE_RE.sub(r"\1 \2 \3", block).split("\n")]
         lines = [ln for ln in lines if ln]
         raw.extend((ln, j == 0 and not ln[0].islower()) for j, ln in enumerate(lines))
@@ -92,6 +112,7 @@ def _join_structural_lines(blocks: str | list[str]) -> list[str]:
         starts_new = (
             not out
             or block_start
+            or out[-1].startswith("|")  # tablodan sonra gelen metin tabloya eklenmez
             or MADDE_RE.match(line)
             or BOLUM_RE.match(line)
             or FIKRA_RE.match(line)
@@ -179,18 +200,43 @@ def structure_text(blocks: list[str]) -> tuple[str, str]:
     return "\n".join(_join_structural_lines(body_blocks)), "\n".join(tail_parts)
 
 
+def _page_blocks(page) -> tuple[list[str], int]:
+    """Sayfanın metin blokları; tablolar Markdown bloğu olarak kendi konumlarına yerleşir."""
+    with contextlib.redirect_stdout(io.StringIO()):  # PyMuPDF'in tavsiye mesajını sustur
+        tables = page.find_tables().tables
+    boxes = [t.bbox for t in tables]
+
+    def inside(b) -> bool:
+        cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
+        return any(x0 <= cx <= x1 and y0 <= cy <= y1 for x0, y0, x1, y1 in boxes)
+
+    items = [(b[1], b[0], unicodedata.normalize("NFC", b[4]))
+             for b in page.get_text("blocks", sort=True) if b[6] == 0 and not inside(b)]
+    for t in tables:
+        md = table_markdown(t.extract())
+        if md:
+            items.append((t.bbox[1], t.bbox[0], TABLE_MARK + unicodedata.normalize("NFC", md)))
+    items.sort(key=lambda it: (it[0], it[1]))
+    return [text for _, _, text in items], len(tables)
+
+
 def extract_pdf(path: Path) -> Extracted:
     import pymupdf  # ağır bağımlılık; yalnızca 'ingest' ekstrasıyla kurulur
 
+    blocks: list[str] = []
+    image_pages: list[int] = []
+    n_tables = 0
     with pymupdf.open(path) as doc:
-        blocks = [
-            unicodedata.normalize("NFC", b[4])
-            for page in doc
-            for b in page.get_text("blocks", sort=True)
-            if b[6] == 0  # yalnız metin blokları
-        ]
+        for i, page in enumerate(doc):
+            page_blocks, n = _page_blocks(page)
+            blocks.extend(page_blocks)
+            n_tables += n
+            if page.get_images():
+                image_pages.append(i + 1)
         pages = len(doc)
-    return build_extracted(blocks, pages)
+    ex = build_extracted(blocks, pages)
+    ex.image_pages, ex.tables = image_pages, n_tables
+    return ex
 
 
 def build_extracted(blocks: list[str], pages: int) -> Extracted:

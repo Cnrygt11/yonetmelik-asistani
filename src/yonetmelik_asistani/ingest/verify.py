@@ -26,11 +26,22 @@ TEYIT_GECERLILIK = timedelta(days=183)  # bir dönem
 def verify(b: Belge, ex: Extracted, today: date | None = None) -> list[str]:
     today = today or date.today()
     issues: list[str] = []
+    if ex.image_pages:
+        issues.append(
+            f"sayfa {', '.join(map(str, ex.image_pages))}: resim var; tablo veya metin resim olarak "
+            "gömülmüş olabilir (metin içeren başka bir kaynak kullanın)"
+        )
+    for phrase in b.zorunlu_ifadeler:
+        if phrase not in ex.text:
+            issues.append(f"metinde bulunması gereken ifade yok: {phrase!r}")
     if b.tur not in RG_TURLERI:
         return issues
 
+    if ex.yayim is None and b.yayim and b.degisiklik_teyidi:
+        # mevzuat.gov.tr değişmemiş yönetmeliklere tablo eklemez: yayım manifest'ten, teyitle
+        return issues + _unchanged_checks(b, ex, today)
     if ex.yayim is None:
-        return ["PDF'te ne Resmî Gazete tablosu ne de ilk yayım başlığı bulundu; güncellik doğrulanamadı"]
+        return [*issues, "PDF'te Resmî Gazete tablosu da ilk yayım başlığı da yok; güncellik doğrulanamadı"]
     if b.yayim and ex.yayim != b.yayim:
         issues.append(f"yayım farklı: manifest {b.yayim}, PDF {ex.yayim}")
     elif not b.yayim:
@@ -50,19 +61,23 @@ def verify(b: Belge, ex: Extracted, today: date | None = None) -> list[str]:
                 issues.append(f"metinde tabloda olmayan bir RG notu var: {r}")
 
     elif ex.bicim == RG_ILK_NUSHA:
-        if b.degisiklikler:
-            issues.append(
-                "PDF ilk yayım nüshası ama manifest'te değişiklik var; KAYSİS kopyası eskimiş: "
-                + ", ".join(map(str, b.degisiklikler))
-            )
-        teyit = b.degisiklik_teyidi
-        if not teyit:
-            issues.append("ilk yayım nüshası: değişiklik olmadığı başka bir kaynakla teyit edilmeli "
-                          "(manifest: degisiklik_teyidi)")
-        elif today - teyit.tarih > TEYIT_GECERLILIK:
-            issues.append(f"değişiklik teyidi eski ({teyit.tarih:%d.%m.%Y}); yeniden kontrol edilmeli")
-        if ex.annotation_counts:
-            issues.append("ilk yayım nüshasında beklenmeyen değişiklik notları var")
+        issues += _unchanged_checks(b, ex, today)
+    return issues
+
+
+def _unchanged_checks(b: Belge, ex: Extracted, today: date) -> list[str]:
+    """Hiç değişmemiş olarak kullanılan (değişiklik notu taşımayan) metinlerin kontrolleri."""
+    issues: list[str] = []
+    if b.degisiklikler:
+        issues.append("PDF değişiklikleri işlenmemiş metin ama manifest'te değişiklik var; kopya eskimiş: "
+                      + ", ".join(map(str, b.degisiklikler)))
+    teyit = b.degisiklik_teyidi
+    if not teyit:
+        issues.append("değişiklik olmadığı başka bir kaynakla teyit edilmeli (manifest: degisiklik_teyidi)")
+    elif today - teyit.tarih > TEYIT_GECERLILIK:
+        issues.append(f"değişiklik teyidi eski ({teyit.tarih:%d.%m.%Y}); yeniden kontrol edilmeli")
+    if ex.annotation_counts:
+        issues.append("değişmemiş sayılan metinde değişiklik notları var")
     return issues
 
 
@@ -82,16 +97,21 @@ class CrossCheck:
     yalniz_birincide: list[str] = field(default_factory=list)
     yalniz_ikincide: list[str] = field(default_factory=list)
     farkli: list[tuple[str, float]] = field(default_factory=list)  # (madde, benzerlik)
+    bilinen: dict[str, str] = field(default_factory=dict)  # manifest'te açıklanmış farklar
 
     @property
     def issues(self) -> list[str]:
         out = [f"md {k} yalnızca birincil kaynakta" for k in self.yalniz_birincide]
         out += [f"md {k} yalnızca ikinci kaynakta" for k in self.yalniz_ikincide]
-        out += [f"md {k} kaynaklar arasında farklı (benzerlik {r:.3f})" for k, r in self.farkli]
+        out += [f"md {k} kaynaklar arasında farklı (benzerlik {r:.3f})"
+                for k, r in self.farkli if k not in self.bilinen]
+        out += [f"md {k} bilinen fark olarak kayıtlı ama artık fark yok; manifest'ten silin"
+                for k in self.bilinen if k not in dict(self.farkli)]
         return out
 
 
-def cross_check(primary_text: str, secondary_text: str) -> CrossCheck:
+def cross_check(primary_text: str, secondary_text: str,
+                bilinen: dict[str, str] | None = None) -> CrossCheck:
     a, b = split_maddeler(primary_text), split_maddeler(secondary_text)
     common = [k for k in a if k in b]
     differing = []
@@ -105,4 +125,5 @@ def cross_check(primary_text: str, secondary_text: str) -> CrossCheck:
         yalniz_birincide=[k for k in a if k not in b],
         yalniz_ikincide=[k for k in b if k not in a],
         farkli=differing,
+        bilinen=dict(bilinen or {}),
     )

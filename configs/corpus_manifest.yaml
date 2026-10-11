@@ -62,10 +62,17 @@ belgeler:
     durum: yururlukte
     yayim: {tarih: 2020-08-23, rg_sayi: 31222}
     degisiklikler: []
-    kaynaklar: [{tur: kaysis, id: 167045}]
+    # KAYSİS nüshasında 8. maddedeki iki tablo resim olarak gömülü (metin olarak yok);
+    # bu yüzden birincil kaynak mevzuat.gov.tr, KAYSİS çapraz kontrol için.
+    kaynaklar:
+      - {tur: url, url: "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34783&mevzuatTur=UniversiteYonetmeligi&mevzuatTertip=5"}
+      - {tur: kaysis, id: 167045}
+    capraz_bilinen_farklar:
+      "8": "KAYSİS'te eşdeğer sınav ve harf notu tabloları resim; metin karşılaştırılamaz"
     degisiklik_teyidi:
-      tarih: 2026-10-11
+      tarih: 2026-10-12
       kaynaklar:
+        - "mevzuat.gov.tr mevzuatNo=34783: değişiklik tablosu yok"
         - "Lexpera konsolide metin: sürüm 1, değişiklik yok"
 
   - id: buu-gecis-cap-yandal-yonergesi
@@ -96,9 +103,13 @@ belgeler:
     durum: yururlukte
     kaynaklar: [{tur: url, url: "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2547.pdf"}]
     maddeler: [44, 54]       # Faz 2'de yalnızca bu maddeler parçalanacak
+    zorunlu_ifadeler:
+      - "Değişik:2/2/2023-7437/2 md."                    # md. 54'ün yeni hâli
+      - "E: 2023/78, K: 2024/55"                          # AYM kısmi iptali (md. 54)
     notlar: >-
-      KAYSİS'te değil; mevzuat.gov.tr işlenmiş metni kullanılıyor.
-      md. 54 7437 sayılı Kanunla yeniden düzenlendi; AYM 22.02.2024 kısmi iptal kararı teyit edilecek.
+      KAYSİS'te değil; mevzuat.gov.tr işlenmiş metni kullanılıyor. AYM'nin 22.02.2024 tarihli
+      kararıyla md. 54/1-a(3), b(7), d(2) alt bentleri ve f bendi iptal; metne işlendiği
+      12.10.2026'da doğrulandı.
 
   # ---------------- P2 · v1.0 kapsamı ----------------
   - {id: buu-lisansustu, baslik: Bursa Uludağ Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği, tur: kurum_yonetmeligi, hiyerarsi: 3, duzey: [lisansustu], oncelik: P2, durum: yururlukte, yayim: {tarih: 2020-06-28, rg_sayi: 31169}, kaynaklar: [{tur: kaysis, id: 163365}]}

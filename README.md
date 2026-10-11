@@ -8,7 +8,7 @@ bir soru-cevap (RAG) sistemi.
 
 - **Proje planı (v1.1):** https://claude.ai/artifact/U8QJsVHXf3HtWBYQzY1Xau
 - **Çalışma biçimi:** bireysel proje; her faz `docs/FAZ_n.md` içindeki çıkış ölçütleriyle kapanır
-- **Güncel faz:** Faz 1 · Derlem ([kontrol listesi](docs/FAZ_1.md)) · Faz 0 tamamlandı ([rapor](docs/FAZ_0.md))
+- **Güncel faz:** Faz 2 · Parçalama ve indeks · tamamlananlar: [Faz 0](docs/FAZ_0.md), [Faz 1](docs/FAZ_1.md)
 
 ## Mimari özeti
 
