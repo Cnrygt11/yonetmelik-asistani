@@ -235,3 +235,21 @@ def test_images_are_flagged_and_tables_render_as_markdown():
                                    "| YDS | 60 |", "(2) Sonraki fıkra."]
     ex.image_pages = [3]
     assert any("resim" in i for i in verify(_belge(tur="senato_yonergesi"), ex))
+
+
+def test_wrapped_title_is_recovered_from_previous_paragraph():
+    lines = _join_structural_lines(
+        "(2) Yönetmelikle düzenlenir.36 Diploma alma ve öğrencilik haklarından yararlanma\n"
+        "ve sınavlar:37\nMadde 44 – (Değişik: 13/2/2011-6111/171 md.)"
+    )
+    assert lines == ["(2) Yönetmelikle düzenlenir.",
+                     "Diploma alma ve öğrencilik haklarından yararlanma ve sınavlar:37",
+                     "Madde 44 – (Değişik: 13/2/2011-6111/171 md.)"]
+
+
+def test_repeated_page_margin_text_is_detected():
+    from yonetmelik_asistani.ingest.extract import _repeated_margin_texts
+
+    pages = [[(10, 0, "Senato Karar Eki", True), (300, 0, "metin", False)],
+             [(10, 0, "Senato  Karar Eki", True), (12, 0, "1 Eylül 2020 SALI", True)]]
+    assert _repeated_margin_texts(pages) == {"Senato Karar Eki"}

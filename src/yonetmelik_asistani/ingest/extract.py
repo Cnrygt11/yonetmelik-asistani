@@ -34,6 +34,8 @@ RG_TABLE_START = re.compile(r"Yayımlandığı\s+Resm[iî]\s+Gazete")
 _RG_ROW_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})[\s|]*(\d{4,5})")  # düz metin veya Markdown tablo
 TABLE_MARK = "\x00TABLO\n"  # Markdown tabloya çevrilmiş bloğun öneki; satırları birleştirilmez
 _PAGE_NO_RE = re.compile(r"^\s*\d{1,3}\s*$")
+# Önceki paragrafın sonuna yapışmış başlık başı; noktadan sonra dipnot numarası olabilir ("düzenlenir.36")
+_WRAPPED_TITLE_RE = re.compile(r"([.:;])\d{0,3}\s+([A-ZÇĞİÖŞÜ][^.:;]{0,120})$")
 ANNOTATION_RE = re.compile(
     r"\((?:Değişik|Mülga|Ek|İptal)[^)]*?RG-\s*(\d{1,2})/(\d{1,2})/(\d{4})-(\d{4,5})[^)]*\)"
 )
@@ -123,6 +125,13 @@ def _join_structural_lines(blocks: str | list[str]) -> list[str]:
             or next_is_madde  # madde başlığı
             or after_bolum  # bölüm adı
         )
+        if starts_new and next_is_madde and line[:1].islower() and out:
+            # iki satıra bölünmüş başlık ("Öğrenim süresi" + "ve sınavlar:"): ilk yarısı önceki
+            # paragrafın sonuna eklenmiştir; geri al
+            m = _WRAPPED_TITLE_RE.search(out[-1])
+            if m:
+                out[-1] = out[-1][: m.start()] + m.group(1)
+                line = f"{m.group(2)} {line}"
         if starts_new:
             out.append(line)
         elif out[-1].endswith("-"):
@@ -203,8 +212,8 @@ def structure_text(blocks: list[str]) -> tuple[str, str]:
     return "\n".join(_join_structural_lines(body_blocks)), "\n".join(tail_parts)
 
 
-def _page_blocks(page) -> tuple[list[str], int]:
-    """Sayfanın metin blokları; tablolar Markdown bloğu olarak kendi konumlarına yerleşir."""
+def _page_blocks(page) -> tuple[list[tuple[float, float, str, bool]], int]:
+    """Sayfanın metin parçaları (y, x, metin, kenarda mı); tablolar Markdown olarak yerleşir."""
     with contextlib.redirect_stdout(io.StringIO()):  # PyMuPDF'in tavsiye mesajını sustur
         tables = page.find_tables().tables
     boxes = [t.bbox for t in tables]
@@ -234,30 +243,46 @@ def _page_blocks(page) -> tuple[list[str], int]:
             segment.append(text)
         if segment:
             items.append((*seg_pos, "\n".join(segment)))
-    items = [(y, x, unicodedata.normalize("NFC", t)) for y, x, t in items
-             if not (_PAGE_NO_RE.match(t) and (y > h * 0.88 or y < h * 0.10))]  # sayfa numarası
+    out = []
+    for y, x, t in items:
+        margin = y > h * 0.88 or y < h * 0.10
+        if margin and _PAGE_NO_RE.match(t):  # sayfa numarası
+            continue
+        out.append((y, x, unicodedata.normalize("NFC", t), margin))
     for t in tables:
         md = table_markdown(t.extract())
         if md:
-            items.append((t.bbox[1], t.bbox[0], TABLE_MARK + unicodedata.normalize("NFC", md)))
-    items.sort(key=lambda it: (it[0], it[1]))
-    return [text for _, _, text in items], len(tables)
+            out.append((t.bbox[1], t.bbox[0], TABLE_MARK + unicodedata.normalize("NFC", md), False))
+    out.sort(key=lambda it: (it[0], it[1]))
+    return out, len(tables)
+
+
+def _repeated_margin_texts(pages: list[list[tuple]]) -> set[str]:
+    """Birden fazla sayfanın kenarında aynen tekrar eden satırlar (üst/alt bilgi: "Senato Karar Eki")."""
+    counts: dict[str, int] = {}
+    for items in pages:
+        for text in {" ".join(t.split()) for _, _, t, margin in items if margin}:
+            counts[text] = counts.get(text, 0) + 1
+    return {t for t, n in counts.items() if n >= 2 and t}
 
 
 def extract_pdf(path: Path) -> Extracted:
     import pymupdf  # ağır bağımlılık; yalnızca 'ingest' ekstrasıyla kurulur
 
-    blocks: list[str] = []
+    page_items: list[list[tuple]] = []
     image_pages: list[int] = []
     n_tables = 0
     with pymupdf.open(path) as doc:
         for i, page in enumerate(doc):
-            page_blocks, n = _page_blocks(page)
-            blocks.extend(page_blocks)
+            items, n = _page_blocks(page)
+            page_items.append(items)
             n_tables += n
             if page.get_images():
                 image_pages.append(i + 1)
         pages = len(doc)
+    headers = _repeated_margin_texts(page_items)
+    blocks = [t for items in page_items for _, _, t, margin in items
+              if not (margin and " ".join(t.split()) in headers)]
     ex = build_extracted(blocks, pages)
     ex.image_pages, ex.tables = image_pages, n_tables
     return ex

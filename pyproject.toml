@@ -20,6 +20,10 @@ dependencies = [
 ingest = [            # Faz 1: belge edinme ve metin çıkarma
   "pymupdf>=1.24",
 ]
+search = [            # Faz 2: sözcüksel arama (CPU)
+  "bm25s>=0.2",
+  "snowballstemmer>=2.2",  # Snowball Türkçe kök bulucu, saf Python
+]
 dev = [
   "pytest>=8.0",
   "ruff>=0.6",

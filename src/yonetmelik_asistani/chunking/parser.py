@@ -23,6 +23,7 @@ _FIKRA_NO_RE = re.compile(r"^\((\d+)\)\s*")
 _REF_RE = re.compile(r"(\d+)\s*(?:'?\s*)(?:inci|ıncı|uncu|üncü|nci|ncı|ncu|ncü)\s+madde", re.IGNORECASE)
 # Atıftan hemen önce başka bir mevzuat adı geçiyorsa dış atıftır
 _EXTERNAL_HINT_RE = re.compile(r"(sayılı|Kanunun|Kanunu|Yönetmeliğin(?!\s*$)|Yönetmelik[’']in)\s*$")
+_TITLE_FOOTNOTE_RE = re.compile(r":\s*\(?\d{1,3}\)?$")
 _LOW_PRIORITY_TITLES = {"yürürlük", "yürütme", "yürürlükten kaldırılan yönetmelik",
                         "yürürlükten kaldırılan yönerge"}
 
@@ -151,8 +152,9 @@ def _start_madde(line: str, baslik: str | None, bolum: str | None) -> Madde:
     if note:  # "MADDE 4 – (Değişik:RG-...)" madde düzeyinde not
         head = f"{head} {note.group(0).strip()}"
         rest = rest[note.end():]
-    madde = Madde(key=key, no=no, baslik=baslik.strip() if baslik else None, bolum=bolum,
-                  gecici=gecici, head=head)
+    if baslik:  # mevzuat.gov.tr kanun başlıklarındaki dipnot numarası: "Öğrenim süresi:37"
+        baslik = _TITLE_FOOTNOTE_RE.sub(":", baslik).strip()
+    madde = Madde(key=key, no=no, baslik=baslik or None, bolum=bolum, gecici=gecici, head=head)
     if rest.strip():
         fm = _FIKRA_NO_RE.match(rest)
         madde.fikralar.append(Fikra(int(fm.group(1)) if fm else None, [rest.strip()]))
