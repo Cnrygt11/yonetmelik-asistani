@@ -4,7 +4,7 @@
   1. configs/default.yaml
   2. configs/local.yaml (varsa, Git dışında)
   3. YA_CONFIG ile verilen ek dosya (varsa)
-  4. Ortam değişkenleri: YA_LLM_BASE_URL, YA_LLM_MODEL, YA_DATA_DIR
+  4. Ortam değişkenleri: YA_LLM_BASE_URL, YA_LLM_MODEL, YA_DATA_DIR, YA_INDEX_DIR
 """
 
 from __future__ import annotations
@@ -45,6 +45,7 @@ class Config:
     llm: LLMConfig
     data_dir: Path
     raw: dict[str, Any] = field(repr=False)
+    index_dir: Path | None = None  # varsayılan: <data_dir>/index
 
     def section(self, name: str) -> dict[str, Any]:
         """Henüz tiplenmemiş bölümler (embedding, retrieval...) için ham erişim."""
@@ -89,9 +90,13 @@ def load_config(config_dir: Path = CONFIG_DIR, env: dict[str, str] | None = None
     if not data_dir.is_absolute():
         data_dir = REPO_ROOT / data_dir
 
+    # Colab: belgeler Drive'da, indeks yerel diskte (Qdrant'ın SQLite dosyası Drive'da kilitlenebilir)
+    index_dir = Path(env.get("YA_INDEX_DIR") or raw.get("paths", {}).get("index_dir") or data_dir / "index")
+
     return Config(
         corpus_version=str(raw.get("corpus_version", "0.0.0")),
         llm=LLMConfig(**llm_raw),
         data_dir=data_dir,
         raw=raw,
+        index_dir=index_dir,
     )

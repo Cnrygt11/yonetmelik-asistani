@@ -31,6 +31,9 @@ def test_local_override_and_env_precedence(tmp_path: Path):
 def test_data_dir_from_env(tmp_path: Path):
     cfg = load_config(env={"YA_DATA_DIR": str(tmp_path)})
     assert cfg.data_dir == tmp_path
+    assert cfg.index_dir == tmp_path / "index"
+    cfg = load_config(env={"YA_DATA_DIR": str(tmp_path), "YA_INDEX_DIR": str(tmp_path / "yerel")})
+    assert cfg.index_dir == tmp_path / "yerel"
 
 
 def test_invalid_backend_rejected():

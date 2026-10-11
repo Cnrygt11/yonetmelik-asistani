@@ -9,8 +9,13 @@ Plan bölüm 13: madde ayrıştırıcı, metadata, BM25 ve BGE-M3 indeksleri, Qd
 ```bash
 uv sync --extra ingest --extra search
 python -m yonetmelik_asistani.chunking       # chunks.jsonl + maddeler.jsonl
+python -m yonetmelik_asistani.index          # BM25 + BGE-M3/Qdrant (--no-dense: yalnız BM25)
 python eval/run_eval.py                      # geliştirme seti; --split test yalnızca kilometre taşlarında
+python eval/run_eval.py --methods bm25,dense,hybrid,hybrid_rerank   # GPU
 ```
+
+Karar K-10: BM25 belirteci **F5** (ilk 5 harf); Snowball'dan 10 puan iyi ölçüldü. Plan PyStemmer
+öneriyordu; aynı Snowball algoritması saf Python `snowballstemmer` ile karşılaştırmada kaldı.
 
 ## Kontrol listesi
 
@@ -23,10 +28,11 @@ python eval/run_eval.py                      # geliştirme seti; --split test ya
 
 ### İndeks ve arama
 - [x] BM25: üç belirteç (F5 ilk 5 harf, Snowball, karakter n-gram)
-- [ ] BGE-M3 yoğun vektörler + Qdrant (GPU)
-- [ ] RRF birleştirme ve bge-reranker-v2-m3
-- [ ] Metadata filtresi (yürürlük, düzey, birim)
-- [ ] Arama komut satırı aracı
+- [x] BGE-M3 yoğun vektörler + Qdrant: kod hazır (`index/dense.py`), Colab'da ölçülecek
+- [x] RRF birleştirme ve bge-reranker-v2-m3: kod hazır, sahte modellerle test edildi
+- [x] Metadata filtresi (yürürlük, düzey, birim) iki aramada da aynı kuralla
+- [x] Arama komut satırı aracı: `python -m yonetmelik_asistani.retrieval "soru"`
+- [ ] Colab T4'te dört kipin ölçümü (notebook bölüm 6)
 
 ### Değerlendirme
 - [x] Başlangıç altın seti: 32 soru (29 cevaplı, 3 cevapsız); alıntılar programla doğrulanıyor

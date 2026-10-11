@@ -3,6 +3,7 @@
     python eval/run_eval.py                       # geliştirme setinde, tüm BM25 belirteçleri
     python eval/run_eval.py --split test          # kilitli test (yalnızca kilometre taşlarında)
     python eval/run_eval.py --tokenizers prefix5  # tek yöntem
+    python eval/run_eval.py --methods bm25,dense,hybrid,hybrid_rerank   # Colab/GPU; önce indeks kurulmalı
 
 Altın set madde düzeyindedir: parçalama yöntemi değişse de geçerliliğini korur.
 Recall@5: altın maddelerden en az birine ait bir parçanın ilk 5 sonuçta olması.
@@ -56,10 +57,11 @@ def validate(gold: list[dict], maddeler: dict[str, dict]) -> list[str]:
     return problems
 
 
-def evaluate(index: BM25Index, gold: list[dict], madde_of: dict[str, str], k: int = 10) -> dict:
+def evaluate(search, gold: list[dict], madde_of: dict[str, str], k: int = 10) -> dict:
+    """search(soru, k) → [(parça kimliği, skor), ...] sıralı."""
     per_q = []
     for g in gold:
-        hits = index.search(g["soru"], k=k)
+        hits = search(g["soru"], k)
         ranked = [madde_of[cid] for cid, _ in hits]
         gold_set = set(g["altin_maddeler"])
         rank = next((i + 1 for i, m in enumerate(ranked) if m in gold_set), None)
@@ -86,7 +88,8 @@ def evaluate(index: BM25Index, gold: list[dict], madde_of: dict[str, str], k: in
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", choices=["gelistirme", "test", "hepsi"], default="gelistirme")
-    ap.add_argument("--tokenizers", default=",".join(TOKENIZERS))
+    ap.add_argument("--tokenizers", default=",".join(TOKENIZERS), help="bm25 kipi için")
+    ap.add_argument("--methods", default="bm25", help="bm25,dense,hybrid,hybrid_rerank")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -105,13 +108,29 @@ def main(argv: list[str] | None = None) -> int:
     bm = cfg.section("retrieval").get("bm25", {})
     madde_of = {c["chunk_id"]: c["madde_id"] for c in chunks}
     results = {}
-    for tok in args.tokenizers.split(","):
-        index = BM25Index.build([c["chunk_id"] for c in chunks], [c["text"] for c in chunks],
-                                tokenizer=tok, k1=bm.get("k1", 1.2), b=bm.get("b", 0.75))
-        r = evaluate(index, subset, madde_of)
-        results[f"bm25-{tok}"] = r
-        print(f"  bm25-{tok:9} Recall@5 {r['recall@5']:.3f}  MRR@10 {r['mrr@10']:.3f}  "
+    methods = args.methods.split(",")
+    runs = []
+    if "bm25" in methods:
+        for tok in args.tokenizers.split(","):
+            index = BM25Index.build([c["chunk_id"] for c in chunks], [c["text"] for c in chunks],
+                                    tokenizer=tok, k1=bm.get("k1", 1.2), b=bm.get("b", 0.75))
+            runs.append((f"bm25-{tok}", lambda q, k, ix=index: ix.search(q, k=k)))
+    neural = [m for m in methods if m != "bm25"]
+    if neural:
+        from yonetmelik_asistani.retrieval.service import load_retriever
+
+        retriever = load_retriever(cfg, dense=True, rerank="hybrid_rerank" in neural)
+        for mode in neural:
+            runs.append((mode, lambda q, k, m=mode: [(h.chunk_id, h.score)
+                                                       for h in retriever.search(q, mode=m, k=k)]))
+    for name, search in runs:
+        r = evaluate(search, subset, madde_of)
+        results[name] = r
+        print(f"  {name:15} Recall@5 {r['recall@5']:.3f}  MRR@10 {r['mrr@10']:.3f}  "
               f"kaçırılan: {', '.join(r['kacirilan']) or '-'}")
+        if r["cevapsiz"]:
+            print(f"  {'':15} ilk skor medyanı: cevaplı {r['ilk_skor_cevapli_medyan']:.3f} · "
+                  f"cevapsız {', '.join(f'{x:.3f}' for x in r['ilk_skor_cevapsiz'])}")
     REPORTS.mkdir(parents=True, exist_ok=True)
     out = REPORTS / f"retrieval_{datetime.now():%Y%m%d_%H%M%S}_{args.split}.json"
     out.write_text(json.dumps({"tarih": datetime.now().isoformat(timespec="seconds"),

@@ -24,6 +24,10 @@ search = [            # Faz 2: sözcüksel arama (CPU)
   "bm25s>=0.2",
   "snowballstemmer>=2.2",  # Snowball Türkçe kök bulucu, saf Python
 ]
+dense = [             # Faz 2: BGE-M3 + reranker + Qdrant (GPU; Colab'daki hazır PyTorch kullanılır)
+  "sentence-transformers>=3.0",
+  "qdrant-client>=1.10",
+]
 dev = [
   "pytest>=8.0",
   "ruff>=0.6",
