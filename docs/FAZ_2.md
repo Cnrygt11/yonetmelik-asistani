@@ -36,7 +36,7 @@ Karar K-10: BM25 belirteci **F5** (ilk 5 harf); Snowball'dan 10 puan iyi ölçü
 - [x] RRF birleştirme ve bge-reranker-v2-m3: kod hazır, sahte modellerle test edildi
 - [x] Metadata filtresi (yürürlük, düzey, birim) iki aramada da aynı kuralla
 - [x] Arama komut satırı aracı: `python -m yonetmelik_asistani.retrieval "soru"`
-- [ ] Colab T4'te dört kipin ölçümü (notebook bölüm 6)
+- [x] Colab T4'te dört kipin ölçümü (notebook bölüm 6)
 
 ### Değerlendirme
 - [x] Başlangıç altın seti: 32 soru (29 cevaplı, 3 cevapsız); alıntılar programla doğrulanıyor
@@ -55,6 +55,29 @@ Karar K-10: BM25 belirteci **F5** (ilk 5 harf); Snowball'dan 10 puan iyi ölçü
 Geliştirme seti taban çizgisi (17 cevaplı): BM25 F5 Recall@5 **0,706**.
 Kaçırılanların tamamı kelime uyuşmazlığı: "dönem"/yarıyıl, "harç"/katkı payı, "atılmak"/ilişik
 kesme, "tek ders"/ek sınav. Yoğun arama ve öğrenci dili sözlüğü bu açığı hedefliyor.
+
+## Dört kip · 12.10.2026 · Colab T4 · geliştirme seti (17 cevaplı, 3 cevapsız)
+
+| Kip | Recall@5 | MRR@10 | Kaçırılan | İlk skor: cevaplı medyan / cevapsız |
+|---|---|---|---|---|
+| BM25 F5 | 0,706 | 0,577 | q-010, q-011, q-012, q-016, q-022 | 5,09 / 2,13–2,69 |
+| BGE-M3 (dense) | **1,000** | **0,855** | – | 0,636 / 0,425–0,527 (kosinüs) |
+| Hibrit (RRF) | 0,824 | 0,783 | q-011, q-012, q-016 | RRF, ayırt etmiyor |
+| Hibrit + reranker | 0,882 | 0,749 | q-011, q-016 | **0,915 / 0,001–0,013** |
+
+- Yoğun arama kelime uyuşmazlığını tek başına çözdü; RRF, BM25'in yanlış adaylarıyla onu aşağı çekti.
+- Reranker'ın kaçırdığı iki soru da öğrenci dili: "tek ders" (ek sınav), "harç/atılmak" (katkı payı,
+  ilişik kesme). Plan bu açığı öğrenci dili sözlüğüyle kapatıyor (`data/glossary.yaml`, Faz 6).
+- Reranker skoru cevaplı ve cevapsız soruları açık farkla ayırıyor (0,92'ye karşı ≤0,013): ret
+  eşiği (FR-07, Faz 4) için en güçlü sinyal.
+- Fark 17 soruda 2 soru; karar için küçük. Kip seçimi 150 soruluk sette yeniden ölçülecek.
+
+Karar K-11: Plan hattı (hibrit + reranker) korunur; ret eşiği reranker skoruna kalibre edilir.
+Altın set 150 soruya ulaşınca ve sözlük bağlanınca dense ile yeniden karşılaştırılır.
+
+Colab notu: reranker yüklenmeden önce GPU'da yalnızca 0,9 GiB boş kaldı (PyTorch 1,1 GiB
+ayırmıştı). Reranker artık CPU'da fp16'ya çevrilip GPU'ya taşınıyor (1,0 GiB). Belleği dolduran
+başka süreç (ör. bölüm 4'te başlatılan Ollama) Faz 4'teki bellek bütçesi için doğrulanacak.
 
 ## Faz 2'de bulunan ve düzeltilen metin çıkarma hataları
 
