@@ -1,0 +1,1439 @@
+{
+ "tarih": "2026-10-12T00:27:20",
+ "corpus_version": "2026.10.1",
+ "parca": 318,
+ "split": "hepsi",
+ "sonuclar": {
+  "bm25-prefix5": {
+   "recall@5": 0.8275862068965517,
+   "mrr@10": 0.6026819923371648,
+   "cevapli": 29,
+   "cevapsiz": 3,
+   "kategori_recall@5": {
+    "cok_madde": 1.0,
+    "kosul_istisna": 1.0,
+    "ogrenci_dili": 0.6666666666666666,
+    "surum_tuzagi": 0.6666666666666666,
+    "tablo": 1.0,
+    "tek_madde": 0.8235294117647058
+   },
+   "ilk_skor_cevapli_medyan": 5.226585388183594,
+   "ilk_skor_cevapsiz": [
+    2.6864988803863525,
+    2.1266884803771973,
+    2.4490549564361572
+   ],
+   "kacirilan": [
+    "q-010",
+    "q-011",
+    "q-012",
+    "q-016",
+    "q-022"
+   ],
+   "sorular": [
+    {
+     "id": "q-001",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": 3,
+     "ilk_skor": 4.381760597229004,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md13",
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-onlisans-lisans-eoy:md39",
+      "buu-yaz-ogretimi:md6"
+     ]
+    },
+    {
+     "id": "q-002",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 3,
+     "ilk_skor": 5.086020469665527,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "kanun-2547:md44"
+     ]
+    },
+    {
+     "id": "q-003",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 6.339738368988037,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md19",
+      "kanun-2547:md54",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md29"
+     ]
+    },
+    {
+     "id": "q-004",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 4.13979959487915,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-muafiyet-intibak-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-005",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 9.252779006958008,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md42",
+      "buu-onlisans-lisans-eoy:md18"
+     ]
+    },
+    {
+     "id": "q-006",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 8.388006210327148,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-yaz-ogretimi:md12",
+      "buu-ydyo-yabanci-dil:md21",
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-onlisans-lisans-eoy:md30"
+     ]
+    },
+    {
+     "id": "q-007",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 4,
+     "ilk_skor": 3.095120429992676,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md4",
+      "buu-ydyo-yabanci-dil:md22",
+      "kanun-2547:md54",
+      "buu-onlisans-lisans-eoy:md34",
+      "buu-onlisans-lisans-eoy:mdG2"
+     ]
+    },
+    {
+     "id": "q-008",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 9.1734037399292,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-gecis-cap-yandal-yonergesi:md5",
+      "buu-onlisans-lisans-eoy:md40"
+     ]
+    },
+    {
+     "id": "q-009",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 5.668612480163574,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:mdG3"
+     ]
+    },
+    {
+     "id": "q-010",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 6,
+     "ilk_skor": 4.24424409866333,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-gecis-cap-yandal-yonergesi:md19",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md33",
+      "buu-onlisans-lisans-eoy:md27"
+     ]
+    },
+    {
+     "id": "q-011",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 3.6604902744293213,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md37",
+      "buu-ydyo-yabanci-dil:md7"
+     ]
+    },
+    {
+     "id": "q-012",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 5.107772350311279,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "buu-gecis-cap-yandal-yonergesi:md5",
+      "kanun-2547:md54",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md30"
+     ]
+    },
+    {
+     "id": "q-013",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 7.9257402420043945,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md15",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:mdG2"
+     ]
+    },
+    {
+     "id": "q-014",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.579248428344727,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-ydyo-yabanci-dil:md20",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md36",
+      "buu-muafiyet-intibak-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-015",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 7.228860855102539,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md31",
+      "buu-onlisans-lisans-eoy:md33"
+     ]
+    },
+    {
+     "id": "q-016",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 2.2667834758758545,
+     "ilk5": [
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md15",
+      "kanun-2547:md44",
+      "kanun-2547:md44",
+      "buu-gecis-cap-yandal-yonergesi:md24"
+     ]
+    },
+    {
+     "id": "q-017",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 6.33964729309082,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md6",
+      "buu-yaz-ogretimi:md8"
+     ]
+    },
+    {
+     "id": "q-018",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 8.239909172058105,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md11",
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md13",
+      "buu-onlisans-lisans-eoy:md39"
+     ]
+    },
+    {
+     "id": "q-019",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 6.501697540283203,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md33",
+      "buu-yaz-ogretimi:md13",
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-gecis-cap-yandal-yonergesi:md28",
+      "buu-onlisans-lisans-eoy:md33"
+     ]
+    },
+    {
+     "id": "q-020",
+     "kategori": "tablo",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 7.143686294555664,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md7",
+      "buu-gecis-cap-yandal-yonergesi:md16",
+      "buu-gecis-cap-yandal-yonergesi:md17"
+     ]
+    },
+    {
+     "id": "q-021",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 3.974088668823242,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md14",
+      "kanun-2547:md44",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md11"
+     ]
+    },
+    {
+     "id": "q-022",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 9,
+     "ilk_skor": 3.397735118865967,
+     "ilk5": [
+      "kanun-2547:md44",
+      "buu-ydyo-yabanci-dil:md15",
+      "buu-yaz-ogretimi:md6",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md25"
+     ]
+    },
+    {
+     "id": "q-023",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.08590841293335,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md31",
+      "buu-onlisans-lisans-eoy:md29"
+     ]
+    },
+    {
+     "id": "q-024",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": 4,
+     "ilk_skor": 5.226585388183594,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md19",
+      "buu-gecis-cap-yandal-yonergesi:md13",
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "buu-gecis-cap-yandal-yonergesi:md12"
+     ]
+    },
+    {
+     "id": "q-025",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 5,
+     "ilk_skor": 5.378768444061279,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md24",
+      "buu-gecis-cap-yandal-yonergesi:md20",
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-gecis-cap-yandal-yonergesi:md22"
+     ]
+    },
+    {
+     "id": "q-026",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 5.12037467956543,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-gecis-cap-yandal-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-027",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 3,
+     "ilk_skor": 3.8161282539367676,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-muafiyet-intibak-yonergesi:md7",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md31"
+     ]
+    },
+    {
+     "id": "q-028",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 4.6298298835754395,
+     "ilk5": [
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-029",
+     "kategori": "cok_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 6.690112113952637,
+     "ilk5": [
+      "buu-yaz-ogretimi:md13",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md31",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md15"
+     ]
+    },
+    {
+     "id": "q-030",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.6864988803863525,
+     "ilk5": [
+      "kanun-2547:md54",
+      "buu-onlisans-lisans-eoy:md23",
+      "buu-gecis-cap-yandal-yonergesi:md10",
+      "kanun-2547:md44",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-031",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.1266884803771973,
+     "ilk5": [
+      "buu-yaz-ogretimi:md11",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-gecis-cap-yandal-yonergesi:md29"
+     ]
+    },
+    {
+     "id": "q-032",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.4490549564361572,
+     "ilk5": [
+      "kanun-2547:md54",
+      "buu-yaz-ogretimi:md11",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-onlisans-lisans-eoy:md10"
+     ]
+    }
+   ]
+  },
+  "bm25-snowball": {
+   "recall@5": 0.7241379310344828,
+   "mrr@10": 0.6412698412698413,
+   "cevapli": 29,
+   "cevapsiz": 3,
+   "kategori_recall@5": {
+    "cok_madde": 1.0,
+    "kosul_istisna": 1.0,
+    "ogrenci_dili": 1.0,
+    "surum_tuzagi": 0.0,
+    "tablo": 1.0,
+    "tek_madde": 0.7058823529411765
+   },
+   "ilk_skor_cevapli_medyan": 4.425249099731445,
+   "ilk_skor_cevapsiz": [
+    2.0003364086151123,
+    2.8987746238708496,
+    2.558927297592163
+   ],
+   "kacirilan": [
+    "q-001",
+    "q-010",
+    "q-012",
+    "q-016",
+    "q-022",
+    "q-024",
+    "q-025",
+    "q-027"
+   ],
+   "sorular": [
+    {
+     "id": "q-001",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 4.265056610107422,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md39",
+      "buu-onlisans-lisans-eoy:md13",
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "kanun-2547:md44",
+      "buu-yaz-ogretimi:md4"
+     ]
+    },
+    {
+     "id": "q-002",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 4.311407089233398,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md19",
+      "kanun-2547:md44",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-yaz-ogretimi:md10"
+     ]
+    },
+    {
+     "id": "q-003",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 3.4523417949676514,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-onlisans-lisans-eoy:md29",
+      "kanun-2547:md54",
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-onlisans-lisans-eoy:md25"
+     ]
+    },
+    {
+     "id": "q-004",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 3,
+     "ilk_skor": 4.186688423156738,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-ydyo-yabanci-dil:md11",
+      "buu-muafiyet-intibak-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-005",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.983736991882324,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md42",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md37"
+     ]
+    },
+    {
+     "id": "q-006",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 6.047300815582275,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-yaz-ogretimi:md12",
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-ydyo-yabanci-dil:md21"
+     ]
+    },
+    {
+     "id": "q-007",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 3.451874256134033,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md34",
+      "buu-ydyo-yabanci-dil:md4",
+      "buu-ydyo-yabanci-dil:md24",
+      "buu-ydyo-yabanci-dil:md22",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-008",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 8.137691497802734,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md5",
+      "buu-ydyo-yabanci-dil:md14"
+     ]
+    },
+    {
+     "id": "q-009",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 5.348374366760254,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:mdG3",
+      "buu-muafiyet-intibak-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-010",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 9,
+     "ilk_skor": 4.24424409866333,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:mdG1",
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-onlisans-lisans-eoy:md27"
+     ]
+    },
+    {
+     "id": "q-011",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 5,
+     "ilk_skor": 3.198943853378296,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md7",
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-onlisans-lisans-eoy:md31"
+     ]
+    },
+    {
+     "id": "q-012",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 4.32479190826416,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "buu-gecis-cap-yandal-yonergesi:md5",
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md25"
+     ]
+    },
+    {
+     "id": "q-013",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 7.352679252624512,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md15",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md15"
+     ]
+    },
+    {
+     "id": "q-014",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.797765731811523,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-onlisans-lisans-eoy:md36",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20"
+     ]
+    },
+    {
+     "id": "q-015",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 7.935262680053711,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md31",
+      "buu-onlisans-lisans-eoy:md29"
+     ]
+    },
+    {
+     "id": "q-016",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 1.7840516567230225,
+     "ilk5": [
+      "buu-yaz-ogretimi:md13"
+     ]
+    },
+    {
+     "id": "q-017",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.920146942138672,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md13",
+      "buu-yaz-ogretimi:md6",
+      "buu-yaz-ogretimi:md8"
+     ]
+    },
+    {
+     "id": "q-018",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 8.341936111450195,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md11",
+      "buu-onlisans-lisans-eoy:md39",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-yaz-ogretimi:md13"
+     ]
+    },
+    {
+     "id": "q-019",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 4.7247748374938965,
+     "ilk5": [
+      "buu-yaz-ogretimi:md13",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-yaz-ogretimi:md4"
+     ]
+    },
+    {
+     "id": "q-020",
+     "kategori": "tablo",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 8.31203842163086,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-ydyo-yabanci-dil:md7",
+      "buu-ydyo-yabanci-dil:md30"
+     ]
+    },
+    {
+     "id": "q-021",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 4.267822742462158,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md6"
+     ]
+    },
+    {
+     "id": "q-022",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 6,
+     "ilk_skor": 3.697274684906006,
+     "ilk5": [
+      "kanun-2547:md44",
+      "buu-yaz-ogretimi:md6",
+      "buu-onlisans-lisans-eoy:md15",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md25"
+     ]
+    },
+    {
+     "id": "q-023",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.431670188903809,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20"
+     ]
+    },
+    {
+     "id": "q-024",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": 7,
+     "ilk_skor": 4.425249099731445,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md13",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-gecis-cap-yandal-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-025",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 3.8523716926574707,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md20",
+      "buu-onlisans-lisans-eoy:md33",
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-026",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 4.804487228393555,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md13",
+      "buu-gecis-cap-yandal-yonergesi:md11"
+     ]
+    },
+    {
+     "id": "q-027",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 7,
+     "ilk_skor": 4.0588603019714355,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:mdG1",
+      "buu-muafiyet-intibak-yonergesi:md7",
+      "buu-yaz-ogretimi:md10"
+     ]
+    },
+    {
+     "id": "q-028",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 2.503105640411377,
+     "ilk5": [
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-029",
+     "kategori": "cok_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 5.981503486633301,
+     "ilk5": [
+      "buu-yaz-ogretimi:md13",
+      "buu-yaz-ogretimi:md6",
+      "buu-onlisans-lisans-eoy:md31",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md29"
+     ]
+    },
+    {
+     "id": "q-030",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.0003364086151123,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md37",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-muafiyet-intibak-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md14"
+     ]
+    },
+    {
+     "id": "q-031",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.8987746238708496,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md31",
+      "buu-yaz-ogretimi:md8",
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-onlisans-lisans-eoy:md39",
+      "buu-ydyo-yabanci-dil:md30"
+     ]
+    },
+    {
+     "id": "q-032",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 2.558927297592163,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md10",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-yaz-ogretimi:md7"
+     ]
+    }
+   ]
+  },
+  "bm25-char": {
+   "recall@5": 0.7931034482758621,
+   "mrr@10": 0.6117816091954023,
+   "cevapli": 29,
+   "cevapsiz": 3,
+   "kategori_recall@5": {
+    "cok_madde": 1.0,
+    "kosul_istisna": 1.0,
+    "ogrenci_dili": 0.6666666666666666,
+    "surum_tuzagi": 0.6666666666666666,
+    "tablo": 1.0,
+    "tek_madde": 0.7647058823529411
+   },
+   "ilk_skor_cevapli_medyan": 54.827632904052734,
+   "ilk_skor_cevapsiz": [
+    28.661710739135742,
+    31.76271629333496,
+    27.973445892333984
+   ],
+   "kacirilan": [
+    "q-010",
+    "q-011",
+    "q-012",
+    "q-016",
+    "q-022",
+    "q-025"
+   ],
+   "sorular": [
+    {
+     "id": "q-001",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 63.07005310058594,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-onlisans-lisans-eoy:md13",
+      "buu-onlisans-lisans-eoy:md39"
+     ]
+    },
+    {
+     "id": "q-002",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 4,
+     "ilk_skor": 54.827632904052734,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md10",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-gecis-cap-yandal-yonergesi:md21"
+     ]
+    },
+    {
+     "id": "q-003",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 96.61152648925781,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "buu-gecis-cap-yandal-yonergesi:md6"
+     ]
+    },
+    {
+     "id": "q-004",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 48.43528366088867,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md25",
+      "buu-onlisans-lisans-eoy:md18"
+     ]
+    },
+    {
+     "id": "q-005",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 111.36487579345703,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md18",
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md42",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-onlisans-lisans-eoy:md37"
+     ]
+    },
+    {
+     "id": "q-006",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 85.48758697509766,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-ydyo-yabanci-dil:md21",
+      "buu-yaz-ogretimi:md12",
+      "buu-onlisans-lisans-eoy:md30",
+      "buu-onlisans-lisans-eoy:md31"
+     ]
+    },
+    {
+     "id": "q-007",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 4,
+     "ilk_skor": 33.63008117675781,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md4",
+      "kanun-2547:md54",
+      "buu-ydyo-yabanci-dil:md22",
+      "buu-onlisans-lisans-eoy:md34",
+      "buu-ydyo-yabanci-dil:md24"
+     ]
+    },
+    {
+     "id": "q-008",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 53.4854621887207,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md10",
+      "buu-gecis-cap-yandal-yonergesi:md20",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md28"
+     ]
+    },
+    {
+     "id": "q-009",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 51.511295318603516,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-onlisans-lisans-eoy:md28"
+     ]
+    },
+    {
+     "id": "q-010",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 50.979339599609375,
+     "ilk5": [
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md19",
+      "buu-onlisans-lisans-eoy:md36",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md33"
+     ]
+    },
+    {
+     "id": "q-011",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 8,
+     "ilk_skor": 46.323455810546875,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-yaz-ogretimi:md12",
+      "buu-onlisans-lisans-eoy:md37",
+      "buu-ydyo-yabanci-dil:md21",
+      "buu-ydyo-yabanci-dil:md16"
+     ]
+    },
+    {
+     "id": "q-012",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 40.636592864990234,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "buu-gecis-cap-yandal-yonergesi:md5",
+      "buu-onlisans-lisans-eoy:md37",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md28"
+     ]
+    },
+    {
+     "id": "q-013",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 77.49027252197266,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md15",
+      "kanun-2547:md44",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md15"
+     ]
+    },
+    {
+     "id": "q-014",
+     "kategori": "kosul_istisna",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 60.83829879760742,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md28",
+      "buu-onlisans-lisans-eoy:md36",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md33"
+     ]
+    },
+    {
+     "id": "q-015",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 81.47271728515625,
+     "ilk5": [
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-onlisans-lisans-eoy:md33",
+      "buu-onlisans-lisans-eoy:md31"
+     ]
+    },
+    {
+     "id": "q-016",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 23.925457000732422,
+     "ilk5": [
+      "kanun-2547:md44",
+      "kanun-2547:md44",
+      "buu-onlisans-lisans-eoy:md35",
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md10"
+     ]
+    },
+    {
+     "id": "q-017",
+     "kategori": "ogrenci_dili",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 50.31453323364258,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-onlisans-lisans-eoy:md27",
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md9",
+      "buu-gecis-cap-yandal-yonergesi:md21"
+     ]
+    },
+    {
+     "id": "q-018",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 72.57157897949219,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-yaz-ogretimi:md11",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-onlisans-lisans-eoy:md39",
+      "kanun-2547:md44"
+     ]
+    },
+    {
+     "id": "q-019",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 5,
+     "ilk_skor": 63.28455352783203,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md33",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-yaz-ogretimi:md13"
+     ]
+    },
+    {
+     "id": "q-020",
+     "kategori": "tablo",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 110.49293518066406,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md8",
+      "buu-ydyo-yabanci-dil:md30",
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-ydyo-yabanci-dil:md7",
+      "buu-ydyo-yabanci-dil:md12"
+     ]
+    },
+    {
+     "id": "q-021",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 86.30242919921875,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md14",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-ydyo-yabanci-dil:md12",
+      "buu-onlisans-lisans-eoy:md14"
+     ]
+    },
+    {
+     "id": "q-022",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 6,
+     "ilk_skor": 37.022430419921875,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md15",
+      "buu-onlisans-lisans-eoy:md19",
+      "buu-ydyo-yabanci-dil:md10"
+     ]
+    },
+    {
+     "id": "q-023",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 97.1777114868164,
+     "ilk5": [
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-onlisans-lisans-eoy:md29",
+      "buu-ydyo-yabanci-dil:md21"
+     ]
+    },
+    {
+     "id": "q-024",
+     "kategori": "surum_tuzagi",
+     "cevapli": true,
+     "sira": 4,
+     "ilk_skor": 50.57929611206055,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md20",
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md19",
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "buu-gecis-cap-yandal-yonergesi:md17"
+     ]
+    },
+    {
+     "id": "q-025",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": null,
+     "ilk_skor": 47.89357376098633,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md24",
+      "buu-ydyo-yabanci-dil:md20",
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-gecis-cap-yandal-yonergesi:md20"
+     ]
+    },
+    {
+     "id": "q-026",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 56.290218353271484,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md7",
+      "buu-gecis-cap-yandal-yonergesi:md4",
+      "buu-gecis-cap-yandal-yonergesi:md6",
+      "buu-onlisans-lisans-eoy:md7",
+      "buu-gecis-cap-yandal-yonergesi:md13"
+     ]
+    },
+    {
+     "id": "q-027",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 44.17014694213867,
+     "ilk5": [
+      "buu-yaz-ogretimi:md10",
+      "buu-muafiyet-intibak-yonergesi:md6",
+      "buu-muafiyet-intibak-yonergesi:md5",
+      "buu-ydyo-yabanci-dil:md24",
+      "buu-onlisans-lisans-eoy:md15"
+     ]
+    },
+    {
+     "id": "q-028",
+     "kategori": "tek_madde",
+     "cevapli": true,
+     "sira": 1,
+     "ilk_skor": 52.28145980834961,
+     "ilk5": [
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-029",
+     "kategori": "cok_madde",
+     "cevapli": true,
+     "sira": 2,
+     "ilk_skor": 59.26744079589844,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md32",
+      "buu-yaz-ogretimi:md13",
+      "buu-onlisans-lisans-eoy:md15",
+      "buu-onlisans-lisans-eoy:md37",
+      "buu-onlisans-lisans-eoy:md37"
+     ]
+    },
+    {
+     "id": "q-030",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 28.661710739135742,
+     "ilk5": [
+      "buu-gecis-cap-yandal-yonergesi:md12",
+      "buu-muafiyet-intibak-yonergesi:md5",
+      "buu-gecis-cap-yandal-yonergesi:md22",
+      "buu-gecis-cap-yandal-yonergesi:md17",
+      "kanun-2547:md54"
+     ]
+    },
+    {
+     "id": "q-031",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 31.76271629333496,
+     "ilk5": [
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-ydyo-yabanci-dil:md31",
+      "buu-onlisans-lisans-eoy:md10",
+      "kanun-2547:md44",
+      "buu-yaz-ogretimi:md11"
+     ]
+    },
+    {
+     "id": "q-032",
+     "kategori": "cevapsiz",
+     "cevapli": false,
+     "sira": null,
+     "ilk_skor": 27.973445892333984,
+     "ilk5": [
+      "kanun-2547:md54",
+      "buu-onlisans-lisans-eoy:md39",
+      "buu-onlisans-lisans-eoy:md10",
+      "buu-yaz-ogretimi:md11",
+      "buu-gecis-cap-yandal-yonergesi:md29"
+     ]
+    }
+   ]
+  }
+ }
+}
