@@ -12,6 +12,7 @@ __pycache__/
 # Ham ve işlenmiş belgeler Git dışında tutulur; envanter configs/corpus_manifest.yaml'dadır
 data/raw/*
 data/processed/*
+data/index/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
