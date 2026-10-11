@@ -1,0 +1,71 @@
+{
+  "tarih": "2026-10-11T14:32:02",
+  "gpu": "Tesla T4, 6579 MiB, 15360 MiB",
+  "model": "qwen3.5:9b",
+  "llm_ayarlari": {
+    "backend": "ollama",
+    "base_url": "http://localhost:11434",
+    "model": "qwen3.5:9b",
+    "fallback_model": "gemma4:e4b",
+    "temperature": 0.1,
+    "seed": 42,
+    "num_ctx": 8192,
+    "think": false,
+    "max_tokens": 700,
+    "timeout_s": 180
+  },
+  "sonuclar": [
+    {
+      "tur": "akicilik",
+      "soru": "Bir üniversite öğrencisine kayıt dondurmanın ne anlama geldiğini iki cümleyle açıkla.",
+      "text": "Kayıt dondurmak, bir üniversite öğrencisinin eğitimine ara verip resmi olarak kaydını askıya alması anlamına gelir. Bu süreçte öğrenci okulun akademik takviminden çıkar ancak mezuniyet hakkı ve kaydı korunduğu için tekrar derslere başlayıp eğitimini tamamlayabilir.",
+      "model": "qwen3.5:9b",
+      "prompt_tokens": 34,
+      "completion_tokens": 66,
+      "wall_s": 127.5708849780001,
+      "gen_tokens_per_s": 31.65725742626497
+    },
+    {
+      "tur": "akicilik",
+      "soru": "Bütünleme sınavı ile mazeret sınavı arasındaki farkı genel olarak, kısaca anlat.",
+      "text": "Genel olarak **bütünleme sınavı** ve **mazeret sınavı** arasındaki temel fark, öğrencinin eksikliği gösterdiği sınavın **nedeniyle ilgilidir**:\n\n*   **Bütünleme Sınavı:** Öğrencinin bir sınava girmemesinin sebebi **kendi isteği veya ihmalidir** (örneğin; hastalık, mazeret belgesi yoksa). Bu durumda öğrenci, eksik olduğu dersin içeriğini tekrar öğrenerek ve genellikle daha zorlayıcı bir sınavla bu dersi tamamlar.\n*   **Mazeret Sınavı:** Öğrencinin sınava girememesinin sebebi **geçici ve kabul edilebilir bir durum** (hastalık, acil ailevi durum vb.) nedeniyle eksiklik belgesi sunmasıdır. Bu sınavda öğrenci, o dönemde çalışamadığı konuları da kapsayacak şekilde hazırlanır ve genellikle normal sınav koşullarında değerlendirilir.\n\n**Özetle:** Mazeret sınavı \"geçici bir engel yüzünden kaçırdığım sınava\" iken, bütünleme sınavı \"istemeden veya ihmal ederek kaçırdığım sınava\" verilen isimdir.",
+      "model": "qwen3.5:9b",
+      "prompt_tokens": 35,
+      "completion_tokens": 271,
+      "wall_s": 8.911758918000032,
+      "gen_tokens_per_s": 31.140301536940502
+    },
+    {
+      "tur": "akicilik",
+      "soru": "Çift anadal ve yan dal programlarının amacını üç cümleyle karşılaştır.",
+      "text": "Çift ana dal sistemi, öğrencilerin hem genel kültürü hem de belirli bir alanda uzmanlaşmasını sağlamak amacıyla iki farklı alanı dengeli şekilde geliştirerek esnek bir eğitim imkanı sunar. Yan dal programları ise daha derinlemesine ve yoğunlaşmış bir uzmanlık kazandırmayı hedefleyerek, öğrencinin seçtiği ana disiplini destekleyen veya tamamlayan ek yetkinlikler edinmesini amaçlar. Bu iki model arasındaki temel fark; çift ana dalın çok yönlü yetkinliklere odaklanırken, yan dalın mevcut ana alanı zenginleştirmeye yönelik daha niş ve derinleştirici bir yaklaşım benimsemesidir.",
+      "model": "qwen3.5:9b",
+      "prompt_tokens": 32,
+      "completion_tokens": 142,
+      "wall_s": 4.879486025999995,
+      "gen_tokens_per_s": 30.46622550713929
+    },
+    {
+      "tur": "akicilik",
+      "soru": "Yatay geçiş düşünen bir öğrencinin akademik danışmanına sorabileceği üç soruyu madde madde yaz.",
+      "text": "Bir öğrenci yatay geçiş (dikey değil, farklı üniversiteler veya bölümler arası geçiş) sürecini değerlendirmek istiyorsa, akademik danışmanına yöneltmesi gereken en önemli üç soru şunlardır:\n\n1. **Mevcut transkribim ve not ortalamam (GNO), hedeflediğim üniversite ve bölümün kabul kriterlerine göre yeterli mi ve hangi eksiklikleri gidermem gerekiyor?**\n   *(Bu soru, öğrencinin mevcut durumunu objektif bir şekilde analiz etmesini ve hedefine ulaşmak için ne kadar çalışması gerektiğini anlamasını sağlar.)*\n\n2. **Yatay geçiş başvurusu sırasında dikkate alınacak ek belgeler (proje, yayın, dil sınavı puanları vb.) veya ek ders gereksinimleri nelerdir?**\n   *(Her üniversitenin ve bölümün kabul süreci farklılık gösterebilir; bu soru öğrencinin hazırlık listesini tamamlamasına yardımcı olur.)*\n\n3. **Hedeflediğim programın kontenjan durumu, sınav tarihleri veya özel mülakat süreçleri hakkında güncel bilgi var mı?**\n   *(Bu soru, sürecin zamanlamasını ve logistiğini planlamak için kritik öneme sahiptir; öğrencinin başvuru takvimini doğru oluşturmasına olanak tanır.)*",
+      "model": "qwen3.5:9b",
+      "prompt_tokens": 39,
+      "completion_tokens": 291,
+      "wall_s": 10.059254354000132,
+      "gen_tokens_per_s": 29.54283528376959
+    },
+    {
+      "tur": "ret",
+      "soru": "Yaz öğretiminde en fazla kaç AKTS ders alabilirim?",
+      "ret_dogru": true,
+      "text": "Bu konuda yönetmeliklerde açık bir hüküm bulamadım. Bu nedenle Bursa Uludağ Üniversitesi Öğrenci İşleri Birimi'ne danışmanızı öneririm.",
+      "model": "qwen3.5:9b",
+      "prompt_tokens": 345,
+      "completion_tokens": 37,
+      "wall_s": 1.8616565279999122,
+      "gen_tokens_per_s": 29.383082332984973
+    }
+  ],
+  "hatalar": []
+}

@@ -21,7 +21,7 @@ kurulumu, Ollama ile ilk model testi.
 - [x] `notebooks/colab_runner.ipynb` T4 üzerinde baştan sona çalıştı (11.10.2026)
 - [x] Ollama `qwen3.5:9b` etiketi doğrulandı (6,6 GB, ID 56671c2ab938)
 - [x] `smoke` kontrolü geçti
-- [ ] Rapor (`smoke_20261011_142929.json`) Drive'dan `eval/reports/` altına eklendi
+- [x] Rapor eklendi: [`eval/reports/smoke_20261011_142929.json`](../eval/reports/smoke_20261011_142929.json)
 - [x] İlk ölçümler not edildi (aşağıda)
 
 ### İlk ölçümler · T4, qwen3.5:9b, 11.10.2026
@@ -47,7 +47,7 @@ kurulumu, Ollama ile ilk model testi.
 
 ### Kapanış
 - [x] Plan sürüm 1.1: bireysel projeye uyarlandı (dış onaylar yerine faz kapıları, K-08)
-- [ ] **Smoke raporu depoda → Faz 0 kapandı, Faz 1'e geçiş**
+- [x] **Faz 0 kapandı (11.10.2026) → Faz 1: Derlem**
 
 ## Smoke raporunu okuma
 
