@@ -42,7 +42,7 @@ Karar K-10: BM25 belirteci **F5** (ilk 5 harf); Snowball'dan 10 puan iyi ölçü
 - [x] Başlangıç altın seti: 32 soru (29 cevaplı, 3 cevapsız); alıntılar programla doğrulanıyor
 - [ ] Altın setin ikinci geçişi (proje sahibi, ilk geçişten en az 48 saat sonra)
 - [x] İlk Recall@5 ölçümü (M2 taban çizgisi)
-- [ ] **M2 → Faz 3/4**
+- [x] **M2 → Faz 3** (12.10.2026; altın setin ikinci geçişi Faz 3e taşındı)
 
 ## İlk ölçüm · 12.10.2026 · tüm set (29 cevaplı soru)
 
