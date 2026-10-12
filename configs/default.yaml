@@ -38,7 +38,7 @@ retrieval:                 # Faz 2
     k1: 1.2
     b: 0.75
     candidates: 30
-    tokenizer: prefix5     # K-10: ilk 5 harf; Snowball ve karakter n-gram'dan iyi ölçüldü (FAZ_2.md)
+    tokenizer: char        # K-13: 3-5 karakter n-gram; 134 soruluk geliştirme setinde F5'ten iyi (FAZ_3.md)
   low_priority_factor: 0.8 # "Yürürlük", "Yürütme" maddelerinin skoru bu oranla düşürülür
   dense:
     candidates: 30

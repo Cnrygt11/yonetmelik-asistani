@@ -11,11 +11,20 @@ başına alınır; ret eşiği sözlük bağlandıktan sonra kalibre edilir. Ger
 cevabı olan harç sorusunda reranker'ın ilk skoru 0,013'tü (aşağıda). Fazların sırası ve çıkış
 ölçütleri değişmez. Sözlük eşleşmesi Türkçe karaktersiz yazıma dayanıklı olmalı ("harcimi").
 
+**K-13 (12.10.2026):** BM25 belirteci F5'ten karakter n-gram'a (3-5) geçer; K-10'un yerine
+geçer. K-10, 32 soruluk ilk sete dayanıyordu. 196 soruluk setin geliştirme bölümünde (134 soru):
+
+| Belirteç | Recall@5 | MRR@10 |
+|---|---|---|
+| F5 | 0,686 | 0,470 |
+| Karakter n-gram | **0,727** | **0,543** |
+
 ## Soru havuzu
 
 | Kaynak | Dosya | Soru | Not |
 |---|---|---|---|
 | WhatsApp, Bilgisayar Müh. 2021 ve 2022 girişli sınıf grupları | `eval/aday_sorular/whatsapp_bilgmuh_2021_2026.jsonl` | 95 | 50.490 mesajdan; anonim; derse/hocaya özgü sorular alınmadı |
+| WhatsApp, Kimya 3. ve 4. sınıf grupları | `eval/aday_sorular/whatsapp_kimya_2025_2026.jsonl` | 7 / 68 aday | Çoğu laboratuvar ve hoca sorusu; yalnızca sette az olan konular alındı |
 | Sentetik (başka bir model), 2. sürüm | `eval/aday_sorular/sentetik_secilmis.jsonl` | 62 / 100 | Derlemde aranarak seçildi: 39 P1, 8 kısmi, 2 yanlış önkabul, 4 ret, 4 P2, 5 kapsam dışı. Uydurma sistem adları ("uluogrenci", "ulu09") UNİSİS/UKEY ile değiştirildi |
 
 Türkçe karaktersiz yazım korunuyor: gerçek öğrenciler de böyle yazıyor. Sorun sistemde çözülür
@@ -37,12 +46,13 @@ Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (
       çevresinden yönetmeliğe bakılmadan yazılmış sorular
 - [ ] Kategoriler: mevcutlara ek olarak **norm çatışması** (kanun ile yönetmelik farklı, ör. 2547
       md. 44 / EÖY md. 15) ve **birime özgü kural** (P2 öncesi hazırlık)
-- [ ] 150 soru; her birinde altın madde ve programla doğrulanan alıntı
+- [x] 150 soru (196); her birinde altın madde ve programla doğrulanan alıntı
   - [x] Parti 1: wa-001..wa-048 (12.10.2026). Set 80 soru. Yeni kategoriler: `kismi` (konu
         derlemde, sorunun bir kısmı karşılıksız), `yanlis_onkabul`
   - [x] Parti 2: wa-049..wa-095 (12.10.2026). Set 127 soru; geliştirme bölümünde BM25 F5
         Recall@5 **0,655**, MRR@10 0,418
-  - [ ] Parti 3: sentetik seçilmişler (sy-*)
+  - [x] Parti 3: Kimya 3-4. sınıf (7 soru, wk-*) ve sentetik seçilmişler (62, sy-*). Set **196
+        soru** (180 cevaplı, 16 cevapsız); geliştirme 134, test 62
 
 Gerçek sorular daha zor: BM25 F5 Recall@5 ilk 32 soruda 0,828, 80 soruda **0,714**; MRR@10
 0,603 → **0,459**. (Bu ölçüm bir kez test bölümünü de kapsadı; ayar yapılmadı, bundan sonra
