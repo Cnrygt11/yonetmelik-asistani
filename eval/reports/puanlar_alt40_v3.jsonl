@@ -1,0 +1,40 @@
+{"id": "q-001", "karar": "dogru", "not": "10 iş günü önce, doğru."}
+{"id": "q-004", "karar": "dogru", "not": "%70/%80; hazırlık %80 eki doğru."}
+{"id": "q-008", "karar": "dogru", "not": "Yeni ders alamaz; tekrar/yükseltme doğru."}
+{"id": "q-015", "karar": "dogru", "not": "2.00."}
+{"id": "q-022", "karar": "kismen", "not": "Dört yarıyıl var ama 2547 md. 44 ile karıştırıp hazırlığın öğrenim süresine eklendiğini söylüyor (metin 'hariç' diyor); etiketsiz 'K1' yazımı."}
+{"id": "q-023", "karar": "dogru", "not": "60 ve devam koşulu."}
+{"id": "q-028", "karar": "dogru", "not": "Teşebbüs kınama, kopya bir yarıyıl; tehditle kopya eksik."}
+{"id": "wa-004", "karar": "kismen", "not": "Yeterlik sınavı zamanı doğru; muafiyet sınavının yıl başında olduğu (md. 7) yok."}
+{"id": "wa-012", "karar": "yanlis", "not": "Koşulu (GANO 2.00, md. 35) söylemiyor; md. 35 bağlamdaydı."}
+{"id": "wa-013", "karar": "dogru", "not": "Devam aranmaz + istisna fakülteler (istisna alıntısı doğrulamadan geçmedi ama içerik doğru)."}
+{"id": "wa-016", "karar": "yanlis", "not": "Ret; md. 32 ve 35 bağlamdaydı."}
+{"id": "wa-025", "karar": "kismen", "not": "Normalde bir yıl, en çok dört yarıyıl doğru; md. 12 sonuçları (ilişik/Türkçe programa geçiş) yok."}
+{"id": "wa-028", "karar": "yanlis", "not": "Ret; Yaz Öğr. md. 10 bağlamdaydı."}
+{"id": "wa-034", "karar": "dogru", "not": "Ders saati başına katkı payı; 7 ile çarpma hükmü yok."}
+{"id": "wa-039", "karar": "kismen", "not": "Seçmeli iptaline sapıyor; öncelik kuralı yalnızca ayrıntıda, md. 18/5 yok (bağlamda değildi)."}
+{"id": "wa-041", "karar": "kismen", "not": "D → FF doğru; FD karşılaştırması yok, 'İ ile işaretlenir, diploma ekinde yer almaz' yanlış okuma."}
+{"id": "wa-044", "karar": "kismen", "not": "Otomatik ders yok doğru; kayıt silme için ÇAP maddesine sapıyor (md. 39 bağlamda değildi)."}
+{"id": "wa-053", "karar": "dogru", "not": "Diploma şahsen/vekâletle; fazladan ayrıntı var ama yanlış yok."}
+{"id": "wa-088", "karar": "yanlis", "not": "%10 başarı sıralamasına sapıyor; soru bağıl ortalama."}
+{"id": "wa-089", "karar": "yanlis", "not": "FD'nin de başarısız olduğunu söylemiyor; soruyu cevaplamıyor."}
+{"id": "wa-093", "karar": "yanlis", "not": "Ret; md. 33 bağlamda değildi."}
+{"id": "sy-001", "karar": "kismen", "not": "Raporla hakkın 'tanınır' dediği için kesin gibi söylüyor; metin 'verebilir'. 5 iş günü doğru."}
+{"id": "sy-013", "karar": "dogru", "not": "3 iş günü."}
+{"id": "sy-020", "karar": "dogru", "not": "Yaz öğretiminde bütünleme yok."}
+{"id": "sy-032", "karar": "yanlis", "not": "Ret; md. 18 bağlamdaydı (5. sırada)."}
+{"id": "sy-040", "karar": "dogru", "not": "İntibak + %70 kazanım + komisyon."}
+{"id": "sy-041", "karar": "dogru", "not": "Birim kurulları, %15, ilan."}
+{"id": "sy-044", "karar": "dogru", "not": "Engel değil."}
+{"id": "sy-050", "karar": "yanlis", "not": "Ret; md. 17 bağlamda değildi."}
+{"id": "sy-052", "karar": "dogru", "not": "Aynı yarıyıldan farklı seçmeli."}
+{"id": "sy-055", "karar": "kismen", "not": "Tanımlar doğru; 'kalınca sonraki ders seçilebilir mi' kısmını açıkça cevaplamıyor."}
+{"id": "sy-068", "karar": "dogru", "not": "Derslere giremez, azami süreden sayılır, dört yıl kuralı."}
+{"id": "sy-070", "karar": "yanlis", "not": "Ret; md. 32 bağlamdaydı."}
+{"id": "sy-074", "karar": "dogru", "not": "Programı bölüm/birim yapar; ara sınav ilanı eksik."}
+{"id": "q-032", "karar": "dogru", "not": "Doğru ret."}
+{"id": "wa-095", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-076", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-080", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-095", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-099", "karar": "dogru", "not": "Doğru ret."}

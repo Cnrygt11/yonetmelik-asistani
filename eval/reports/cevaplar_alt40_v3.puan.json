@@ -1,0 +1,103 @@
+{
+ "soru": 40,
+ "puanlanan": 40,
+ "hepsi": {
+  "dogru_cevap": 0.5,
+  "kismen": 0.235,
+  "n_cevapli": 34,
+  "dogru_atif": 0.929,
+  "n_atif": 28,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 6
+ },
+ "kategori:cevapsiz": {
+  "dogru_cevap": null,
+  "kismen": null,
+  "n_cevapli": 0,
+  "dogru_atif": null,
+  "n_atif": 0,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 6
+ },
+ "kategori:cok_madde": {
+  "dogru_cevap": 0.25,
+  "kismen": 0.75,
+  "n_cevapli": 4,
+  "dogru_atif": 0.75,
+  "n_atif": 4,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:kismi": {
+  "dogru_cevap": 0.429,
+  "kismen": 0.0,
+  "n_cevapli": 7,
+  "dogru_atif": 0.75,
+  "n_atif": 4,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:kosul_istisna": {
+  "dogru_cevap": 0.333,
+  "kismen": 0.333,
+  "n_cevapli": 6,
+  "dogru_atif": 1.0,
+  "n_atif": 5,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:surum_tuzagi": {
+  "dogru_cevap": 1.0,
+  "kismen": 0.0,
+  "n_cevapli": 1,
+  "dogru_atif": 1.0,
+  "n_atif": 1,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:tek_madde": {
+  "dogru_cevap": 0.714,
+  "kismen": 0.214,
+  "n_cevapli": 14,
+  "dogru_atif": 1.0,
+  "n_atif": 13,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:yanlis_onkabul": {
+  "dogru_cevap": 0.0,
+  "kismen": 0.0,
+  "n_cevapli": 2,
+  "dogru_atif": 1.0,
+  "n_atif": 1,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kaynak:ilk": {
+  "dogru_cevap": 0.857,
+  "kismen": 0.143,
+  "n_cevapli": 7,
+  "dogru_atif": 1.0,
+  "n_atif": 7,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 1
+ },
+ "kaynak:sentetik": {
+  "dogru_cevap": 0.615,
+  "kismen": 0.154,
+  "n_cevapli": 13,
+  "dogru_atif": 1.0,
+  "n_atif": 10,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 4
+ },
+ "kaynak:whatsapp": {
+  "dogru_cevap": 0.214,
+  "kismen": 0.357,
+  "n_cevapli": 14,
+  "dogru_atif": 0.818,
+  "n_atif": 11,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 1
+ }
+}

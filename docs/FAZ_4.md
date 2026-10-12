@@ -144,3 +144,32 @@ altın maddeyi de dışarıda bırakıyor (mutlak eşik ve sıkı göreli eşik 
 istem v3'ün işi (alıntı zorunluluğu). Tamamı bağlamda olmayan 28 sorunun 11'inde eksik altın madde
 ilk 20 adayda hiç yok (arama sorunu); 17'sinde ilk 20'de var ama reranker sıralamasında geride kalıyor
 (k büyütülünce giriyor, ama gürültüyle birlikte).
+
+## Adım 2 · istem v3 · 12.10.2026 · Qwen3.5-9B Q4 · sabit 40 soru (34 cevaplı + 6 cevapsız)
+
+Bağlam: Adım 1 ayarı (en çok 5 kaynak, bağlantılı maddeler). Puanlar `eval/reports/puanlar_alt40_v3.jsonl`.
+
+| | v2 (M3) | v3 |
+|---|---|---|
+| Doğru cevap (34) | 16 (%47,1) | **17 (%50,0)** |
+| Kısmen / yanlış | 11 / 7 | 8 / 9 |
+| Cevaplı soruya ret | 2 | 6 |
+| Doğru ret (6) | 6 | 6 |
+| Doğru atıf | %96,7 | %92,9 |
+| Cevap uzunluğu (medyan, karakter) | 758 | 244 |
+| Süre (medyan) | ~12 sn | 11,7 sn |
+
+- **Doğruluk yerinde sayıyor (+1 soru, gürültü düzeyinde).** Geçişler: 4 kısmen → doğru, 3 yanlış → kısmen;
+  buna karşılık 4 kısmen → yanlış, 3 doğru → kısmen/yanlış.
+- **Hata türü değişti:** v3'ün 9 yanlışının 6'sı ret (uydurma yok, öğrenci yönlendiriliyor); v2'de yanlışlar
+  çoğunlukla güvenle söylenmiş hatalı cevaplardı. Cevaplar üç kat kısa. Alıntı doğrulama çalışıyor
+  (40 cevapta 0 JSON hatası, 3 alıntı reddedildi; birinde içerik aslında doğruydu: wa-013).
+- **Asıl sınır okuma:** altın maddelerin tamamı bağlamdayken 28 sorunun 17'si doğru; değilken 6'nın 0'ı.
+  Gereksiz retlerin 4'ünde (wa-016, wa-028, sy-032, sy-070) cevap bağlamda vardı. Koşullu geçme ailesi
+  (md. 32 + 35; wa-012, wa-016, wa-089, sy-070) bağlantılı madde eklendiği hâlde dördünde de başarısız:
+  model "GANO 2.00 ise başarılı sayılır" hükmünü "koşullu geçmenin koşulu" olarak okuyamıyor.
+- **Düşünme kipi elendi:** ilk soruda 3000 token'ın tamamını düşünmeye harcadı, cevap boş kaldı (122,9 sn).
+  Sınırı büyütmek T4'te soru başına birkaç dakika demek; arayüz için kullanılamaz.
+
+Sonuç: istem ve bağlam ayarıyla 9B modelden alınabilecek kazanç büyük ölçüde alındı; %85'e giden yol
+okuma kapasitesinden geçiyor (Adım 3: daha büyük model).
