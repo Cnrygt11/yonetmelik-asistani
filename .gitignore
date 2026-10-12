@@ -37,3 +37,8 @@ skills-lock.json
 
 # Telifli makale (rag_dergi_yayin.pdf, AUAd 12(2)); yalnızca yerel okuma için
 rag_dergi_yayin.pdf
+
+# Bağlam taraması çıktıları: aday dökümlerinden eval/sweep_context.py ile yeniden üretilir
+eval/reports/*.tarama.json
+# Altın setin ham hazırlık dosyası (altın set: eval/gold_set.jsonl)
+rag_buu_altin_set.txt
