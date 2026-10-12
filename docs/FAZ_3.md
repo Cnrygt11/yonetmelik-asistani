@@ -40,7 +40,8 @@ Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (
 - [ ] 150 soru; her birinde altın madde ve programla doğrulanan alıntı
   - [x] Parti 1: wa-001..wa-048 (12.10.2026). Set 80 soru. Yeni kategoriler: `kismi` (konu
         derlemde, sorunun bir kısmı karşılıksız), `yanlis_onkabul`
-  - [ ] Parti 2: wa-049..wa-095
+  - [x] Parti 2: wa-049..wa-095 (12.10.2026). Set 127 soru; geliştirme bölümünde BM25 F5
+        Recall@5 **0,655**, MRR@10 0,418
   - [ ] Parti 3: sentetik seçilmişler (sy-*)
 
 Gerçek sorular daha zor: BM25 F5 Recall@5 ilk 32 soruda 0,828, 80 soruda **0,714**; MRR@10
@@ -58,6 +59,10 @@ Etiketlemede bulunanlar:
   tabloları resmî metinde md. 8/4'ten sonra basılmış (mevzuat.gov.tr ve KAYSİS aynı). Çıkarma
   hatası değil; bu konudaki sorularda md. 7 ve md. 8 birlikte altın kabul edilir. Faz 2'deki
   "md. 8'de iki (4) numaralı fıkra" notunun açıklaması budur.
+- **EÖY md. 20 disiplin işlerini yürürlükten kalkmış 2012 tarihli Öğrenci Disiplin
+  Yönetmeliği'ne bağlıyor** (kaldırıldı: RG 32129, 2023). Disiplin hükümleri 2547 md. 54'te.
+  Kopya sorularında model bu atfa güvenmemeli.
+- "Yaz okulunda staj" sorusu P2 sanılmıştı; cevap Yaz Öğr. Yön. md. 10/1-i'de.
 - Sentetik sy-016 ("harf notları kaç gün içinde") yanlışlıkla "derlemde yok" etiketlenmişti:
   EÖY md. 29/11 "en geç 3 gün içinde ilân edilir".
 - [ ] İkinci geçiş (proje sahibi): başlangıçtaki 32 soru dahil
