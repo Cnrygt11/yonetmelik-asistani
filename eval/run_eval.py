@@ -90,6 +90,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--split", choices=["gelistirme", "test", "hepsi"], default="gelistirme")
     ap.add_argument("--tokenizers", default=",".join(TOKENIZERS), help="bm25 kipi için")
     ap.add_argument("--methods", default="bm25", help="bm25,dense,hybrid,hybrid_rerank")
+    ap.add_argument("--sozluk", choices=["acik", "kapali", "ikisi"], default="acik",
+                    help="bm25 kipinde öğrenci dili sözlüğü (K-12); ikisi: karşılaştırma")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -110,19 +112,33 @@ def main(argv: list[str] | None = None) -> int:
     results = {}
     methods = args.methods.split(",")
     runs = []
+    from yonetmelik_asistani.retrieval.glossary import Glossary
+
+    glossary = Glossary.load(REPO_ROOT / cfg.section("paths").get("glossary", "data/glossary.yaml"))
     if "bm25" in methods:
         for tok in args.tokenizers.split(","):
             index = BM25Index.build([c["chunk_id"] for c in chunks], [c["text"] for c in chunks],
                                     tokenizer=tok, k1=bm.get("k1", 1.2), b=bm.get("b", 0.75))
-            runs.append((f"bm25-{tok}", lambda q, k, ix=index: ix.search(q, k=k)))
+            for soz in (["kapali", "acik"] if args.sozluk == "ikisi" else [args.sozluk]):
+                exp = (lambda q: q) if soz == "kapali" else (lambda q: glossary.expand(q)[0])
+                name = f"bm25-{tok}" + ("+sozluk" if soz == "acik" else "")
+                runs.append((name, lambda q, k, ix=index, exp=exp: ix.search(exp(q), k=k)))
     neural = [m for m in methods if m != "bm25"]
     if neural:
         from yonetmelik_asistani.retrieval.service import load_retriever
 
         retriever = load_retriever(cfg, dense=True, rerank="hybrid_rerank" in neural)
+        expander = retriever.expander
+
+        def neural_search(q, k, m, exp):
+            retriever.expander = exp
+            return [(h.chunk_id, h.score) for h in retriever.search(q, mode=m, k=k)]
+
         for mode in neural:
-            runs.append((mode, lambda q, k, m=mode: [(h.chunk_id, h.score)
-                                                       for h in retriever.search(q, mode=m, k=k)]))
+            for soz in (["kapali", "acik"] if args.sozluk == "ikisi" else [args.sozluk]):
+                exp = expander if soz == "acik" else None
+                runs.append((mode + ("+sozluk" if soz == "acik" else ""),
+                             lambda q, k, m=mode, exp=exp: neural_search(q, k, m, exp)))
     for name, search in runs:
         try:
             r = evaluate(search, subset, madde_of)

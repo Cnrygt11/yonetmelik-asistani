@@ -43,6 +43,7 @@ retrieval:                 # Faz 2
   dense:
     candidates: 30
   rrf_k: 60
+  glossary: true           # K-12: öğrenci dili sözlüğüyle sorgu genişletme (data/glossary.yaml)
   context_token_budget: 5000
 
 paths:

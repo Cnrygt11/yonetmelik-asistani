@@ -32,6 +32,11 @@ def load_retriever(cfg: Config, *, dense: bool = True, rerank: bool = True) -> H
         top_n=cfg.section("reranker").get("top_n", 6),
         low_priority_factor=r.get("low_priority_factor", 0.8),
     )
+    if r.get("glossary", True):
+        from yonetmelik_asistani.config import REPO_ROOT
+        from yonetmelik_asistani.retrieval.glossary import Glossary
+
+        retriever.expander = Glossary.load(REPO_ROOT / cfg.section("paths").get("glossary", "data/glossary.yaml"))
     if dense:
         from yonetmelik_asistani.index.dense import BGEM3Embedder, QdrantStore
 

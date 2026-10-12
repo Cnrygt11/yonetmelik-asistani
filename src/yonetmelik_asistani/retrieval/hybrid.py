@@ -31,6 +31,10 @@ class _Reranker(Protocol):
     def score(self, query: str, passages: Sequence[str]) -> list[float]: ...
 
 
+class _Expander(Protocol):
+    def expand(self, query: str) -> tuple[str, list[str]]: ...
+
+
 @dataclass
 class Hit:
     chunk_id: str
@@ -63,10 +67,12 @@ class HybridRetriever:
     store: _VectorStore | None = None
     embedder: _Embedder | None = None
     reranker: _Reranker | None = None
+    expander: _Expander | None = None  # öğrenci dili sözlüğü (K-12)
     candidates: int = 30
     rrf_k: int = 60
     top_n: int = 6
     low_priority_factor: float = 0.8  # "Yürürlük", "Yürütme" maddeleri (plan 6.4)
+    last_expansion: list[str] = field(default_factory=list)  # son aramada sözlükten eklenen terimler
 
     def _lexical(self, query: str, profile: dict | None) -> list[tuple[str, float]]:
         # filtre sonrasında da yeterli aday kalsın diye fazladan getirilir
@@ -82,6 +88,10 @@ class HybridRetriever:
         if mode not in MODES:
             raise ValueError(f"bilinmeyen kip: {mode}")
         k = k or self.top_n
+        if self.expander is not None:
+            query, self.last_expansion = self.expander.expand(query)
+        else:
+            self.last_expansion = []
         traces: dict[str, dict] = {}
         lists: list[list[str]] = []
         if mode in ("bm25", "hybrid", "hybrid_rerank"):

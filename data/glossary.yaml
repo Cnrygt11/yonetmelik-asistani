@@ -1,29 +1,55 @@
-# Öğrenci dili → mevzuat terimi sözlüğü (FR-10, plan Ek C).
-# Tohum liste; Faz 3'te toplanan gerçek sorularla genişletilecek, Faz 6'da aramaya bağlanacak.
-# Mevzuat terimi her zaman yönetmelikteki ifadeyle yazılır.
+# Öğrenci dili → mevzuat terimi sözlüğü (FR-10, plan Ek C; K-12 ile Faz 4'te aramaya bağlandı).
+#
+# Kurallar:
+#  * Mevzuat terimi her zaman yönetmelik metnindeki ifadeyle yazılır.
+#  * Kayıtlar öğrencilerin genel kullanımına göre yazılır, tek tek altın sorulara göre değil
+#    (aksi halde sözlük geliştirme setine uydurulmuş olur).
+#  * Eşleşme Türkçe karaktere duyarsızdır ("harcimi" = "harcımı"). 3 harf ve daha kısa ifadeler
+#    yalnızca tam kelime olarak, daha uzunları kelime başı olarak eşleşir ("harc" → "harcımı").
+#  * Belgelerde zaten geçen ifade öğrenci jargonu değildir, sözlüğe girmez (ör. "ortalama",
+#    "kredi", "dönem", "devamsızlık"). Bunları genişletmek ilgisiz maddeleri öne çıkarıyor
+#    (12.10.2026 ölçümü: wa-023, wa-041, wa-064, sy-050).
 
-- ifadeler: [bütü, bütünleme]
+- ifadeler: [büt, bütte, büte, bütler]
   terimler: [bütünleme sınavı]
-- ifadeler: [kaydı dondurmak, kaydımı dondurmak, kayıt dondurmak]
-  terimler: [kayıt dondurma, izin]
-- ifadeler: [okuldan atılmak, atılmak]
-  terimler: [ilişik kesme, kaydın silinmesi]
-- ifadeler: [dönem, dönemlik]
-  terimler: [yarıyıl]
-- ifadeler: [harç, harcı, harcımı]
-  terimler: [katkı payı, öğrenim ücreti]
-- ifadeler: [dersten kalmak, FF almak, kalmak]
-  terimler: [başarısız, harf notu]
-- ifadeler: [ortalama, gano, agno]
-  terimler: [genel not ortalaması]
-- ifadeler: [yaz okulu]
-  terimler: [yaz öğretimi]
-- ifadeler: [devamsızlık]
-  terimler: [devam zorunluluğu]
-- ifadeler: [ÇAP, çap]
-  terimler: [çift anadal programı]
-- ifadeler: [üstten ders almak, üstten ders]
+- ifadeler: [vize, vizeye, vizeden, vizeler, arasınav]
+  terimler: [ara sınav]
+- ifadeler: [final, finale, finalden, finaller]
+  terimler: [yarıyıl sonu sınavı]
+- ifadeler: [çan, çana, çan eğrisi]
+  terimler: [bağıl değerlendirme, harf notu]
+- ifadeler: [şartlı, koşullu geçmek, koşullu geçtim, koşullu geçti]
+  terimler: [koşullu geçer]
+- ifadeler: [alttan]
+  terimler: [ders tekrarı, önceki yarıyıllardaki zorunlu dersleri tekrarlama]
+- ifadeler: [üstten]
   terimler: [üst yarıyıldan ders alma]
+- ifadeler: [kredi limiti]
+  terimler: [AKTS, ders yükü]
+- ifadeler: [kaydı dondurmak, kaydımı dondurmak, kayıt dondurmak, dondurmak, dondurursam, dondurma]
+  terimler: [izinli ayrılma, kayıt dondurma]
+- ifadeler: [okuldan atılmak, atılmak, atılır, atılırmıyım]
+  terimler: [ilişik kesme, ilişikleri kesilir]
+- ifadeler: [dönem ortalaması]
+  terimler: [YANO]
+- ifadeler: [harç, harcı, harcımı, harçlar]
+  terimler: [katkı payı, öğrenim ücreti]
+- ifadeler: [dersten kalmak, kaldım, kalırsam, kaldığımız, kalınan]
+  terimler: [başarısız, ders tekrarı]
+- ifadeler: [ortalamam, agno]
+  terimler: [GANO, genel not ortalaması]
+- ifadeler: [yaz okulu, yaz okuluna, yaz okulunda]
+  terimler: [yaz öğretimi]
+- ifadeler: [çap]
+  terimler: [çift anadal programı]
+- ifadeler: [myp, merkezi puan, merkezi puanla]
+  terimler: [merkezi yerleştirme puanı, Ek Madde-1]
+- ifadeler: [not dökümü, not kartı]
+  terimler: [transkript, not durum belgesi]
+- ifadeler: [okulu uzatmak, okul uzarsa, okul uzatıldığında, uzatma]
+  terimler: [azami öğrenim süresi]
+- ifadeler: [ekle bırak, ekle sil]
+  terimler: [kapanan seçmeli derslerini iptal ederek]
 - ifadeler: [hazırlıktan muaf olmak, hazırlık muafiyeti]
   terimler: [yabancı dil muafiyet sınavı, yeterlik sınavı]
 - ifadeler: [tek ders, tek ders sınavı]

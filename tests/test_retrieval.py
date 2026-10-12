@@ -127,3 +127,28 @@ def test_bm25_treats_unaccented_query_like_accented():
         ix = BM25Index.build(ids, texts, tokenizer=tok)
         assert ix.search("ogrenci sinavlara icin devam", k=1)[0][0] == "a"
         assert _prefix5("için sınav") == _prefix5("icin sinav") == ["sinav"]  # "icin" de durak sözcük
+
+
+def test_glossary_expands_student_terms_accent_insensitive(tmp_path):
+    from yonetmelik_asistani.retrieval.glossary import Glossary
+
+    path = tmp_path / "g.yaml"
+    path.write_text("- ifadeler: [tek ders]\n  terimler: [ek sınav]\n"
+                    "- ifadeler: [harç, harcımı]\n  terimler: [katkı payı]\n"
+                    "- ifadeler: [af]\n  terimler: [ilişiği kesilenler]\n", encoding="utf-8")
+    g = Glossary.load(path)
+    assert g.expand("tek ders sinavina kimler girer") == ("tek ders sinavina kimler girer (ek sınav)", ["ek sınav"])
+    assert g.expand("harcimi ödemezsem")[1] == ["katkı payı"]          # Türkçe karaktersiz yazım
+    assert g.expand("deprem afetinde izin")[1] == []                     # kısa ifade yalnızca tam kelime
+    assert g.expand("katkı payı ve harç")[1] == []                       # soruda geçen terim tekrar eklenmez
+
+
+def test_retriever_uses_expanded_query():
+    class Expander:
+        def expand(self, q):
+            return q + " izinli ayrılma", ["izinli ayrılma"]
+
+    r = _retriever()
+    r.expander = Expander()
+    hits = r.search("kaydımı dondurmak istiyorum", mode="bm25")
+    assert r.last_expansion == ["izinli ayrılma"] and hits[0].chunk_id == "eoy:md19:f2"
