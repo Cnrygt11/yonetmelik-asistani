@@ -46,6 +46,9 @@ retrieval:                 # Faz 2
   glossary: true           # K-12: öğrenci dili sözlüğüyle sorgu genişletme (data/glossary.yaml)
   context_token_budget: 5000
 
+generation:                # Faz 4 bağlam derleme
+  rel_rerank: 0.1          # reranker skoru en iyi kaynağın %10'unun altındaki kaynaklar atılır
+
 paths:
   # Colab'da YA_DATA_DIR ortam değişkeni Drive'daki dizini gösterir.
   data_dir: data

@@ -10,10 +10,14 @@ Hedefler (plan 1): %85 doğru cevap, %95 doğru atıf, cevapsız soruların %90'
 - [x] **Öğrenci dili sözlüğü aramaya bağlandı (K-12).** `retrieval/glossary.py`; genişletilmiş
       soru BM25, BGE-M3 ve reranker'a aynı biçimde verilir; Türkçe karaktere duyarsız.
 - [x] Colab T4'te 196 soruyla dört arama kipi, sözlüklü ve sözlüksüz (notebook 6.2-6.3)
-- [ ] Bağlam derleme: göreli reranker eşiği, birim etiketi, kaldırılmış metne atıf uyarısı
-- [ ] İstem v2: karma ret, terim eşdeğerliği yalnızca bağlamdan, ilk cümlede istisna, norm
-      çatışması (Faz 3 ön bulguları)
-- [ ] Çıktı denetimi: karma ret işareti, sayı denetimi
+- [x] Bağlam derleme v2: göreli reranker eşiği (en iyi kaynağın %10'u), belge türü, "Yalnızca:
+      <birim>" etiketi, kaldırılmış metne atıf uyarısı (EÖY md. 20, Yaz Öğr. md. 7/13/14, YDYO
+      md. 15/24; kaldıran madde EÖY md. 44 hariç)
+- [x] İstem v2 (`PROMPT_VERSION`): karma ret yasağı ve "Bu ayrıntı yönetmeliklerde yer almıyor",
+      terim eşdeğerliği yalnızca sözlük notlarından ve bağlamdan, ilk cümlede istisna, birime özgü
+      kaynak, kaldırılmış metin, norm çatışması
+- [x] Çıktı denetimi: karma ret, eksik bilgi cümlesi, geçersiz/eksik etiket, alıntıdaki sayıların
+      cevapta geçme oranı (`eval/run_answers.py`, notebook bölüm 8)
 - [ ] Cevap puanlama (otomatik ön kontrol + elle puanlama, proje sahibi örneklem kontrolü)
 - [ ] Ret eşiği kalibrasyonu (sözlük bağlandıktan sonra)
 - [ ] **M3**

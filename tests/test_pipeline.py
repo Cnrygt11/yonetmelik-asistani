@@ -34,9 +34,43 @@ def test_budget_stops_adding_sources_but_keeps_first():
     assert [c.label for c in build_context(hits, CHUNKS, MADDELER, budget=1)] == ["K1"]
 
 
-def test_check_answer_labels_and_refusal():
+def test_check_answer_labels_refusal_and_mixed():
     ctx = [ContextItem("K1", "h", "t")]
-    assert check_answer("10 iş günü içinde başvurulur [K1].", ctx) == (False, [], False)
-    assert check_answer("Bkz. [K3].", ctx) == (False, ["K3"], False)
-    assert check_answer("Başvuru gerekir.", ctx) == (False, [], True)
-    assert check_answer(RET_CUMLESI + " Öğrenci işlerine başvurun.", ctx) == (True, [], False)
+    ok = check_answer("10 iş günü içinde başvurulur [K1].", ctx)
+    assert (ok["ret"], ok["etiket_hatalari"], ok["etiketsiz"], ok["karma"]) == (False, [], False, False)
+    assert check_answer("Bkz. [K3].", ctx)["etiket_hatalari"] == ["K3"]
+    assert check_answer("Başvuru gerekir.", ctx)["etiketsiz"] is True
+    assert check_answer(RET_CUMLESI + " Öğrenci işlerine başvurun.", ctx)["ret"] is True
+    karma = check_answer("Dört yıl üst üste ödememe gerekir [K1]. " + RET_CUMLESI, ctx)
+    assert karma["ret"] and karma["karma"]                       # istem kuralı 4'e aykırı
+
+
+def test_relative_rerank_filter_keeps_top_and_close_sources():
+    hits = [Hit("eoy:md19:f1", "eoy:md19", 0.9, {"rerank": 0.89}),
+            Hit("kanun:md44:f1", "kanun:md44", 0.5, {"rerank": 0.0098})]
+    assert [c.madde_id for c in build_context(hits, CHUNKS, MADDELER)] == ["eoy:md19"]
+    low = [Hit("eoy:md19:f1", "eoy:md19", 0.9, {"rerank": 0.0125}),
+           Hit("kanun:md44:f1", "kanun:md44", 0.5, {"rerank": 0.004})]  # hepsi düşük: göreli eşik
+    assert len(build_context(low, CHUNKS, MADDELER)) == 2
+
+
+def test_header_marks_unit_specific_and_repealed_references():
+    from yonetmelik_asistani.generation.pipeline import Repealed
+
+    maddeler = {"tip:md5": {"path": "Tıp Yönergesi › Madde 5", "text": "Devam %80.",
+                            "meta": {"doc_type": "birim_yonergesi", "birim": ["tip-fakultesi"]}},
+                "eoy:md20": {"path": "EÖY › Madde 20", "text": "18/8/2012 tarihli ve 28388 sayılı Resmî Gazete'de",
+                             "meta": {"doc_type": "kurum_yonetmeligi", "birim": ["tum"]}}}
+    chunks = {"tip:md5": {"text": "x\nDevam %80."}, "eoy:md20": {"text": "x\n28388"}}
+    rep = [Repealed("Öğrenci Disiplin Yönetmeliği", "2023-03-11 (RG 32129)", "2547 sayılı Kanun", ("28388",))]
+    ctx = build_context([Hit("tip:md5", "tip:md5", 1), Hit("eoy:md20", "eoy:md20", 1)], chunks, maddeler,
+                        repealed=rep)
+    assert "[Yalnızca: tip-fakultesi]" in ctx[0].header and "[Birim yönergesi]" in ctx[0].header
+    assert "UYARI" in ctx[1].header and "2547 sayılı Kanun" in ctx[1].header
+
+
+def test_numbers_covered():
+    from yonetmelik_asistani.generation.pipeline import numbers_covered
+
+    assert numbers_covered("en geç 10 iş günü, en çok 4 yarıyıl", "10 iş günü içinde [K1]") == 0.5
+    assert numbers_covered("sayı yok", "x") is None

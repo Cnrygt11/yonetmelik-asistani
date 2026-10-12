@@ -17,7 +17,7 @@ from pathlib import Path
 
 from yonetmelik_asistani.config import REPO_ROOT, load_config
 from yonetmelik_asistani.generation.llm_client import LLMClient
-from yonetmelik_asistani.generation.pipeline import answer, load_maddeler
+from yonetmelik_asistani.generation.pipeline import answer, load_maddeler, load_repealed
 from yonetmelik_asistani.retrieval.service import load_retriever
 from yonetmelik_asistani.smoke import gpu_report
 
@@ -49,7 +49,8 @@ def main(argv: list[str] | None = None) -> int:
         warm = llm.chat([{"role": "user", "content": "Merhaba"}])
         print(f"Isınma: {warm.wall_s:.1f} sn · GPU: {gpu_report()}\n")
         for soru, beklenti in SORULAR:
-            a = answer(soru, retriever, llm, maddeler, profile={"duzey": args.duzey}, budget=budget)
+            a = answer(soru, retriever, llm, maddeler, profile={"duzey": args.duzey}, budget=budget,
+                       repealed=load_repealed(REPO_ROOT / "configs/corpus_manifest.yaml"))
             results.append({**asdict(a), "beklenti": beklenti})
             durum = "RET" if a.ret else ("ETİKETSİZ" if a.etiketsiz else "cevap")
             print(f"■ {soru}\n  beklenti: {beklenti}")
