@@ -4,6 +4,27 @@ Plan bölüm 13: soru toplama, altın madde etiketleme, alıntılı altın cevap
 doğrulama, setin bölünmesi. **Çıktı:** altın set v1 (150 soru).
 **Çıkış ölçütü:** tüm sorular iki geçişten geçti.
 
+## Kararlar
+
+**K-12 (12.10.2026, onaylandı):** Öğrenci dili sözlüğünün aramaya bağlanması Faz 6'dan Faz 4'ün
+başına alınır; ret eşiği sözlük bağlandıktan sonra kalibre edilir. Gerekçe: uçtan uca denemede
+cevabı olan harç sorusunda reranker'ın ilk skoru 0,013'tü (aşağıda). Fazların sırası ve çıkış
+ölçütleri değişmez. Sözlük eşleşmesi Türkçe karaktersiz yazıma dayanıklı olmalı ("harcimi").
+
+## Soru havuzu
+
+| Kaynak | Dosya | Soru | Not |
+|---|---|---|---|
+| WhatsApp, Bilgisayar Müh. 2021 ve 2022 girişli sınıf grupları | `eval/aday_sorular/whatsapp_bilgmuh_2021_2026.jsonl` | 95 | 50.490 mesajdan; anonim; derse/hocaya özgü sorular alınmadı |
+| Sentetik (başka bir model), 2. sürüm | `eval/aday_sorular/sentetik_secilmis.jsonl` | 62 / 100 | Derlemde aranarak seçildi: 39 P1, 8 kısmi, 2 yanlış önkabul, 4 ret, 4 P2, 5 kapsam dışı. Uydurma sistem adları ("uluogrenci", "ulu09") UNİSİS/UKEY ile değiştirildi |
+
+Türkçe karaktersiz yazım korunuyor: gerçek öğrenciler de böyle yazıyor. Sorun sistemde çözülür
+(BM25'te ölçülen kayıp: Recall@5 0,828 → 0,793; dense Colab'da ölçülecek).
+Sentetik sette bulunan yanlış önkabul örneği: BUÜ'de devamsız notu (D), "DZ" değil (EÖY md. 32/4).
+
+Ayıklama: `scripts/whatsapp_ayikla.py` (ham dışa aktarımlar `data/private/`, Git dışı).
+Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (proje sahibinin kararı).
+
 ## Kontrol listesi
 
 - [ ] Derlem: 2547 **geçici md. 85** (öğrenim affı, 7592 sayılı Kanun, RG 9/8/2026). Ayrıştırıcı

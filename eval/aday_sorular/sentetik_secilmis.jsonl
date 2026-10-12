@@ -1,0 +1,62 @@
+{"id": "sy-001", "soru": "vizeye girmedim rapor alsam mazeret sinavina kesin alirlar mi", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
+{"id": "sy-002", "soru": "kanka bütte final notu tamamen siliniyor mu yoksa yuksek olan mi geciyor", "kategori": "P1", "aday_madde": "EÖY md29/31", "kaynak": "sentetik"}
+{"id": "sy-003", "soru": "not itiraz dilekcesi verince hoca kagidi daha sıkı inceleyip notu dusurur mu", "kategori": "kismi", "aday_madde": "EÖY md34; notun düşüp düşmeyeceği yazmıyor", "kaynak": "sentetik"}
+{"id": "sy-004", "soru": "but sinavi harf notunu nasil etkiliyor cana dahil ediliyor mu", "kategori": "P1", "aday_madde": "EÖY md29/32", "kaynak": "sentetik"}
+{"id": "sy-005", "soru": "bizim okulda harf notlarinda dc alan adam sartli mi geciyor ortalamaya mi muhtaciz", "kategori": "P1", "aday_madde": "EÖY md32/33", "kaynak": "sentetik"}
+{"id": "sy-007", "soru": "sinavda kopya ceken birine buü disiplin yönetmeliğine göre ne kadar uzaklastirma cezasi verilir", "kategori": "yanlis_onkabul", "aday_madde": "BUÜ disiplin yönetmeliği yürürlükten kalktı; 2547 md54", "kaynak": "sentetik"}
+{"id": "sy-008", "soru": "mazeret sinavi basvurusu sinavdan sonra en gec kac gun icinde ogrenci islerine yapilmali", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
+{"id": "sy-009", "soru": "yaz okulunda alinan dersin notu gano yu nasil etkiler uste tasir mi", "kategori": "P1", "aday_madde": "YAZ md13", "kaynak": "sentetik"}
+{"id": "sy-011", "soru": "ayni gun ve saatte cakisan sinavlar icin mazeret sinavi hakki var mi", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
+{"id": "sy-012", "soru": "tek ders sinavina girmek icin en fazla kac dersten kalmis olmak gerekiyor mezuniyete", "kategori": "P1", "aday_madde": "EÖY md31", "kaynak": "sentetik"}
+{"id": "sy-013", "soru": "sinav notlari unisiste aciklandiktan sonra resmi itiraz suresi kac gundur", "kategori": "P1", "aday_madde": "EÖY md34", "kaynak": "sentetik"}
+{"id": "sy-014", "soru": "fd ile ff harf notlari arasindaki fark ne ikisinde de kaliyor muyuz kesin", "kategori": "P1", "aday_madde": "EÖY md32", "kaynak": "sentetik"}
+{"id": "sy-015", "soru": "vize sonuclari ilan edilmeden final sinavi takvimi baslayabilir mi", "kategori": "kismi", "aday_madde": "EÖY md29/30", "kaynak": "sentetik"}
+{"id": "sy-016", "soru": "donem sonu but sinavlari bittikten sonra harf notlari kac gun icinde sisteme girilmeli", "kategori": "ret", "aday_madde": "not girme süresi derlemde yok", "kaynak": "sentetik"}
+{"id": "sy-017", "soru": "kopya cezasi alan ogrenci sonraki donem ders kaydi yapabilir mi", "kategori": "P1", "aday_madde": "2547 md54", "kaynak": "sentetik"}
+{"id": "sy-019", "soru": "mazeret sinavinin da mazereti veya butu olur mu okulda", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
+{"id": "sy-020", "soru": "yaz okulu sinavlarinda but hakki var mi yoksa tek sinavla mi bitiyor her sey", "kategori": "P1", "aday_madde": "YAZ md12", "kaynak": "sentetik"}
+{"id": "sy-021", "soru": "uludagda ilk hafta derslerde devamsizlik yazilmasi yasal midir hocalar yazar mi", "kategori": "ret", "aday_madde": "ilk hafta yoklaması derlemde yok", "kaynak": "sentetik"}
+{"id": "sy-022", "soru": "saglik ocagindan alinan rapor devamsizligi siler mi yoksa sadece sinava girmek icin mi", "kategori": "P1", "aday_madde": "EÖY md18/30", "kaynak": "sentetik"}
+{"id": "sy-023", "soru": "teorik derslerde ve lablarda devamsizlik siniri yuzde kac uludagda", "kategori": "P1", "aday_madde": "EÖY md18", "kaynak": "sentetik"}
+{"id": "sy-024", "soru": "derste arkadasinin yerine imza atarken yakalanirsan ne ceza alirsin disipline gider miyiz", "kategori": "P1", "aday_madde": "2547 md54", "kaynak": "sentetik"}
+{"id": "sy-025", "soru": "devamsizliktan kalan ogrenci donem sonu but sinavina girebilir mi", "kategori": "P1", "aday_madde": "EÖY md18/32", "kaynak": "sentetik"}
+{"id": "sy-026", "soru": "rektorlugun onayladigi okul etkinlikleri icin alinan izinler devamsizliktan duser mi", "kategori": "P1", "aday_madde": "EÖY md18", "kaynak": "sentetik"}
+{"id": "sy-032", "soru": "hoca devamsizlik sinirini kendi istegiyle esnetebilir mi", "kategori": "kismi", "aday_madde": "EÖY md18; hocanın yetkisi yazmıyor", "kaynak": "sentetik"}
+{"id": "sy-036", "soru": "myp ile yatay gecis yaparken taban puan sarti nedir uludag icin", "kategori": "P1", "aday_madde": "GEÇİŞ md13/15 (MYP)", "kaynak": "sentetik"}
+{"id": "sy-037", "soru": "bahar doneminde yani donem ortasinda kurumlararasi yatay gecis basvurusu acilir mi buüde", "kategori": "P1", "aday_madde": "GEÇİŞ md6", "kaynak": "sentetik"}
+{"id": "sy-038", "soru": "yatay gecis basvurulari genellikle yilin hangi aylarinda alinir takvimi nereden bulurum", "kategori": "kismi", "aday_madde": "GEÇİŞ md27; aylar akademik takvimde", "kaynak": "sentetik"}
+{"id": "sy-039", "soru": "ikinci ogretimden birinci ogretime gecis sartlari nelerdir uludag universitesinde", "kategori": "P1", "aday_madde": "GEÇİŞ md12", "kaynak": "sentetik"}
+{"id": "sy-040", "soru": "yatay gecis yapan ogrencinin eski okulunda aldigi derslerin sayilmasi intibak sureci nasil isler", "kategori": "P1", "aday_madde": "MUAF md6, GEÇİŞ md28", "kaynak": "sentetik"}
+{"id": "sy-041", "soru": "universite ici yatay gecis kontenjanlari neye gore belirlenir", "kategori": "P1", "aday_madde": "GEÇİŞ md11", "kaynak": "sentetik"}
+{"id": "sy-042", "soru": "ozel universiteden uludaga yatay geciste ucret odenir mi harc mi veriyoruz", "kategori": "P1", "aday_madde": "EÖY md10, GEÇİŞ", "kaynak": "sentetik"}
+{"id": "sy-043", "soru": "yatay gecis basvurulari tamamen online mi yapilir elden evrak teslimi sart mi", "kategori": "P1", "aday_madde": "GEÇİŞ md25", "kaynak": "sentetik"}
+{"id": "sy-044", "soru": "kaydini dondurmus bir ogrenci yatay gecis basvurusunda bulunabilir mi", "kategori": "P1", "aday_madde": "GEÇİŞ md6/4", "kaynak": "sentetik"}
+{"id": "sy-045", "soru": "yatay gecis hakki lisans hayati boyunca en fazla kac defa taninir", "kategori": "kismi", "aday_madde": "GEÇİŞ; açık sınır doğrulanacak", "kaynak": "sentetik"}
+{"id": "sy-046", "soru": "yatay gecis basvurusu kabul edilen ogrenci yeni okuluna kayit yaptirmazsa uludagdaki hakki yanar mı", "kategori": "P1", "aday_madde": "GEÇİŞ md27", "kaynak": "sentetik"}
+{"id": "sy-050", "soru": "danisman hoca ders secim onayini vermezse veya kacirirsa ders secimi gecersiz mi sayilir", "kategori": "kismi", "aday_madde": "EÖY md17 (danışman); ayrıntı P2 danışmanlık yönergesinde", "kaynak": "sentetik"}
+{"id": "sy-052", "soru": "alttan kalan secmeli dersin yerine sonraki donem tamamen farkli bir secmeli ders alinabilir mi", "kategori": "P1", "aday_madde": "EÖY md28", "kaynak": "sentetik"}
+{"id": "sy-054", "soru": "cap ve yan dal programlarina basvuru sartlari universite yonetmeliginde nelerdir", "kategori": "P1", "aday_madde": "GEÇİŞ md17/22", "kaynak": "sentetik"}
+{"id": "sy-055", "soru": "on kosullu ders ne demektir on kosul dersinden kalindiginda sonraki ders secilebilir mi", "kategori": "P1", "aday_madde": "EÖY md21/24", "kaynak": "sentetik"}
+{"id": "sy-056", "soru": "bir donemin maksimum akts yuku siniri nedir bu sinir hangi durumlarda asilabilir", "kategori": "P1", "aday_madde": "EÖY md27", "kaynak": "sentetik"}
+{"id": "sy-057", "soru": "farkli bir fakulteden veya bolumden genel secmeli ders almanin kurallari nelerdir kanka kredisi sayilir mi", "kategori": "P1", "aday_madde": "EÖY md21", "kaynak": "sentetik"}
+{"id": "sy-058", "soru": "mufredattan kaldirilan veya kodu degisen eski bir dersin yerine hangi dersin alinacagi nasil ogrenilir", "kategori": "P1", "aday_madde": "EÖY md27 (eşdeğer ders)", "kaynak": "sentetik"}
+{"id": "sy-059", "soru": "danisman degisikligi hangi durumlarda ve nasil talep edilir", "kategori": "P2", "aday_madde": "akademik danışmanlık yönergesi", "kaynak": "sentetik"}
+{"id": "sy-061", "soru": "4 yillik lisans programinda okulu bitirmek icin yasal azami sure kac yildir", "kategori": "P1", "aday_madde": "EÖY md15, 2547 md44", "kaynak": "sentetik"}
+{"id": "sy-062", "soru": "azami suresi dolan bir lisans ogrencisine mezun olabilmesi icin kac sinav hakki verilir", "kategori": "P1", "aday_madde": "EÖY md15, 2547 md44 (7592)", "kaynak": "sentetik"}
+{"id": "sy-063", "soru": "hangi donemden sonra yani kacinci yilda birinci ogretim ogrencileri de harc odemeye baslar", "kategori": "ret", "aday_madde": "harç başlangıcı 2547 md46'da, derlemde yok", "kaynak": "sentetik"}
+{"id": "sy-065", "soru": "kayit dondurma basvurusu hakli ve gecerli hangi sebeplerle yapilabilir", "kategori": "P1", "aday_madde": "EÖY md19", "kaynak": "sentetik"}
+{"id": "sy-066", "soru": "donem ortasinda kendi istegiyle universiteden kaydini sildiren ogrenci odedigi harc ucretini geri alabilir mi", "kategori": "kismi", "aday_madde": "EÖY md39; iade hükmü yok", "kaynak": "sentetik"}
+{"id": "sy-067", "soru": "mezuniyet karari fakulte yonetim kurulundan gectikten kac gun sonra e devlete yansir", "kategori": "disi", "aday_madde": "e-Devlet süreci", "kaynak": "sentetik"}
+{"id": "sy-068", "soru": "ders kaydini yapip harci yatirmayi unutan ogrencinin donemi yanar mi", "kategori": "P1", "aday_madde": "EÖY md10", "kaynak": "sentetik"}
+{"id": "sy-069", "soru": "guz doneminde almadigim zorunlu dersi bahar doneminde secebiliyor muyuz", "kategori": "kismi", "aday_madde": "EÖY md27; dönemlik açılış yazmıyor", "kaynak": "sentetik"}
+{"id": "sy-070", "soru": "not dökümünde dz gorunmesi ne anlama geliyor bu dersi bütte kurtarabilir miyim", "kategori": "yanlis_onkabul", "aday_madde": "BUÜ'de devamsız notu (D), DZ değil; EÖY md32/4", "kaynak": "sentetik"}
+{"id": "sy-071", "soru": "uludagda yaz okulunda en fazla kac aktslik ders secebiliyoruz siniri var mi", "kategori": "P1", "aday_madde": "YAZ md10", "kaynak": "sentetik"}
+{"id": "sy-074", "soru": "akademik takvimde belirtilen tarihler disinda sinav gunu degistirilebilir mi hoca kendi kafasina gore gun koyabilir mi", "kategori": "P1", "aday_madde": "EÖY md29", "kaynak": "sentetik"}
+{"id": "sy-076", "soru": "yuksek lisans basvurularinda kullanilan ales puaninin gecerlilik suresi kac yildir", "kategori": "P2", "aday_madde": "lisansüstü yönetmeliği", "kaynak": "sentetik"}
+{"id": "sy-080", "soru": "yuksek lisans yaparken ayni zamanda baska bir universitede lisans egitimi gormek yasal midir", "kategori": "P2", "aday_madde": "lisansüstü yönetmeliği", "kaynak": "sentetik"}
+{"id": "sy-082", "soru": "zorunlu staj uygulamasi olan bolumlerde staj yeri bulamayanlar icin okulun yukumlulugu var mi", "kategori": "P2", "aday_madde": "uygulamalı eğitimler yönergesi", "kaynak": "sentetik"}
+{"id": "sy-092", "soru": "erasmus basvurularinda yabanci dil baraj puani genellikle kactir", "kategori": "disi", "aday_madde": "Erasmus", "kaynak": "sentetik"}
+{"id": "sy-095", "soru": "baska bir universiteye yatay gecis yapinca kyk bursu veya kredisi kesilir mi", "kategori": "disi", "aday_madde": "KYK", "kaynak": "sentetik"}
+{"id": "sy-098", "soru": "okul uzatildiginda ogrenci kimlik karti ve indirimli bursakart akbil haklari devam eder mi", "kategori": "disi", "aday_madde": "kent kartı", "kaynak": "sentetik"}
+{"id": "sy-099", "soru": "lisans mezuniyeti sonrasi erkek ogrencilerin askerlik tecil hakki kac yildir", "kategori": "disi", "aday_madde": "askerlik", "kaynak": "sentetik"}
+{"id": "sy-100", "soru": "mezuniyet asamasina gelmis ogrencinin kutuphaneye kitap veya ceza borcu varsa diplomasi verilir mi", "kategori": "ret", "aday_madde": "kütüphane borcu derlemde yok", "kaynak": "sentetik"}
