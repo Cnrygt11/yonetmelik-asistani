@@ -38,6 +38,28 @@ Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (
 - [ ] Kategoriler: mevcutlara ek olarak **norm çatışması** (kanun ile yönetmelik farklı, ör. 2547
       md. 44 / EÖY md. 15) ve **birime özgü kural** (P2 öncesi hazırlık)
 - [ ] 150 soru; her birinde altın madde ve programla doğrulanan alıntı
+  - [x] Parti 1: wa-001..wa-048 (12.10.2026). Set 80 soru. Yeni kategoriler: `kismi` (konu
+        derlemde, sorunun bir kısmı karşılıksız), `yanlis_onkabul`
+  - [ ] Parti 2: wa-049..wa-095
+  - [ ] Parti 3: sentetik seçilmişler (sy-*)
+
+Gerçek sorular daha zor: BM25 F5 Recall@5 ilk 32 soruda 0,828, 80 soruda **0,714**; MRR@10
+0,603 → **0,459**. (Bu ölçüm bir kez test bölümünü de kapsadı; ayar yapılmadı, bundan sonra
+yalnızca geliştirme bölümü.)
+
+Etiketlemede bulunanlar:
+- Koşullu geçmenin kuralı EÖY md. 35/1: GANO en az 2.00 ve FF, FD, D, K yok. Öğrencilerin en sık
+  sorduğu konulardan.
+- **Yaz Öğretimi Yönetmeliği md. 7/1 ve 13/1, yürürlükten kalkmış 2014 tarihli (RG 29098)
+  Öğretim Yönetmeliği'ne atıf yapıyor.** Model öğrenciye kaldırılmış yönetmeliği gösterebilir;
+  istem ve denetim bunu ele almalı. YDYO md. 24/2 de eski adı ("Uludağ Üniversitesi Önlisans ve
+  Lisans Öğretim Yönetmeliği") kullanıyor.
+- YDYO md. 7'nin (4). fıkrası (muafiyet harf notu tablosu) ve md. 7/3-b'nin andığı eşdeğer sınav
+  tabloları resmî metinde md. 8/4'ten sonra basılmış (mevzuat.gov.tr ve KAYSİS aynı). Çıkarma
+  hatası değil; bu konudaki sorularda md. 7 ve md. 8 birlikte altın kabul edilir. Faz 2'deki
+  "md. 8'de iki (4) numaralı fıkra" notunun açıklaması budur.
+- Sentetik sy-016 ("harf notları kaç gün içinde") yanlışlıkla "derlemde yok" etiketlenmişti:
+  EÖY md. 29/11 "en geç 3 gün içinde ilân edilir".
 - [ ] İkinci geçiş (proje sahibi): başlangıçtaki 32 soru dahil
 - [ ] Bölünme: mevcut kalıcı kural (%30 test)
 
