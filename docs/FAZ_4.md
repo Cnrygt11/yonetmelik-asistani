@@ -141,5 +141,6 @@ Başlangıç çizgisi M3'ü birebir verdi (tamamı bağlamda 0,730 = 89/122), d�
 Ödünleşim açık: "tamamı bağlamda" oranını artıran her ayar gürültüyü de artırıyor; gürültüyü azaltanlar
 altın maddeyi de dışarıda bırakıyor (mutlak eşik ve sıkı göreli eşik "en az biri" oranını 0,93'ten
 0,81-0,88'e düşürüyor). Seçilen ayar gürültüyü artırmadan +4 puan veren tek ayar. Gürültüyle başa çıkmak
-istem v3'ün işi (alıntı zorunluluğu). Kalan 28 sorunun eksik altın maddeleri genellikle ilk 20 adayda
-hiç yok; bunlar arama sorunu, bağlam ayarıyla çözülmez.
+istem v3'ün işi (alıntı zorunluluğu). Tamamı bağlamda olmayan 28 sorunun 11'inde eksik altın madde
+ilk 20 adayda hiç yok (arama sorunu); 17'sinde ilk 20'de var ama reranker sıralamasında geride kalıyor
+(k büyütülünce giriyor, ama gürültüyle birlikte).
