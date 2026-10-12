@@ -27,3 +27,12 @@ configs/local.yaml
 logs/
 *.sqlite
 *.db
+
+# Yerel araç klasörleri: üçüncü taraf skill'ler (evals-skills; kaynak: github.com/ai-evals-course/evals-skills)
+# ve başka editör araçları depoya girmez
+.agents/
+.claude/skills/
+.aider-desk/
+
+# Telifli makale (rag_dergi_yayin.pdf, AUAd 12(2)); yalnızca yerel okuma için
+rag_dergi_yayin.pdf
