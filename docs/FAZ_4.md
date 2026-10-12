@@ -18,9 +18,9 @@ Hedefler (plan 1): %85 doğru cevap, %95 doğru atıf, cevapsız soruların %90'
       kaynak, kaldırılmış metin, norm çatışması
 - [x] Çıktı denetimi: karma ret, eksik bilgi cümlesi, geçersiz/eksik etiket, alıntıdaki sayıların
       cevapta geçme oranı (`eval/run_answers.py`, notebook bölüm 8)
-- [ ] Cevap puanlama (otomatik ön kontrol + elle puanlama, proje sahibi örneklem kontrolü)
+- [x] Cevap puanlama: `eval/score_answers.py`; 134 cevap elle puanlandı (`eval/reports/puanlar_gelistirme_v2.jsonl`)
 - [ ] Ret eşiği kalibrasyonu (sözlük bağlandıktan sonra)
-- [ ] **M3**
+- [x] **M3: geliştirme setinde ilk tam ölçüm (12.10.2026)** — hedeflerin altında, aşağıda
 
 ## Sözlük ölçümü · 12.10.2026 · BM25 karakter n-gram · geliştirme (134 soru)
 
@@ -58,3 +58,44 @@ cevapta kaynak gösterilen madde listeye yazılmamıştı (wa-011, wa-021, wa-02
 wa-068). Kural: altın cevapta kaynak gösterilen her madde altın maddeler listesinde olmalı.
 Düzeltme sonrası BM25 + sözlük 0,811 → 0,828 (yerel); Colab sayıları bir sonraki ölçümde
 güncellenecek.
+
+## M3 · ilk tam ölçüm · 12.10.2026 · istem v2 · Qwen3.5-9B Q4 · geliştirme (134 soru)
+
+| Ölçüt | Sonuç | Hedef |
+|---|---|---|
+| Doğru cevap (122 cevaplı soru) | **%45,9** (kısmen %34,4, yanlış %19,7) | %85 |
+| Doğru atıf (kaynak gösteren cevaplar) | **%94,8** | %95 |
+| Doğru ret (12 cevapsız soru) | **%100** | %90 |
+| Altın madde bağlamda | %92,6 | – |
+| Cevap süresi (medyan) | 14,8 sn | – |
+
+Kaynağa göre doğru cevap: ilk set (benim yazdığım) **14/17**, sentetik 22/33, WhatsApp **20/72**.
+Kategoriye göre: tek madde %63, koşul/istisna %44, kısmi %36, çok madde %18, yanlış önkabul %0 (n=5).
+
+**Hata analizi:**
+- Sorun ağırlıkla **okumada**, aramada değil: altın madde bağlamdayken 113 sorunun 58'i kısmen
+  doğru ya da yanlış. Bağlamda değilken (9 soru) 8'i başarısız.
+- **Gürültülü bağlam:** medyan 4 kaynak; model ilgisiz kaynakları karıştırıyor (ör. Muafiyet
+  Yönergesi'nin ağırlıklı ortalama hesabını harf notu hesabı sanmak, YDYO muafiyet tablosunu bölüm
+  derslerine uygulamak, FD'yi "koşullu geçer" saymak).
+- **Uzunluk:** doğru cevapların medyanı 750, kısmen/yanlış cevapların ~1.050-1.100 karakter;
+  gereksiz maddeler hata getiriyor.
+- **"Bu ayrıntı yönetmeliklerde yer almıyor" aşırı kullanımı:** cevaplı soruların %34'ünde; bunların
+  yalnızca 8/41'i doğru. Kural 4 modeli her cevaba bu cümleyi eklemeye itiyor.
+- **İstem sızıntısı:** birkaç cevapta istem kuralları cevaba kopyalanmış (wa-041, wa-069).
+- Karma ret 6 cevapta.
+- Ret davranışı iyi: 12 cevapsız sorunun hepsinde uydurmadan ret veya yönlendirme (otomatik ön
+  kontrol %33 diyordu; model ret cümlesi yerine "yer almıyor" cümlesini kullanıyor).
+- Model belirli bir maddeyi bulamadığında (md. 35 koşullu geçme, md. 18 devamsızlık) yakın
+  maddelerden yanlış genelleme yapıyor.
+
+**Altın set düzeltmeleri (model haklı çıktı, metinden doğrulandı):** q-028 ve sy-007 (kopya çekmek
+2547 md. 54/1-**c**: bir yarıyıl uzaklaştırma; altın cevapta bir haftadan bir aya yazıyordu), sy-017
+(aynı nedenle), sy-038 (yatay geçiş takvimi Geçiş Yön. md. 5/3-4'te Ocak/Temmuz; altın cevapta
+"yazmaz" deniyordu). Düzeltmeler cevaplar görüldükten sonra yapıldı, ama her biri kaynak metne
+dayanıyor.
+
+**Sonraki adımlar (önem sırasıyla):** bağlamı daraltmak (daha sıkı göreli eşik, en çok 3 kaynak),
+istemi kısaltmak ve "yer almıyor" cümlesini yalnızca gerçekten eksik bilgi olduğunda kullandırmak,
+cevap uzunluğunu sınırlamak, Qwen'in düşünme kipini (think) bir alt kümede denemek; ardından istem
+v3 ile yeniden ölçüm.

@@ -1,0 +1,112 @@
+{
+ "soru": 134,
+ "puanlanan": 134,
+ "hepsi": {
+  "dogru_cevap": 0.459,
+  "kismen": 0.344,
+  "n_cevapli": 122,
+  "dogru_atif": 0.948,
+  "n_atif": 115,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 12
+ },
+ "kategori:cevapsiz": {
+  "dogru_cevap": null,
+  "kismen": null,
+  "n_cevapli": 0,
+  "dogru_atif": null,
+  "n_atif": 0,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 12
+ },
+ "kategori:cok_madde": {
+  "dogru_cevap": 0.182,
+  "kismen": 0.364,
+  "n_cevapli": 11,
+  "dogru_atif": 0.8,
+  "n_atif": 10,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:kismi": {
+  "dogru_cevap": 0.364,
+  "kismen": 0.545,
+  "n_cevapli": 33,
+  "dogru_atif": 0.931,
+  "n_atif": 29,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:kosul_istisna": {
+  "dogru_cevap": 0.435,
+  "kismen": 0.217,
+  "n_cevapli": 23,
+  "dogru_atif": 1.0,
+  "n_atif": 21,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:ogrenci_dili": {
+  "dogru_cevap": 0.5,
+  "kismen": 0.5,
+  "n_cevapli": 2,
+  "dogru_atif": 1.0,
+  "n_atif": 2,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:surum_tuzagi": {
+  "dogru_cevap": 1.0,
+  "kismen": 0.0,
+  "n_cevapli": 2,
+  "dogru_atif": 1.0,
+  "n_atif": 2,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:tek_madde": {
+  "dogru_cevap": 0.63,
+  "kismen": 0.239,
+  "n_cevapli": 46,
+  "dogru_atif": 0.957,
+  "n_atif": 46,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kategori:yanlis_onkabul": {
+  "dogru_cevap": 0.0,
+  "kismen": 0.6,
+  "n_cevapli": 5,
+  "dogru_atif": 1.0,
+  "n_atif": 5,
+  "dogru_ret": null,
+  "n_cevapsiz": 0
+ },
+ "kaynak:ilk": {
+  "dogru_cevap": 0.824,
+  "kismen": 0.176,
+  "n_cevapli": 17,
+  "dogru_atif": 1.0,
+  "n_atif": 17,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 3
+ },
+ "kaynak:sentetik": {
+  "dogru_cevap": 0.667,
+  "kismen": 0.303,
+  "n_cevapli": 33,
+  "dogru_atif": 1.0,
+  "n_atif": 31,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 7
+ },
+ "kaynak:whatsapp": {
+  "dogru_cevap": 0.278,
+  "kismen": 0.403,
+  "n_cevapli": 72,
+  "dogru_atif": 0.91,
+  "n_atif": 67,
+  "dogru_ret": 1.0,
+  "n_cevapsiz": 2
+ }
+}
