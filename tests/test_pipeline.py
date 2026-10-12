@@ -93,3 +93,85 @@ def test_score_answers_metrics():
     res = score(rows, {"a": {"karar": "dogru"}, "b": {"karar": "kismen"}, "c": {"karar": "dogru"}})
     h = res["hepsi"]
     assert (h["dogru_cevap"], h["kismen"], h["dogru_atif"], h["dogru_ret"]) == (0.5, 0.5, 0.5, 1.0)
+
+
+def test_linked_madde_follows_its_parent_and_respects_max_sources():
+    maddeler = {**MADDELER, "eoy:md20": {"path": "EÖY › Madde 20", "text": "Bağlantılı kısa madde.", "meta": {}}}
+    hits = [Hit("eoy:md19:f1", "eoy:md19", 0.9, {"rerank": 0.9}),
+            Hit("kanun:md44:f1", "kanun:md44", 0.5, {"rerank": 0.5})]
+    links = {"eoy:md19": ["eoy:md20"], "eoy:md20": ["eoy:md19"]}
+    ctx = build_context(hits, CHUNKS, maddeler, links=links)
+    assert [(c.madde_id, c.bagli, c.rerank) for c in ctx] == [
+        ("eoy:md19", "", 0.9), ("eoy:md20", "eoy:md19", None), ("kanun:md44", "", 0.5)]
+    assert [c.madde_id for c in build_context(hits, CHUNKS, maddeler, links=links, max_sources=2)] == [
+        "eoy:md19", "eoy:md20"]
+    # parçası bulunmamış uzun madde bağlantıyla eklenmez
+    assert [c.madde_id for c in build_context(hits[:1], CHUNKS, MADDELER, links={"eoy:md19": ["kanun:md44"]})] == [
+        "eoy:md19"]
+
+
+def test_load_links_reads_repo_file():
+    from yonetmelik_asistani.config import REPO_ROOT
+    from yonetmelik_asistani.generation.pipeline import load_links
+
+    links = load_links(REPO_ROOT / "configs" / "ilgili_maddeler.yaml")
+    assert "buu-onlisans-lisans-eoy:md35" in links["buu-onlisans-lisans-eoy:md32"]
+
+
+def test_verify_quote_tolerates_case_punctuation_and_ellipsis_but_not_invention():
+    from yonetmelik_asistani.generation.pipeline import verify_quote
+
+    ctx = [ContextItem("K1", "h", "(1) Mazeret hâlinde, sınavdan sonraki 10 iş günü içinde başvurulur."),
+           ContextItem("K2", "h", "(2) Kayıt dondurma en çok 4 yarıyıldır.")]
+    assert verify_quote("mazeret halinde sinavdan sonraki 10 is gunu icinde basvurulur", "K1", ctx) == "K1"
+    assert verify_quote("Mazeret hâlinde … 10 iş günü içinde başvurulur.", "K1", ctx) == "K1"
+    assert verify_quote("Kayıt dondurma en çok 4 yarıyıldır.", "K1", ctx) == "K2"  # yanlış etiket düzeltilir
+    assert verify_quote("Kayıt dondurma en çok 6 yarıyıldır.", "K2", ctx) is None
+    assert verify_quote("Madde 5", "K1", ctx) is None
+
+
+def test_render_v3_refuses_without_verified_quote():
+    import json
+
+    from yonetmelik_asistani.generation.pipeline import render_v3
+
+    ctx = [ContextItem("K1", "h", "Kayıt dondurma en çok 4 yarıyıldır.")]
+    ok = json.dumps({"alintilar": [{"kaynak": "K1", "metin": "Kayıt dondurma en çok 4 yarıyıldır."}],
+                     "cevap": "Kaydını en çok 4 yarıyıl dondurabilirsin.", "ayrintilar": ["Ek bilgi [K1]"],
+                     "eksik": True})
+    text, quotes, err = render_v3(ok, ctx)
+    assert text.startswith("Kaydını en çok 4 yarıyıl dondurabilirsin. [K1]") and "- Ek bilgi [K1]" in text
+    assert "Bu ayrıntı yönetmeliklerde yer almıyor." in text and quotes[0]["gecerli"] and not err
+    uydurma = json.dumps({"alintilar": [{"kaynak": "K1", "metin": "Kayıt dondurma en çok 8 yarıyıldır."}],
+                          "cevap": "8 yarıyıl [K1].", "ayrintilar": [], "eksik": False})
+    assert render_v3(uydurma, ctx)[0].startswith(RET_CUMLESI)
+    text, _, err = render_v3('{"alintilar": [{"kaynak": "K1", "metin": "Kayıt', ctx)  # kesik JSON
+    assert text.startswith(RET_CUMLESI) and err
+
+
+def test_answer_v3_sends_schema_and_logs_quotes_and_scores():
+    import json
+    import types
+
+    from yonetmelik_asistani.generation.pipeline import answer
+
+    class Retriever:
+        chunks = CHUNKS
+        expander = None
+
+        def search(self, q, profile=None, mode="hybrid_rerank"):
+            return [Hit("eoy:md19:f1", "eoy:md19", 0.9, {"rerank": 0.8})]
+
+    class LLM:
+        def chat(self, messages, **kw):
+            self.kw = kw
+            out = {"alintilar": [{"kaynak": "K1", "metin": "İzinli ayrılma (1)"}], "cevap": "İzin alınabilir [K1].",
+                   "ayrintilar": [], "eksik": False}
+            return types.SimpleNamespace(text=json.dumps(out, ensure_ascii=False), wall_s=2.0, model="sahte",
+                                         prompt_tokens=900)
+
+    llm = LLM()
+    a = answer("izin?", Retriever(), llm, MADDELER, istem="v3", think=True, max_tokens=3000)
+    assert llm.kw["schema"]["required"][0] == "alintilar" and llm.kw["think"] is True
+    assert a.cevap == "İzin alınabilir [K1]." and not a.ret and a.alintilar[0]["gecerli"]
+    assert a.kaynaklar[0]["rerank"] == 0.8 and a.prompt_tokens == 900 and a.istem == "v3"

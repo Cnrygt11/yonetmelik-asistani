@@ -27,8 +27,8 @@ class LLM:
     def __init__(self, text):
         self.text = text
 
-    def chat(self, messages):
-        return types.SimpleNamespace(text=self.text, wall_s=1.2, model="sahte")
+    def chat(self, messages, **kwargs):
+        return types.SimpleNamespace(text=self.text, wall_s=1.2, model="sahte", prompt_tokens=None)
 
 
 def test_service_returns_only_cited_sources_and_passes_profile():

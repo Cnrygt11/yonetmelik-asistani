@@ -1,0 +1,20 @@
+# Bağlantılı maddeler (Faz 4, Adım 1): bir madde bağlama girerse yanına eklenecek maddeler.
+#
+# Kural (sözlükteki gibi): eşleşmeler belgelerin yapısına göre yazılır, tek tek sorulara göre değil.
+# Yalnızca bir maddenin diğeri olmadan yanlış ya da eksik okunacağı durumlar girer:
+#   * bir kavramın tanımı bir maddede, uygulanma koşulu başka maddede,
+#   * resmî metnin sayfa düzeni yüzünden bir maddenin parçası başka maddenin içinde basılı.
+# Eklenen madde bütçe ve en çok kaynak sınırına tabidir.
+
+- madde: buu-onlisans-lisans-eoy:md32     # harf notları: DC/DD "koşullu geçer" burada tanımlı...
+  ekle: [buu-onlisans-lisans-eoy:md35]     # ...koşulu (GANO 2.00, FF/FD/D/K yok) md. 35'te
+- madde: buu-onlisans-lisans-eoy:md35
+  ekle: [buu-onlisans-lisans-eoy:md32]
+- madde: buu-onlisans-lisans-eoy:md22     # ortak zorunlu dersler: yabancı dil muafiyeti YDYO'da
+  ekle: [buu-ydyo-yabanci-dil:md24]
+- madde: buu-ydyo-yabanci-dil:md24        # ortak zorunlu yabancı dil muafiyeti ↔ dersin kendisi
+  ekle: [buu-ydyo-yabanci-dil:md23, buu-onlisans-lisans-eoy:md22]
+- madde: buu-ydyo-yabanci-dil:md23
+  ekle: [buu-ydyo-yabanci-dil:md24]
+- madde: buu-ydyo-yabanci-dil:md7         # md. 7/4 (muafiyet harf notu tablosu) ve md. 7/3-b'nin
+  ekle: [buu-ydyo-yabanci-dil:md8]         # andığı tablolar resmî metinde md. 8'in içinde basılı

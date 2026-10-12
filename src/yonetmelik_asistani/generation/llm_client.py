@@ -65,12 +65,15 @@ class LLMClient:
             raise LLMError(f"LLM sunucusuna ulaşılamadı ({self.cfg.base_url}): {e}") from e
 
     # ---- sohbet ----
-    def chat(self, messages: list[Message], *, model: str | None = None) -> ChatResult:
+    def chat(self, messages: list[Message], *, model: str | None = None, schema: dict | None = None,
+             think: bool | None = None, max_tokens: int | None = None) -> ChatResult:
+        """schema: JSON şeması (yalnızca ollama, yapılandırılmış çıktı); think ve max_tokens bu istek için
+        yapılandırmayı ezer (düşünme kipinde düşünce token'ları da üretim sınırından düşer)."""
         model = model or self.cfg.model
         start = time.perf_counter()
         try:
             if self.cfg.backend == "ollama":
-                resp = self._http.post("/api/chat", json=self._ollama_payload(messages, model))
+                resp = self._http.post("/api/chat", json=self._ollama_payload(messages, model, schema, think, max_tokens))
             else:
                 resp = self._http.post(
                     "/v1/chat/completions", json=self._openai_payload(messages, model)
@@ -86,11 +89,12 @@ class LLMClient:
             return self._parse_ollama(data, model, wall)
         return self._parse_openai(data, model, wall)
 
-    def _ollama_payload(self, messages: list[Message], model: str) -> dict[str, Any]:
+    def _ollama_payload(self, messages: list[Message], model: str, schema: dict | None = None,
+                        think: bool | None = None, max_tokens: int | None = None) -> dict[str, Any]:
         options: dict[str, Any] = {
             "temperature": self.cfg.temperature,
             "num_ctx": self.cfg.num_ctx,
-            "num_predict": self.cfg.max_tokens,
+            "num_predict": max_tokens or self.cfg.max_tokens,
         }
         if self.cfg.seed is not None:
             options["seed"] = self.cfg.seed
@@ -98,9 +102,11 @@ class LLMClient:
             "model": model,
             "messages": messages,
             "stream": False,
-            "think": self.cfg.think,
+            "think": self.cfg.think if think is None else think,
             "options": options,
         }
+        if schema is not None:
+            payload["format"] = schema
         if self.cfg.keep_alive is not None:
             payload["keep_alive"] = self.cfg.keep_alive
         return payload

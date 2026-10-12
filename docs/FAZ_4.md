@@ -99,3 +99,28 @@ dayanıyor.
 istemi kısaltmak ve "yer almıyor" cümlesini yalnızca gerçekten eksik bilgi olduğunda kullandırmak,
 cevap uzunluğunu sınırlamak, Qwen'in düşünme kipini (think) bir alt kümede denemek; ardından istem
 v3 ile yeniden ölçüm.
+
+## İyileştirme planı · Adım 1-2 · hazırlık (12.10.2026)
+
+M3 analizine göre sorun ikili: altın maddelerin **tamamı** bağlamda yalnızca cevaplı soruların
+%73'ünde (en çok eksik: EÖY md. 35, YDYO md. 24, EÖY md. 18), tamamı varken de kaynak sayısı arttıkça
+doğruluk düşüyor (1-2 kaynakta %96, 5-6 kaynakta %41). Kararlar: şimdilik belge eklenmez, soruya
+özgü ayar yapılmaz, %85 hedefi değişmez. Büyük model veya LoRA ancak bu iki adım yetmezse (Adım 3).
+
+**Adım 1 · bağlam:**
+- `configs/ilgili_maddeler.yaml`: bağlantılı maddeler. Bir madde bağlama girerse, onsuz yanlış
+  okunacak madde de hemen arkasına eklenir (EÖY md. 32 ↔ 35; EÖY md. 22 ↔ YDYO md. 23-24; YDYO md. 7 →
+  md. 8, çünkü md. 7/4'ün tabloları resmî metinde md. 8'in içinde basılı). Kural sözlükteki gibi
+  yapısaldır: sorulara göre değil, belgelerin yapısına göre yazılır.
+- `build_context`: `max_sources` (en çok kaynak) ve bağlantılı maddeler; kaynaklara rerank skoru ve
+  "bağlı" bilgisi yazılır.
+- `eval/dump_candidates.py` (Colab, LLM yok) ilk 20 adayı skorlarıyla döker; `eval/sweep_context.py`
+  (yerel) k, göreli/mutlak eşik, en çok kaynak ve bağlantı ızgarasını tarar ("tamamı bağlamda" ile
+  gürültü arasındaki Pareto sınırı). Yalnız BM25 ile yerel deneme: bağlantılar "tamamı bağlamda"
+  oranını 0,639'dan 0,697'ye çıkarıyor (gerçek ölçüm reranker skorlarıyla Colab dökümünde).
+
+**Adım 2 · istem v3:** model önce soruyu cevaplayan cümleleri bağlamdan aynen kopyalar (JSON:
+alıntılar → 1-2 cümlelik cevap → en çok 3 ayrıntı → eksik). Alıntılar programla bağlamda aranır
+(büyük-küçük harf, noktalama ve Türkçe karakter farkı yok sayılır; "…" ile kısaltma kabul); doğrulanan
+alıntı yoksa cevap verilmez. Karşılaştırma sabit 40 soruda (`eval/alt_set_40.txt`, 34 cevaplı + 6
+cevapsız, kimlik özetiyle seçildi; v2 burada 16/34 doğru, 6/6 doğru ret): v3 düşünme kapalı ve açık.
