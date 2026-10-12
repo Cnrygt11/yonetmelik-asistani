@@ -124,3 +124,22 @@ alıntılar → 1-2 cümlelik cevap → en çok 3 ayrıntı → eksik). Alıntı
 (büyük-küçük harf, noktalama ve Türkçe karakter farkı yok sayılır; "…" ile kısaltma kabul); doğrulanan
 alıntı yoksa cevap verilmez. Karşılaştırma sabit 40 soruda (`eval/alt_set_40.txt`, 34 cevaplı + 6
 cevapsız, kimlik özetiyle seçildi; v2 burada 16/34 doğru, 6/6 doğru ret): v3 düşünme kapalı ve açık.
+
+## Adım 1 · bağlam taraması · 12.10.2026 · Colab dökümü (reranker skorlarıyla) · geliştirme (134 soru)
+
+Başlangıç çizgisi M3'ü birebir verdi (tamamı bağlamda 0,730 = 89/122), döküm ve tarama tutarlı.
+
+| Ayar | Tamamı bağlamda | En az biri | Kaynak | Gürültü | Cevapsızda kaynak |
+|---|---|---|---|---|---|
+| M3: k=6, göreli 0,1 | 0,730 | 0,934 | 3,77 | 2,74 | 4,42 |
+| + bağlantılı maddeler | 0,779 | 0,934 | 4,14 | 3,06 | 4,67 |
+| **+ bağlantılı, en çok 5 kaynak (seçilen)** | **0,770** | **0,934** | **3,84** | **2,77** | **4,17** |
+| k=8, bağlantılı, en çok 5 | 0,787 | 0,934 | 4,07 | 2,98 | 4,67 |
+| k=6, göreli 0,2, bağlantılı, en çok 4 | 0,721 | 0,877 | 3,03 | 2,03 | 3,08 |
+| k=12, göreli 0,05, bağlantılı | 0,861 | 0,967 | 6,94 | 5,75 | 8,00 |
+
+Ödünleşim açık: "tamamı bağlamda" oranını artıran her ayar gürültüyü de artırıyor; gürültüyü azaltanlar
+altın maddeyi de dışarıda bırakıyor (mutlak eşik ve sıkı göreli eşik "en az biri" oranını 0,93'ten
+0,81-0,88'e düşürüyor). Seçilen ayar gürültüyü artırmadan +4 puan veren tek ayar. Gürültüyle başa çıkmak
+istem v3'ün işi (alıntı zorunluluğu). Kalan 28 sorunun eksik altın maddeleri genellikle ilk 20 adayda
+hiç yok; bunlar arama sorunu, bağlam ayarıyla çözülmez.

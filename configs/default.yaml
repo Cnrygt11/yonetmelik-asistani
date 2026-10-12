@@ -48,7 +48,7 @@ retrieval:                 # Faz 2
 
 generation:                # Faz 4 bağlam derleme
   rel_rerank: 0.1          # reranker skoru en iyi kaynağın %10'unun altındaki kaynaklar atılır
-  max_sources: null        # bağlamdaki en çok kaynak; Adım 1 taramasından sonra belirlenecek (FAZ_4.md)
+  max_sources: 5           # bağlamdaki en çok kaynak; Adım 1 taraması (FAZ_4.md)
   ilgili_maddeler: configs/ilgili_maddeler.yaml  # bağlantılı maddeler; boş bırakılırsa kapalı
 
 paths:
