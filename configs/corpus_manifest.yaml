@@ -95,17 +95,18 @@ belgeler:
     kaynaklar: [{tur: kaysis, id: 206796}]
 
   - id: kanun-2547
-    baslik: 2547 sayılı Yükseköğretim Kanunu (öğrencileri ilgilendiren maddeler, md. 44 ve md. 54)
+    baslik: 2547 sayılı Yükseköğretim Kanunu (öğrencileri ilgilendiren md. 44, md. 54 ve geçici md. 85)
     tur: kanun
     hiyerarsi: 1
     duzey: [onlisans, lisans, lisansustu, hazirlik]
     oncelik: P1
     durum: yururlukte
     kaynaklar: [{tur: url, url: "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2547.pdf"}]
-    maddeler: [44, 54]       # Faz 2'de yalnızca bu maddeler parçalanacak
+    maddeler: ["44", "54", "G85"]   # G85: öğrenim affı (7592 sayılı Kanun, RG 9/8/2026)
     zorunlu_ifadeler:
       - "Değişik:2/2/2023-7437/2 md."                    # md. 54'ün yeni hâli
       - "E: 2023/78, K: 2024/55"                          # AYM kısmi iptali (md. 54)
+      - "Geçici Madde 85- (Ek:30/7/2026-7592/14 md.)"     # öğrenim affı; eski indirmede yoktur
     notlar: >-
       KAYSİS'te değil; mevzuat.gov.tr işlenmiş metni kullanılıyor. AYM'nin 22.02.2024 tarihli
       kararıyla md. 54/1-a(3), b(7), d(2) alt bentleri ve f bendi iptal; metne işlendiği

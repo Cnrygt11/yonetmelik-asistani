@@ -15,7 +15,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-from yonetmelik_asistani.ingest.normalize import turkish_lower
+from yonetmelik_asistani.ingest.normalize import ascii_fold, turkish_lower
 
 # bm25s içe aktarılırken (selection.py) kuruluysa bir JAX işlemi çalıştırır; Colab'da JAX hazır
 # kurulu gelir ve GPU'yu ilk kullanımda belleğin %75'ini ayırır (T4'te ~11 GiB, 12.10.2026).
@@ -26,12 +26,17 @@ _WORD_RE = re.compile(r"[0-9a-zçğıöşüâîû]+")
 STOPWORDS = frozenset(["acaba", "ama", "ancak", "bazı", "belki", "ben", "bir", "biri", "birkaç", "birçok", "biz", "bu", "bunu", "bunun", "buna", "da", "daha", "de", "defa", "diye", "en", "gibi", "hem", "hep", "her", "hiç", "için", "ile", "ise", "işte", "kadar", "ki", "kim", "mı", "mi", "mu", "mü", "nasıl", "ne", "neden", "nerede", "niçin", "o", "olan", "olarak", "olduğu", "olması", "olup", "onun", "ona", "sadece", "siz", "şey", "şu", "tüm", "ve", "veya", "ya", "yani", "yine", "yoksa", "çok", "göre"])
 
 
+_STOPWORDS_FOLDED = frozenset(ascii_fold(w) for w in STOPWORDS)
+
+
 def _words(text: str) -> list[str]:
-    return [w for w in _WORD_RE.findall(turkish_lower(text)) if w not in STOPWORDS]
+    return [w for w in _WORD_RE.findall(turkish_lower(text))
+            if w not in STOPWORDS and ascii_fold(w) not in _STOPWORDS_FOLDED]
 
 
 def _prefix5(text: str) -> list[str]:
-    return [w[:5] for w in _words(text)]
+    # Türkçe karakterler katlanır: "sınav" ve "sinav" aynı belirteç olur (12.10.2026)
+    return [ascii_fold(w)[:5] for w in _words(text)]
 
 
 def _snowball(text: str) -> list[str]:
@@ -43,7 +48,7 @@ def _snowball(text: str) -> list[str]:
 def _char(text: str) -> list[str]:
     grams: list[str] = []
     for w in _words(text):
-        padded = f"_{w}_"
+        padded = f"_{ascii_fold(w)}_"
         for n in (3, 4, 5):
             grams += [padded[i:i + n] for i in range(len(padded) - n + 1)]
     return grams

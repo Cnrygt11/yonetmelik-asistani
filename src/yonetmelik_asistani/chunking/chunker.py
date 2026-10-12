@@ -53,10 +53,17 @@ def _doc_meta(b: Belge, corpus_version: str) -> dict:
     }
 
 
+def _bolum(b: Belge, m: Madde) -> str | None:
+    # Kanunlarda geçici maddeler son bölümden sonra ayrı durur; ayrıştırıcı onları son bölüme bağlar
+    if b.tur == "kanun" and m.gecici:
+        return "Geçici Maddeler"
+    return m.bolum
+
+
 def _path(b: Belge, m: Madde, fikra: int | None) -> str:
     parts = [b.baslik]
-    if m.bolum:
-        parts.append(m.bolum)
+    if bolum := _bolum(b, m):
+        parts.append(bolum)
     label = ("Geçici Madde " if m.gecici else "Madde ") + m.key.lstrip("GE")
     parts.append(f"{label} ({m.baslik})" if m.baslik else label)
     if fikra is not None:
@@ -137,7 +144,7 @@ def _madde_meta(b: Belge, m: Madde, doc_meta: dict) -> dict:
     kaynak_url = next((k.url for k in b.kaynaklar if k.url), None)
     if kaynak_url is None and b.kaynaklar:
         kaynak_url = f"https://kms.kaysis.gov.tr/Home/Goster/{b.kaynaklar[0].id}"
-    return {**doc_meta, "bolum": m.bolum, "madde_basligi": m.baslik, "gecici": m.gecici,
+    return {**doc_meta, "bolum": _bolum(b, m), "madde_basligi": m.baslik, "gecici": m.gecici,
             "dusuk_oncelik": m.dusuk_oncelik, "degisiklik_notlari": m.notlar,
             "atiflar": [f"{b.id}:md{n}" for n in m.atiflar()], "kaynak_url": kaynak_url}
 
@@ -166,7 +173,7 @@ def chunk_document(b: Belge, doc: ParsedDoc, corpus_version: str, *,
     chunks: list[Chunk] = []
     maddeler: list[dict] = []
     for m in doc.maddeler:
-        if b.maddeler and (m.gecici or m.key.startswith("E") or m.no not in b.maddeler):
+        if b.maddeler and m.key not in b.maddeler:
             continue
         madde_id = f"{b.id}:md{m.key}"
         meta = _madde_meta(b, m, doc_meta)

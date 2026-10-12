@@ -65,7 +65,7 @@ def test_profile_filter():
 
 
 def test_bm25_turkish_prefix_matches_inflections():
-    assert _prefix5("Kayıt dondurma İZİNLİ") == ["kayıt", "dondu", "izinl"]
+    assert _prefix5("Kayıt dondurma İZİNLİ") == ["kayit", "dondu", "izinl"]  # Türkçe karakter katlanır
     assert "_ka" in _char("kayıt")
     hits = _retriever().search("izinli ayrılmak istiyorum", mode="bm25")
     assert hits[0].chunk_id == "eoy:md19:f2" and "bm25" in hits[0].izler
@@ -118,3 +118,12 @@ def test_bm25_module_keeps_jax_off_gpu():
     import yonetmelik_asistani.index.bm25  # noqa: F401
 
     assert os.environ.get("JAX_PLATFORMS") == "cpu"
+
+
+def test_bm25_treats_unaccented_query_like_accented():
+    ids = ["a", "b"]
+    texts = ["Öğrenciler sınavlara girmek için devam koşulunu sağlamalıdır.", "Yurt ücretleri."]
+    for tok in ("prefix5", "char"):
+        ix = BM25Index.build(ids, texts, tokenizer=tok)
+        assert ix.search("ogrenci sinavlara icin devam", k=1)[0][0] == "a"
+        assert _prefix5("için sınav") == _prefix5("icin sinav") == ["sinav"]  # "icin" de durak sözcük

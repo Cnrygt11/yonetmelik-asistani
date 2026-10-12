@@ -94,10 +94,13 @@ def test_long_bent_list_keeps_intro_in_every_part():
 def test_law_selects_only_listed_articles():
     law = ("YÜKSEKÖĞRETİM KANUNU\nKapsam:\nMadde 2 – Bu kanun kapsar.\nÖğrenim süresi:\n"
            "Madde 44 – (Değişik: 13/2/2011-6111/171 md.)\na. Öğrenciler mezun olur.\n"
-           "Disiplin:\nMadde 54 – (1) Disiplin cezaları.\nGeçici Madde 54- Geçici.")
-    _chunks, maddeler = chunk_document(_belge(id="kanun", tur="kanun", maddeler=[44, 54]),
+           "Disiplin:\nMadde 54 – (1) Disiplin cezaları.\nGeçici Madde 54- Geçici.\n"
+           "Geçici Madde 85- Öğrenim affı.")
+    _chunks, maddeler = chunk_document(_belge(id="kanun", tur="kanun", maddeler=["44", "54", "G85"]),
                                       parse_document("kanun", law), "v")
-    assert [m["madde_key"] for m in maddeler] == ["44", "54"]
+    assert [m["madde_key"] for m in maddeler] == ["44", "54", "G85"]  # geçici md. 54 seçilmedi
+    assert maddeler[2]["meta"]["gecici"] is True
+    assert maddeler[2]["meta"]["bolum"] == "Geçici Maddeler"  # son bölüme bağlanmaz
     assert maddeler[0]["meta"]["degisiklik_notlari"] == ["(Değişik: 13/2/2011-6111/171 md.)"]
 
 

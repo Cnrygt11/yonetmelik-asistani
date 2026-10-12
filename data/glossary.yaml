@@ -28,5 +28,7 @@
   terimler: [yabancı dil muafiyet sınavı, yeterlik sınavı]
 - ifadeler: [tek ders, tek ders sınavı]
   terimler: [ek sınav]          # BUÜ'de "tek ders" sınavının adı ek sınavdır (md. 31)
+- ifadeler: [af, öğrenim affı, öğrenci affı, affı]
+  terimler: [ilişiği kesilenler, öğrenimlerine başlayabilirler]   # 2547 geçici md. 85: metinde "af" geçmez
 - ifadeler: [not itirazı]
   terimler: [sınav sonucuna itiraz, maddi hata]

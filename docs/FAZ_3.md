@@ -27,8 +27,12 @@ Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (
 
 ## Kontrol listesi
 
-- [ ] Derlem: 2547 **geçici md. 85** (öğrenim affı, 7592 sayılı Kanun, RG 9/8/2026). Ayrıştırıcı
-      "Geçici Madde N-" biçimini, manifest geçici madde seçimini desteklemeli
+- [x] Derlem v1.1 (`2026.10.2`): 2547 **geçici md. 85** (öğrenim affı, 7592 sayılı Kanun, RG
+      9/8/2026). Manifest madde anahtarıyla seçiyor (`"44"`, `"G85"`); kanunlarda geçici maddeler
+      "Geçici Maddeler" altında. 153 madde, 320 parça. Metinde "af" kelimesi geçmiyor: BM25
+      "öğrenim affı" sorusunda bulamıyor, sözlüğe eklendi (K-12)
+- [x] Türkçe karakter katlaması (BM25, F5 ve karakter n-gram): karaktersiz sorularda Recall@5
+      0,793 → **0,828**, karakterli sorularda değişiklik yok (0,828 / MRR 0,603)
 - [ ] Soru kaynakları: SHMYO SSS (2025), ÖİDB duyuruları, öğrenci forumları, proje sahibinin
       çevresinden yönetmeliğe bakılmadan yazılmış sorular
 - [ ] Kategoriler: mevcutlara ek olarak **norm çatışması** (kanun ile yönetmelik farklı, ör. 2547

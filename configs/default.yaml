@@ -2,7 +2,7 @@
 # Yerel değişiklikler için configs/local.yaml oluşturun (Git dışındadır);
 # yalnızca değiştirmek istediğiniz anahtarları yazmanız yeterli.
 
-corpus_version: "2026.10.1"   # derlem v1: P1 belgeler, Faz 1'de doğrulandı (12.10.2026)
+corpus_version: "2026.10.2"   # derlem v1.1: P1 + 2547 geçici md. 85 (12.10.2026)
 
 chunking:                  # plan 6.4
   short_madde_tokens: 350  # bu boyutun altındaki maddeler bölünmez

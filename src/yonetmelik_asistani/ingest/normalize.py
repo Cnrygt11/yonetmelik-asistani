@@ -14,3 +14,15 @@ def turkish_lower(text: str) -> str:
     (U+0307) dizisine çevirir. Bu yüzden önce bu iki harf elle dönüştürülür.
     """
     return unicodedata.normalize("NFC", text).translate(_TR_UPPER_TO_LOWER).lower()
+
+
+_FOLD = str.maketrans("çğıöşüâîû", "cgiosuaiu")
+
+
+def ascii_fold(text: str) -> str:
+    """Küçük harfli Türkçe metni Türkçe karaktersiz biçime indirir ("harcımı" → "harcimi").
+
+    Öğrenciler sık sık Türkçe karakter kullanmadan yazar; arama iki biçimi aynı saymalıdır.
+    Önce `turkish_lower` uygulanmalıdır.
+    """
+    return text.translate(_FOLD)

@@ -14,3 +14,9 @@ def test_no_combining_dot_left():
 def test_plain_python_lower_is_wrong_for_turkish():
     # Bu test, neden özel fonksiyona ihtiyaç olduğunu belgeler.
     assert "KAYIT".lower() != turkish_lower("KAYIT")
+
+
+def test_ascii_fold_matches_unaccented_student_spelling():
+    from yonetmelik_asistani.ingest.normalize import ascii_fold
+
+    assert ascii_fold(turkish_lower("HARCIMI ödemezsem İzinli sayılır mıyım")) == "harcimi odemezsem izinli sayilir miyim"
