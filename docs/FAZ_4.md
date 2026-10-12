@@ -243,3 +243,30 @@ Seçili bağlam ayarında altın maddelerin tamamı bağlamda olmayan 28 soru in
 
 Etki küçük ama yalnızca hedeflediği sorularda ve doğru yönde (kazanılan sy-038, sy-050; kaybedilen sy-022);
 Türkçe karakterli sorular değişmiyor. Açık kalır (`retrieval.turkce_karakter: true`).
+
+## Rota düzeltmesi · 13.10.2026 · proje sahibi onayladı
+
+Puanlar soru kaynağına göre ayrılınca karışık ortalamanın gerçek öğrenci sorularındaki zayıflığı
+gizlediği görüldü:
+
+| Soru kaynağı | M3 (9B, v2, 134 soru) | 27B, v3 (sabit 40) |
+|---|---|---|
+| Gerçek (WhatsApp) | 20/72 (%28) | 5/14 (%36) |
+| Sentetik | 22/33 (%67) | 10/13 (%77) |
+| İlk set | 14/17 (%82) | 7/7 (%100) |
+
+Arama gerçek sorularda da iş görüyor (geliştirme dökümü: doğru madde ilk 5'te %89, altın maddelerin
+tamamı bağlamda %71; sentetikte %100 / %91). Asıl fark soruyu anlamada: altın maddelerin tamamı
+bağlamdayken 27B gerçek soruların 10'unda 5'ini, sentetik ve ilk set sorularının 18'inde 17'sini doğru
+cevapladı. Gerçek sorular sohbet parçası, belirsiz, takip sorusu, yanlış ön kabullü ya da çok maddeli.
+Sabit 40 soru kaynak bakımından temsilî değil (gerçek soru oranı %41; geliştirme setinde %59).
+
+Kararlar:
+1. **Ana ölçüt gerçek öğrenci soruları**; sentetik ve ilk set ayrı raporlanır.
+2. **Bağımsız puanlama:** proje sahibi cevapları canlı arayüzde değerlendirir (notebook 9:
+   `--kayit`, Doğru / Kısmen / Yanlış / Emin değilim + not). Canlı sorular yeni gerçek soru verisidir;
+   cevaba bakılarak sorulduğu için önce hata bulmak için kullanılır, ölçüm setine alınırken
+   kimlik özetiyle geliştirme/test diye bölünür.
+3. **Sıradaki teknik adım soruyu anlama:** öğrenci mesajı aramadan önce açık soru(lar)a çevrilir;
+   belirsizse cevap iki okumayı da verir ya da geri sorar. Ardından doğrulama turu.
+4. Faz 4 en çok iki deneme daha sürer; sonra arayüz (takip sorusu desteği) ve yüksek lisans belgeleri.

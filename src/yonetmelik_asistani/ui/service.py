@@ -42,6 +42,7 @@ class Result:
     ret: bool = False
     terim_notlari: list[str] = field(default_factory=list)
     sure_s: float | None = None
+    kayit: dict = field(default_factory=dict)  # arayüz kaydı için: profil, maddeler, model, süre
 
 
 def cited_sources(a: Answer, maddeler: dict[str, dict]) -> list[dict]:
@@ -53,8 +54,8 @@ def cited_sources(a: Answer, maddeler: dict[str, dict]) -> list[dict]:
         if k is None:
             continue
         m = maddeler.get(k["madde_id"], {})
-        out.append({"etiket": label, "baslik": m.get("path", k["baslik"]), "metin": m.get("text", ""),
-                    "url": (m.get("meta") or {}).get("kaynak_url")})
+        out.append({"etiket": label, "madde_id": k["madde_id"], "baslik": m.get("path", k["baslik"]),
+                    "metin": m.get("text", ""), "url": (m.get("meta") or {}).get("kaynak_url")})
     return out
 
 
@@ -78,7 +79,14 @@ class AssistantService:
         a = answer(soru, self.retriever, self.llm, self.maddeler, profile=profile, budget=self.budget,
                    rel_rerank=self.rel_rerank, max_sources=self.max_sources, links=self.links,
                    repealed=self.repealed, istem=self.istem)
-        return Result(a.cevap, [] if a.ret else cited_sources(a, self.maddeler), a.ret, a.terim_notlari, a.sure_s)
+        shown = [] if a.ret else cited_sources(a, self.maddeler)
+        kayit = {"soru": soru, "birim": birim, "duzey": duzey, "cevap": a.cevap, "ret": a.ret,
+                 "baglam": [k["madde_id"] for k in a.kaynaklar], "gosterilen": [k["madde_id"] for k in shown],
+                 "sure_s": a.sure_s, "model": a.model, "istem": a.istem,
+                 "sorgu_tr": getattr(self.retriever, "last_neural_query", ""),
+                 "sozluk": getattr(self.retriever, "last_expansion", []),
+                 "gecersiz_alinti": sum(not q["gecerli"] for q in a.alintilar), "json_hatasi": a.json_hatasi}
+        return Result(a.cevap, shown, a.ret, a.terim_notlari, a.sure_s, kayit)
 
 
 def render_sources(sources: list[dict]) -> str:
