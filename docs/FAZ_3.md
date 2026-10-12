@@ -31,7 +31,15 @@ geçer. K-10, 32 soruluk ilk sete dayanıyordu. 196 soruluk setin geliştirme b�
 | wa-053 mezuniyet işlemleri | Asistan cevaplayabilmeli | Yönetmelikte yok; ÖİDB'nin mezuniyet işlemleri sayfası gibi usul metinleri gerekir (v2: duyuru ve usul sayfaları) |
 | wa-081 çan nasıl işliyor | Cevap tatmin edici değil | Bağıl değerlendirme uygulama esasları KAYSİS'te yok; BUÜ sitesindeki Senato kararlarında aranacak |
 
-**Proje sahibinin şartı:** Erasmus, mezuniyet sonrası askerlik ve yüksek lisans soruları
+**Güncelleme (12.10.2026):** Proje sahibi Erasmus ve askerliği kapsamdan çıkardı; bu sorular
+(sy-092, sy-099) ret sorusu olarak kalır. Yüksek lisans v1.0 şartı olarak kalır; gerçek soru kaynağı
+olmadığı için 28 soru lisansüstü yönetmeliği okunmadan yazıldı (`eval/aday_sorular/sentetik_lisansustu.jsonl`).
+
+**K-15 (12.10.2026, proje sahibi):** Kalıcı yayın kapsam dışı. Hedef, Colab'da soru sorulup
+cevap alınabilen çalışan bir sistem (plan 12.1 "Demo ve kullanıcı testi" ortamı: Colab + Gradio).
+Kalıcı barındırmaya proje sahibi v1.0 sonrasında kaynak bulur.
+
+~~Proje sahibinin şartı:~~ (ilk hâli) Erasmus, mezuniyet sonrası askerlik ve yüksek lisans soruları
 öğrencilerce sık sorulur; v1.0'da (M7) bu konularda boşluk kalmamalı. Bu yüzden bunlar isteğe
 bağlı P2 değil, v1.0 çıkış ölçütünün parçasıdır. Lisansüstü için ayrıca gerçek soru seti
 (yüksek lisans grupları) gerekir.
