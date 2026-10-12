@@ -31,6 +31,19 @@ geçer. K-10, 32 soruluk ilk sete dayanıyordu. 196 soruluk setin geliştirme b�
 | wa-053 mezuniyet işlemleri | Asistan cevaplayabilmeli | Yönetmelikte yok; ÖİDB'nin mezuniyet işlemleri sayfası gibi usul metinleri gerekir (v2: duyuru ve usul sayfaları) |
 | wa-081 çan nasıl işliyor | Cevap tatmin edici değil | Bağıl değerlendirme uygulama esasları KAYSİS'te yok; BUÜ sitesindeki Senato kararlarında aranacak |
 
+**Proje sahibinin şartı:** Erasmus, mezuniyet sonrası askerlik ve yüksek lisans soruları
+öğrencilerce sık sorulur; v1.0'da (M7) bu konularda boşluk kalmamalı. Bu yüzden bunlar isteğe
+bağlı P2 değil, v1.0 çıkış ölçütünün parçasıdır. Lisansüstü için ayrıca gerçek soru seti
+(yüksek lisans grupları) gerekir.
+
+**Bağıl değerlendirme (12.10.2026 araştırması):** BUÜ'de ayrı bir "uygulama esasları" metni
+yayımlanmamış görünüyor. BDKS, HBAS ve YSSL her yıl Senato kararıyla belirleniyor. Bulunan en
+güncel karar 16.05.2024 tarih ve 2024-08 sayılı (2024-2025 yılı; ör. HBAS diğer birimlerde 50,
+Tıp/Diş/Sağlık Bilimleri 60, Veteriner 55; SHMYO sayfasında BDKS 20). 2026-2027 kararı
+bulunamadı; eski yılın değerleri "yürürlükteki metin" ilkesi gereği derleme alınmaz. Harf notu
+dağılım yöntemi (z/T puanı) kamuya açık bir metinde yok. wa-081 vb. sorular kısmi kalır; güncel
+karar bulunursa yıl etiketiyle eklenir.
+
 Bu sorular, belgeler eklenip yeniden etiketlenene kadar mevcut etiketleriyle (ret veya kısmi)
 kalır. Altın setteki sorulara `profil` alanı eklendi (wa: Mühendislik, wk: Fen-Edebiyat); bu
 alan değerlendirmede ve uçtan uca denemede profil olarak verilecek. wk-001 gibi fakülteye özgü
