@@ -230,3 +230,16 @@ Seçili bağlam ayarında altın maddelerin tamamı bağlamda olmayan 28 soru in
   196 soruda 143 farklı kelime değişikliği elle kontrol edildi; iki yanlış düzeltme ("yok" → YÖK,
   "yani" → "yanı") kuralla ve koruma listesiyle giderildi. Düzeltilmiş soru yalnızca BGE-M3 ve
   reranker'a gider. Etkisi notebook 10.1'deki iki dökümle (açık/kapalı) ölçülecek.
+
+**Türkçe karakter geri getirme ölçümü (13.10.2026, Colab L4 dökümü, 30 aday, seçili bağlam ayarı):**
+
+| Sorular | Ayar | Tamamı bağlamda | Recall@5 | MRR | Kaynak |
+|---|---|---|---|---|---|
+| Hepsi (122) | kapalı | 0,795 | 0,926 | 0,745 | 3,88 |
+| Hepsi (122) | **açık** | **0,803** | **0,934** | **0,757** | 3,95 |
+| Karaktersiz (30) | kapalı | 0,867 | 0,933 | 0,858 | 3,63 |
+| Karaktersiz (30) | **açık** | **0,900** | **0,967** | **0,900** | 3,90 |
+| Türkçe karakterli (92) | kapalı / açık | 0,772 / 0,772 | 0,924 / 0,924 | 0,708 / 0,710 | 3,96 / 3,97 |
+
+Etki küçük ama yalnızca hedeflediği sorularda ve doğru yönde (kazanılan sy-038, sy-050; kaybedilen sy-022);
+Türkçe karakterli sorular değişmiyor. Açık kalır (`retrieval.turkce_karakter: true`).
