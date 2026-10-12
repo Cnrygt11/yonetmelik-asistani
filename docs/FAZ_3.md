@@ -42,10 +42,12 @@ Belirli bir derse veya hocanın takdirine bağlı sorular altın sete alınmaz (
       "öğrenim affı" sorusunda bulamıyor, sözlüğe eklendi (K-12)
 - [x] Türkçe karakter katlaması (BM25, F5 ve karakter n-gram): karaktersiz sorularda Recall@5
       0,793 → **0,828**, karakterli sorularda değişiklik yok (0,828 / MRR 0,603)
-- [ ] Soru kaynakları: SHMYO SSS (2025), ÖİDB duyuruları, öğrenci forumları, proje sahibinin
-      çevresinden yönetmeliğe bakılmadan yazılmış sorular
-- [ ] Kategoriler: mevcutlara ek olarak **norm çatışması** (kanun ile yönetmelik farklı, ör. 2547
-      md. 44 / EÖY md. 15) ve **birime özgü kural** (P2 öncesi hazırlık)
+- [x] Soru kaynakları: iki sınıf grubunun WhatsApp sohbetleri (Bilgisayar Müh., Kimya) ve
+      başka bir modelin yazdığı sorulardan seçilenler. SSS belgeleri kullanılmadı: gerçek
+      sohbetler daha iyi kaynak çıktı
+- [x] Kategoriler: `kismi` ve `yanlis_onkabul` eklendi. Norm çatışması (sy-062: 2547 md. 44 ve
+      EÖY md. 15) ve birime özgü kural (wk-001) yalnızca birer soruyla temsil ediliyor; P2
+      belgeleriyle genişletilecek
 - [x] 150 soru (196); her birinde altın madde ve programla doğrulanan alıntı
   - [x] Parti 1: wa-001..wa-048 (12.10.2026). Set 80 soru. Yeni kategoriler: `kismi` (konu
         derlemde, sorunun bir kısmı karşılıksız), `yanlis_onkabul`
@@ -75,8 +77,14 @@ Etiketlemede bulunanlar:
 - "Yaz okulunda staj" sorusu P2 sanılmıştı; cevap Yaz Öğr. Yön. md. 10/1-i'de.
 - Sentetik sy-016 ("harf notları kaç gün içinde") yanlışlıkla "derlemde yok" etiketlenmişti:
   EÖY md. 29/11 "en geç 3 gün içinde ilân edilir".
-- [ ] İkinci geçiş (proje sahibi): başlangıçtaki 32 soru dahil
-- [ ] Bölünme: mevcut kalıcı kural (%30 test)
+- [x] İkinci geçiş (proje sahibi, 12.10.2026): **örneklem** kontrolü. wa partisi rastgele
+      kontrol edildi ("beklediğimden iyi"); sy-007, sy-022, sy-054, sy-062 ve wk-002 tek tek
+      incelendi, beş cevabın beşi doğru. İki soru gerçek öğrenci diline çevrildi: sy-007 ("kopya
+      çekip yakalanırsam ne olur?"; yanlış önkabul testi olmaktan çıktı, kategori `tek_madde`)
+      ve sy-054. Tüm sorular tek tek ikinci geçişten geçmedi; çıkış ölçütü bu örneklemle kabul
+      edildi.
+- [x] Bölünme: mevcut kalıcı kural (%30 test); geliştirme 134, test 62
+- [x] **Faz 3 kapandı (12.10.2026)**
 
 ## Faz 4 için ön bulgular · uçtan uca deneme · 12.10.2026 · Colab T4
 

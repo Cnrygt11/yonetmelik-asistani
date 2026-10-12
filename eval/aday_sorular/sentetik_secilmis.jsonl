@@ -3,7 +3,7 @@
 {"id": "sy-003", "soru": "not itiraz dilekcesi verince hoca kagidi daha sıkı inceleyip notu dusurur mu", "kategori": "kismi", "aday_madde": "EÖY md34; notun düşüp düşmeyeceği yazmıyor", "kaynak": "sentetik"}
 {"id": "sy-004", "soru": "but sinavi harf notunu nasil etkiliyor cana dahil ediliyor mu", "kategori": "P1", "aday_madde": "EÖY md29/32", "kaynak": "sentetik"}
 {"id": "sy-005", "soru": "bizim okulda harf notlarinda dc alan adam sartli mi geciyor ortalamaya mi muhtaciz", "kategori": "P1", "aday_madde": "EÖY md32/33", "kaynak": "sentetik"}
-{"id": "sy-007", "soru": "sinavda kopya ceken birine buü disiplin yönetmeliğine göre ne kadar uzaklastirma cezasi verilir", "kategori": "yanlis_onkabul", "aday_madde": "BUÜ disiplin yönetmeliği yürürlükten kalktı; 2547 md54", "kaynak": "sentetik"}
+{"id": "sy-007", "soru": "kopya çekip yakalanırsam ne olur?", "kategori": "tek_madde", "aday_madde": "BUÜ disiplin yönetmeliği yürürlükten kalktı; 2547 md54", "kaynak": "sentetik"}
 {"id": "sy-008", "soru": "mazeret sinavi basvurusu sinavdan sonra en gec kac gun icinde ogrenci islerine yapilmali", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
 {"id": "sy-009", "soru": "yaz okulunda alinan dersin notu gano yu nasil etkiler uste tasir mi", "kategori": "P1", "aday_madde": "YAZ md13", "kaynak": "sentetik"}
 {"id": "sy-011", "soru": "ayni gun ve saatte cakisan sinavlar icin mazeret sinavi hakki var mi", "kategori": "P1", "aday_madde": "EÖY md30", "kaynak": "sentetik"}
@@ -35,7 +35,7 @@
 {"id": "sy-046", "soru": "yatay gecis basvurusu kabul edilen ogrenci yeni okuluna kayit yaptirmazsa uludagdaki hakki yanar mı", "kategori": "P1", "aday_madde": "GEÇİŞ md27", "kaynak": "sentetik"}
 {"id": "sy-050", "soru": "danisman hoca ders secim onayini vermezse veya kacirirsa ders secimi gecersiz mi sayilir", "kategori": "kismi", "aday_madde": "EÖY md17 (danışman); ayrıntı P2 danışmanlık yönergesinde", "kaynak": "sentetik"}
 {"id": "sy-052", "soru": "alttan kalan secmeli dersin yerine sonraki donem tamamen farkli bir secmeli ders alinabilir mi", "kategori": "P1", "aday_madde": "EÖY md28", "kaynak": "sentetik"}
-{"id": "sy-054", "soru": "cap ve yan dal programlarina basvuru sartlari universite yonetmeliginde nelerdir", "kategori": "P1", "aday_madde": "GEÇİŞ md17/22", "kaynak": "sentetik"}
+{"id": "sy-054", "soru": "çap ve yandal başvuru şartları nelerdir?", "kategori": "P1", "aday_madde": "GEÇİŞ md17/22", "kaynak": "sentetik"}
 {"id": "sy-055", "soru": "on kosullu ders ne demektir on kosul dersinden kalindiginda sonraki ders secilebilir mi", "kategori": "P1", "aday_madde": "EÖY md21/24", "kaynak": "sentetik"}
 {"id": "sy-056", "soru": "bir donemin maksimum akts yuku siniri nedir bu sinir hangi durumlarda asilabilir", "kategori": "P1", "aday_madde": "EÖY md27", "kaynak": "sentetik"}
 {"id": "sy-057", "soru": "farkli bir fakulteden veya bolumden genel secmeli ders almanin kurallari nelerdir kanka kredisi sayilir mi", "kategori": "P1", "aday_madde": "EÖY md21", "kaynak": "sentetik"}
