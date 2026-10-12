@@ -28,6 +28,9 @@ dense = [             # Faz 2: BGE-M3 + reranker + Qdrant (GPU; Colab'daki hazı
   "sentence-transformers>=3.0",
   "qdrant-client>=1.10",
 ]
+ui = [                # Faz 5: Gradio arayüzü (Colab'da hazır gelir)
+  "gradio>=5.0",
+]
 dev = [
   "pytest>=8.0",
   "ruff>=0.6",
