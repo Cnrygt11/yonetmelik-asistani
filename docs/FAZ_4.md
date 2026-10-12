@@ -173,3 +173,26 @@ Bağlam: Adım 1 ayarı (en çok 5 kaynak, bağlantılı maddeler). Puanlar `eva
 
 Sonuç: istem ve bağlam ayarıyla 9B modelden alınabilecek kazanç büyük ölçüde alındı; %85'e giden yol
 okuma kapasitesinden geçiyor (Adım 3: daha büyük model).
+
+## Adım 3 · büyük model · 12.10.2026 · Qwen3.5-27B q4_K_M · Colab **L4** · sabit 40 soru
+
+Tek değişen model (istem v3, Adım 1 bağlam ayarı). 27B T4'e sığmaz (17,3 / 23 GB L4'te, arama
+modelleriyle birlikte). Puanlar `eval/reports/puanlar_alt40_v3_27b.jsonl`.
+
+| | v2 · 9B | v3 · 9B | **v3 · 27B** |
+|---|---|---|---|
+| Doğru cevap (34) | 16 (%47,1) | 17 (%50,0) | **22 (%64,7)** |
+| Kısmen / yanlış | 11 / 7 | 8 / 9 | 6 / 6 |
+| Cevaplı soruya ret | 2 | 6 | 4 |
+| Doğru ret (6) | 6 | 6 | 6 |
+| Doğru atıf | %96,7 | %92,9 | %96,7 |
+| Süre (medyan) | ~12 sn (T4) | 11,7 sn (T4) | 26,2 sn (L4) |
+
+- **Gerileme yok:** 9B'nin doğru bildiği 17 sorunun 17'si 27B'de de doğru; 3 kısmen ve 2 yanlış doğruya döndü
+  (q-022, wa-041, wa-089, sy-001, sy-032).
+- **Altın maddelerin tamamı bağlamdayken 28 sorudan 22'si doğru (%79); değilken 6'dan 0'ı.** Kalan hatanın
+  yarısı artık arama: wa-025 (YDYO md. 12), wa-039 (EÖY md. 18/5), wa-044 (md. 39), wa-093 (md. 33),
+  sy-050 (md. 17), sy-070 (md. 18).
+- Okuma hataları sürüyor: koşullu geçme (wa-012, wa-016), wa-088 (%10 başarı sıralamasına sapma),
+  wa-028 (cevap bağlamdayken ret).
+- 40 soruda +5 soru farkı belirgin ama örnek küçük; karar öncesi 134 soruluk geliştirme setinde doğrulanmalı.

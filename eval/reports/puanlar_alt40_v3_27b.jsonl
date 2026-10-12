@@ -1,0 +1,40 @@
+{"id": "q-001", "karar": "dogru", "not": "10 iş günü, yazılı başvuru."}
+{"id": "q-004", "karar": "dogru", "not": "%70/%80; hazırlık %80; tekrar alınan derste devam istisnası doğru."}
+{"id": "q-008", "karar": "dogru", "not": "Yeni ders alamaz; önce başarısız derslerden başlayarak."}
+{"id": "q-015", "karar": "dogru", "not": "2.00."}
+{"id": "q-022", "karar": "dogru", "not": "Kanunda iki yıl, YDYO'da dört yarıyıl; 9B'deki 'süreye eklenir' hatası yok."}
+{"id": "q-023", "karar": "dogru", "not": "60 ve devam koşulu."}
+{"id": "q-028", "karar": "dogru", "not": "Teşebbüs kınama, kopya bir yarıyıl."}
+{"id": "wa-004", "karar": "kismen", "not": "Yeterlik sınavı zamanı doğru; muafiyet sınavı (md. 7) yine yok."}
+{"id": "wa-012", "karar": "kismen", "not": "GANO 2.00 koşulu ayrıntıda var, ama ana cümle 'özel bir ek koşul tanımlanmamıştır' diyor."}
+{"id": "wa-013", "karar": "dogru", "not": "Devam aranmaz + istisnalar + yaz öğretimi ayrıntısı."}
+{"id": "wa-016", "karar": "yanlis", "not": "'Koşullu geçmek için ortalama şartı aranmaz' diyor; GANO 2.00 yalnızca ayrıntıda."}
+{"id": "wa-025", "karar": "kismen", "not": "En çok dört yarıyıl ve ilişik doğru; normalde iki yarıyıl olduğu söylenmiyor."}
+{"id": "wa-028", "karar": "yanlis", "not": "Ret; Yaz Öğr. md. 10 bağlamdaydı."}
+{"id": "wa-034", "karar": "dogru", "not": "Ders saati başına; 7 ile çarpma hükmü yok."}
+{"id": "wa-039", "karar": "kismen", "not": "Öncelik kuralı artık ilk cümlede; md. 18/5 (bağlamda değildi) yok."}
+{"id": "wa-041", "karar": "dogru", "not": "D → FF 0.0, FD 0.5; tam karşılaştırma."}
+{"id": "wa-044", "karar": "yanlis", "not": "Ret; md. 39 bağlamda değildi."}
+{"id": "wa-053", "karar": "dogru", "not": "Diploma şahsen/vekâletle."}
+{"id": "wa-088", "karar": "yanlis", "not": "Yine başarı sıralamasına sapıyor; sınıf ortalaması sorusunu cevaplamıyor."}
+{"id": "wa-089", "karar": "dogru", "not": "FF ve FD başarısız; GANO 2.00 koşulu."}
+{"id": "wa-093", "karar": "kismen", "not": "Dilekçe hükmü yok doğru; md. 33 bağlamda olmadığı için fazladan FF'nin GANO'ya katıldığını söylüyor."}
+{"id": "sy-001", "karar": "dogru", "not": "Kesin değil, yönetim kurulu verir; 5 iş günü."}
+{"id": "sy-013", "karar": "dogru", "not": "3 iş günü, maddi hata."}
+{"id": "sy-020", "karar": "dogru", "not": "Bütünleme yok ('ek sınav hakkı tanınmaz' fazla genelleme)."}
+{"id": "sy-032", "karar": "dogru", "not": "%70/%80; esnetme hükmü yok."}
+{"id": "sy-040", "karar": "dogru", "not": "İntibak, %70 kazanım, komisyon, ek ders."}
+{"id": "sy-041", "karar": "dogru", "not": "Birim kurulları, %15, ilan, aktarılmaz."}
+{"id": "sy-044", "karar": "dogru", "not": "Engel değil; kurum içi ve kurumlar arası."}
+{"id": "sy-050", "karar": "yanlis", "not": "Ret; md. 17 bağlamda değildi."}
+{"id": "sy-052", "karar": "dogru", "not": "Aynı yarıyıldan farklı seçmeli."}
+{"id": "sy-055", "karar": "kismen", "not": "Tanımlar doğru; kalınca kaydolunamayacağı açıkça söylenmiyor."}
+{"id": "sy-068", "karar": "dogru", "not": "Derslere giremez, ilişik kesilmez, dört yıl kuralı."}
+{"id": "sy-070", "karar": "yanlis", "not": "Ret; md. 32 bağlamdaydı (md. 18 değildi)."}
+{"id": "sy-074", "karar": "dogru", "not": "Bölüm/birim programlar; ara sınav iki hafta önce."}
+{"id": "q-032", "karar": "dogru", "not": "Doğru ret."}
+{"id": "wa-095", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-076", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-080", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-095", "karar": "dogru", "not": "Doğru ret."}
+{"id": "sy-099", "karar": "dogru", "not": "Doğru ret."}
