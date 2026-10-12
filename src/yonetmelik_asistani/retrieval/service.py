@@ -37,6 +37,11 @@ def load_retriever(cfg: Config, *, dense: bool = True, rerank: bool = True) -> H
         from yonetmelik_asistani.retrieval.glossary import Glossary
 
         retriever.expander = Glossary.load(REPO_ROOT / cfg.section("paths").get("glossary", "data/glossary.yaml"))
+    if r.get("turkce_karakter", True):
+        from yonetmelik_asistani.retrieval.deasciify import Deasciifier
+
+        # başlıksız metinden: her parçada tekrarlanan "ÜÇÜNCÜ BÖLÜM" gibi başlıklar kısaltma sayılmasın
+        retriever.restorer = Deasciifier.from_texts(c.get("body") or c["text"] for c in chunks.values())
     if dense:
         from yonetmelik_asistani.index.dense import BGEM3Embedder, QdrantStore
 

@@ -175,3 +175,14 @@ def test_answer_v3_sends_schema_and_logs_quotes_and_scores():
     assert llm.kw["schema"]["required"][0] == "alintilar" and llm.kw["think"] is True
     assert a.cevap == "İzin alınabilir [K1]." and not a.ret and a.alintilar[0]["gecerli"]
     assert a.kaynaklar[0]["rerank"] == 0.8 and a.prompt_tokens == 900 and a.istem == "v3"
+
+
+def test_hit_madde_first_queued_as_link_still_brings_its_own_links():
+    # md7 bulunur ve md24'ü bağlantı olarak getirir; md24 sonra aramada da çıkar: md24'ün kendi
+    # bağlantısı (md23) yine eklenmeli. Yalnızca bağlantıyla gelen maddenin bağlantısı eklenmez.
+    maddeler = {m: {"path": m, "text": f"{m} kısa metin.", "meta": {}} for m in ("y:md7", "y:md24", "y:md23", "y:md8")}
+    chunks = {m: {"text": f"{m}\n{m} kısa metin."} for m in maddeler}
+    links = {"y:md7": ["y:md24"], "y:md24": ["y:md23"], "y:md23": ["y:md8"]}
+    hits = [Hit("y:md7", "y:md7", 0.9, {"rerank": 0.9}), Hit("y:md24", "y:md24", 0.8, {"rerank": 0.8})]
+    ctx = build_context(hits, chunks, maddeler, links=links)
+    assert [(c.madde_id, c.bagli) for c in ctx] == [("y:md7", ""), ("y:md24", ""), ("y:md23", "y:md24")]

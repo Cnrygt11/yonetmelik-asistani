@@ -131,15 +131,18 @@ def build_context(hits: list[Hit], chunks: dict[str, dict], maddeler: dict[str, 
 
     queue: list[tuple[str, str]] = []  # (madde, onu getiren madde ya da "")
     seen: set[str] = set()
+
+    def add(mid: str, parent: str) -> None:
+        if mid not in seen and mid in maddeler:
+            seen.add(mid)
+            queue.append((mid, parent))
+
+    # aramada bulunan her madde kendi bağlantılarını getirir (daha önce bağlantı olarak girmiş olsa da);
+    # yalnızca bağlantıyla gelen maddenin bağlantıları eklenmez (zincir olmasın)
     for mid in order:
-        if mid in seen:
-            continue
-        queue.append((mid, ""))
-        seen.add(mid)
+        add(mid, "")
         for linked in links.get(mid, []):
-            if linked not in seen and linked in maddeler:
-                queue.append((linked, mid))
-                seen.add(linked)
+            add(linked, mid)
 
     chunk_order = {c: i for i, c in enumerate(chunks)}
     items: list[ContextItem] = []

@@ -152,3 +152,52 @@ def test_retriever_uses_expanded_query():
     r.expander = Expander()
     hits = r.search("kaydımı dondurmak istiyorum", mode="bm25")
     assert r.last_expansion == ["izinli ayrılma"] and hits[0].chunk_id == "eoy:md19:f2"
+
+
+def test_deasciifier_restores_from_document_vocabulary_only():
+    from yonetmelik_asistani.retrieval.deasciify import Deasciifier
+
+    d = Deasciifier.from_texts(["Mazeret sınavına girmek için dönem sonunda başvurulur.",
+                                "Diş Hekimliği; dış kurum; sınavına; ön koşul; on iş günü."])
+    assert d.restore("mazeret sinavina donem sonu") == "mazeret sınavına dönem sonu"
+    assert d.restore("Donem kacirirsa") == "Dönem kacirirsa"           # belgelerde yoksa dokunulmaz
+    assert d.restore("dis on mi") == "dis on mi"                       # belirsiz (diş/dış) ve kısa kelimeler
+    assert d.restore("sınavına donem") == "sınavına dönem"             # karışık yazım: yalnızca karaktersiz kelime
+    k = Deasciifier.from_texts(["YÖK onayı ile YÖK kararı; yanı sıra yanı sıra."])
+    assert k.restore("yok yani onayi") == "yok yani onayı"             # kısaltma ve korunan kelime
+    e = Deasciifier.from_texts(["Ders seçim haftası; dışı ve dışı."])
+    assert e.restore("secimi disipline") == "seçimi disipline"         # bilinen baş + ek; kısa baş kullanılmaz
+
+
+def test_restorer_feeds_only_neural_components():
+    from yonetmelik_asistani.retrieval.hybrid import HybridRetriever
+
+    seen = {}
+
+    class BM25:
+        def search(self, q, k=30):
+            seen["bm25"] = q
+            return [("c1", 1.0)]
+
+    class Store:
+        def search(self, v, k, profile=None):
+            return [("c1", 0.9)]
+
+    class Emb:
+        def encode(self, texts):
+            seen["dense"] = texts[0]
+            return [[0.0]]
+
+    class Rer:
+        def score(self, q, passages):
+            seen["rerank"] = q
+            return [0.5] * len(passages)
+
+    class Rest:
+        def restore(self, t):
+            return t.replace("sinav", "sınav")
+
+    chunks = {"c1": {"madde_id": "m1", "text": "x", "meta": {}}}
+    r = HybridRetriever(chunks=chunks, bm25=BM25(), store=Store(), embedder=Emb(), reranker=Rer(), restorer=Rest())
+    r.search("sinav")
+    assert seen == {"bm25": "sinav", "dense": "sınav", "rerank": "sınav"} and r.last_neural_query == "sınav"

@@ -161,7 +161,7 @@ def main(argv: list[str] | None = None) -> int:
                    "altin_baglamda": bool(set(g["altin_maddeler"]) & set(baglam)),
                    "altin_tamami_baglamda": bool(g["altin_maddeler"]) and set(g["altin_maddeler"]) <= set(baglam),
                    "sayi_kapsami": numbers_covered(g.get("alinti"), a.cevap),
-                   "sozluk": retriever.last_expansion, "ayar": ayar,
+                   "sozluk": retriever.last_expansion, "sorgu_tr": retriever.last_neural_query, "ayar": ayar,
                    **asdict(a)}
             fh.write(json.dumps(row, ensure_ascii=False) + "\n")
             fh.flush()

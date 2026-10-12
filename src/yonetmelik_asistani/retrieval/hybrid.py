@@ -35,6 +35,10 @@ class _Expander(Protocol):
     def expand(self, query: str) -> tuple[str, list[str]]: ...
 
 
+class _Restorer(Protocol):
+    def restore(self, text: str) -> str: ...
+
+
 @dataclass
 class Hit:
     chunk_id: str
@@ -68,18 +72,20 @@ class HybridRetriever:
     embedder: _Embedder | None = None
     reranker: _Reranker | None = None
     expander: _Expander | None = None  # öğrenci dili sözlüğü (K-12)
+    restorer: _Restorer | None = None  # Türkçe karakter geri getirme; yalnızca BGE-M3 ve reranker için
     candidates: int = 30
     rrf_k: int = 60
     top_n: int = 6
     low_priority_factor: float = 0.8  # "Yürürlük", "Yürütme" maddeleri (plan 6.4)
     last_expansion: list[str] = field(default_factory=list)  # son aramada sözlükten eklenen terimler
+    last_neural_query: str = ""  # son aramada BGE-M3 ve reranker'a giden soru
 
     def _lexical(self, query: str, profile: dict | None) -> list[tuple[str, float]]:
         # filtre sonrasında da yeterli aday kalsın diye fazladan getirilir
         hits = self.bm25.search(query, k=self.candidates * 3)
         return [(c, s) for c, s in hits if matches_profile(self.chunks[c]["meta"], profile)][: self.candidates]
 
-    def _dense(self, query: str, profile: dict | None) -> list[tuple[str, float]]:
+    def _dense(self, query: str, profile: dict | None) -> list[tuple[str, float]]:  # query: düzeltilmiş
         vector = self.embedder.encode([query])[0]
         return self.store.search(vector, k=self.candidates, profile=profile)
 
@@ -92,6 +98,9 @@ class HybridRetriever:
             query, self.last_expansion = self.expander.expand(query)
         else:
             self.last_expansion = []
+        # BM25 karakterleri zaten katlar; sinir ağı modelleri Türkçe karakterli yazımda daha iyi
+        neural = self.restorer.restore(query) if self.restorer is not None else query
+        self.last_neural_query = neural
         traces: dict[str, dict] = {}
         lists: list[list[str]] = []
         if mode in ("bm25", "hybrid", "hybrid_rerank"):
@@ -100,7 +109,7 @@ class HybridRetriever:
             for r, (c, s) in enumerate(lex, 1):
                 traces.setdefault(c, {})["bm25"] = (r, round(s, 4))
         if mode in ("dense", "hybrid", "hybrid_rerank"):
-            den = self._dense(query, profile)
+            den = self._dense(neural, profile)
             lists.append([c for c, _ in den])
             for r, (c, s) in enumerate(den, 1):
                 traces.setdefault(c, {})["dense"] = (r, round(s, 4))
@@ -109,7 +118,7 @@ class HybridRetriever:
         fused = rrf(lists, self.rrf_k) if len(lists) > 1 else (lex if mode == "bm25" else den)
         if mode == "hybrid_rerank" and self.reranker is not None and fused:
             ids = [c for c, _ in fused[: self.candidates]]
-            scores = self.reranker.score(query, [self.chunks[c]["text"] for c in ids])
+            scores = self.reranker.score(neural, [self.chunks[c]["text"] for c in ids])
             ranked = list(zip(ids, scores, strict=True))
             for c, s in ranked:
                 traces[c]["rerank"] = round(s, 4)

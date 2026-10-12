@@ -40,6 +40,7 @@ retrieval:                 # Faz 2
     candidates: 30
     tokenizer: char        # K-13: 3-5 karakter n-gram; 134 soruluk geliştirme setinde F5'ten iyi (FAZ_3.md)
   low_priority_factor: 0.8 # "Yürürlük", "Yürütme" maddelerinin skoru bu oranla düşürülür
+  turkce_karakter: true    # Türkçe karaktersiz soruyu BGE-M3 ve reranker için belgelerin yazımına çevir
   dense:
     candidates: 30
   rrf_k: 60

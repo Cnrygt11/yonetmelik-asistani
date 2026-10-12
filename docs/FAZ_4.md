@@ -203,3 +203,30 @@ Adım 1 bağlam ayarını (en çok 5 kaynak, bağlantılı maddeler) kullanır. 
 cevap, gerileme yok. Bedel: demo L4 ister (Colab Pro), cevap süresi ~12 sn'den ~26 sn'ye çıkar. Karar
 134 soruluk geliştirme ölçümüyle doğrulanacak. `eval/run_answers.py` artık ayar özeti (sözlük, bağlantılı
 maddeler, istem metni, model, arama ayarları) farklı olan bir dosyaya devam etmez.
+
+## Adım 4 · arama analizi · 13.10.2026 · yerelde, aday dökümü üzerinde (geliştirme, 134 soru)
+
+Seçili bağlam ayarında altın maddelerin tamamı bağlamda olmayan 28 soru incelendi
+(`eval/dump_candidates.py` dökümü, her eksik madde için reranker, BM25 ve dense sırası):
+
+- 19'unda eksik madde reranker sonrası 7.-20. sırada; çoğunda ilk aşama aramalardan biri onu öne
+  koymuş (sy-038: BM25 1., wa-039: dense 2.). 11'inde ilk 20'de hiç yok.
+- **Sıralama birleştirme elendi:** son sırayı reranker yerine RRF(reranker, BM25, dense) ile vermek aynı
+  gürültüde kazanç getirmiyor (en iyisi tamamı bağlamda 0,795 ama kaynak 3,84 → 4,41; 6 soru kazanılıp
+  3 kaybediliyor).
+- **Daha çok kaynak elendi:** 27B de kaynak arttıkça zorlanıyor (sabit 40, altın tamamı bağlamdayken
+  1-3 kaynakta 11/11, 4-5 kaynakta 11/17 doğru). k=6, en çok 5 kaynak kalır.
+- **Hata düzeltildi:** önce bağlantı olarak sıraya giren madde aramada da bulunduğunda kendi bağlantıları
+  eklenmiyordu (`build_context`; test eklendi).
+- **Yeni bağlantı YDYO md. 7 ↔ md. 24:** md. 7/2-c muafiyet/seviye tespit sınavının zorunlu dil dersi
+  muafiyetini de belirlediğini söyler (o muafiyet md. 24'te); md. 24'te aynı adla ikinci bir "muafiyet
+  sınavı" var. Öğrencinin "muafiyet sınavı" demesi ikisinden biri olabilir. Seçili ayarda tamamı bağlamda
+  **0,770 → 0,795**, gürültü aynı (2,77), kayıp yok (kazanılan: wa-011, wa-021, wa-057).
+- **Türkçe karakter geri getirme (`retrieval/deasciify.py`, ölçüm bekliyor):** geliştirme setinin %28'i
+  (37/134) Türkçe karaktersiz yazılmış; gerçek öğrenciler de böyle yazıyor. BM25 karakterleri katlıyor,
+  ama BGE-M3 ve reranker katlanmış metinde zayıf görünüyor (sy-050: EÖY md. 17 yerel BM25'te 1., reranker
+  sonrası ilk 20'nin dışında). Harita belgelerin kendi kelimelerinden çıkarılır (1.972 kelime; kısaltmalar,
+  belirsiz biçimler ve kısa kelimeler hariç; kelime belgelerde yoksa en az 5 harflik bilinen baş).
+  196 soruda 143 farklı kelime değişikliği elle kontrol edildi; iki yanlış düzeltme ("yok" → YÖK,
+  "yani" → "yanı") kuralla ve koruma listesiyle giderildi. Düzeltilmiş soru yalnızca BGE-M3 ve
+  reranker'a gider. Etkisi notebook 10.1'deki iki dökümle (açık/kapalı) ölçülecek.

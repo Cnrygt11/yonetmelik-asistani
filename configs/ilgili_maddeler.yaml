@@ -12,9 +12,10 @@
   ekle: [buu-onlisans-lisans-eoy:md32]
 - madde: buu-onlisans-lisans-eoy:md22     # ortak zorunlu dersler: yabancı dil muafiyeti YDYO'da
   ekle: [buu-ydyo-yabanci-dil:md24]
-- madde: buu-ydyo-yabanci-dil:md24        # ortak zorunlu yabancı dil muafiyeti ↔ dersin kendisi
-  ekle: [buu-ydyo-yabanci-dil:md23, buu-onlisans-lisans-eoy:md22]
+- madde: buu-ydyo-yabanci-dil:md24        # ortak zorunlu yabancı dil muafiyeti ↔ dersin kendisi; md. 7'deki
+  ekle: [buu-ydyo-yabanci-dil:md23, buu-ydyo-yabanci-dil:md7, buu-onlisans-lisans-eoy:md22]  # aynı adlı sınav
 - madde: buu-ydyo-yabanci-dil:md23
   ekle: [buu-ydyo-yabanci-dil:md24]
-- madde: buu-ydyo-yabanci-dil:md7         # md. 7/4 (muafiyet harf notu tablosu) ve md. 7/3-b'nin
-  ekle: [buu-ydyo-yabanci-dil:md8]         # andığı tablolar resmî metinde md. 8'in içinde basılı
+- madde: buu-ydyo-yabanci-dil:md7         # md. 7/4 (muafiyet harf notu tablosu) ve md. 7/3-b'nin andığı tablolar
+  ekle: [buu-ydyo-yabanci-dil:md8, buu-ydyo-yabanci-dil:md24]  # md. 8'in içinde basılı; md. 7/2-c zorunlu dil
+                                                                # dersi muafiyetine atıf yapar (md. 24)
