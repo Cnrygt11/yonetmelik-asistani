@@ -19,6 +19,24 @@ geçer. K-10, 32 soruluk ilk sete dayanıyordu. 196 soruluk setin geliştirme b�
 | F5 | 0,686 | 0,470 |
 | Karakter n-gram | **0,727** | **0,543** |
 
+**K-14 (12.10.2026, proje sahibi):** Altın set incelemesinde kapsam genişletildi. Plan bölüm 2
+"üniversite dışı kurumların kuralları"nı kapsam dışı sayıyordu; bunlardan askerlik ertelemesi
+öğrencileri doğrudan ilgilendirdiği için alınır. P2'ye eklenenler:
+
+| Soru | Karar | Belge |
+|---|---|---|
+| sy-100 kütüphane borcu ve diploma | Kapsama alınır | BUÜ Kütüphane Yönergesi (KAYSİS 202811) |
+| sy-092 Erasmus | Kapsama alınır | Erasmus Değişim Prosedürü (KAYSİS 67844, eski ad: güncelliği teyit edilecek) |
+| sy-099 askerlik tecili | Cevap verilmeli | 7179 sayılı Askeralma Kanunu, öğrenci ertelemesi maddesi |
+| wa-053 mezuniyet işlemleri | Asistan cevaplayabilmeli | Yönetmelikte yok; ÖİDB'nin mezuniyet işlemleri sayfası gibi usul metinleri gerekir (v2: duyuru ve usul sayfaları) |
+| wa-081 çan nasıl işliyor | Cevap tatmin edici değil | Bağıl değerlendirme uygulama esasları KAYSİS'te yok; BUÜ sitesindeki Senato kararlarında aranacak |
+
+Bu sorular, belgeler eklenip yeniden etiketlenene kadar mevcut etiketleriyle (ret veya kısmi)
+kalır. Altın setteki sorulara `profil` alanı eklendi (wa: Mühendislik, wk: Fen-Edebiyat); bu
+alan değerlendirmede ve uçtan uca denemede profil olarak verilecek. wk-001 gibi fakülteye özgü
+sorular fakülte bilinmeden doğru cevaplanamaz: arayüzde fakülte seçimi (plan FR-04, Faz 5)
+kullanımdan önce sorulmalı.
+
 ## Soru havuzu
 
 | Kaynak | Dosya | Soru | Not |

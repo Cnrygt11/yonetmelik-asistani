@@ -130,6 +130,11 @@ belgeler:
   - {id: buu-muhendislik-bitirme, baslik: Bursa Uludağ Üniversitesi Mühendislik Fakültesi Bitirme Projesi Dersi Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [muhendislik-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 183187}]}
   - {id: buu-fen-edebiyat-bitirme, baslik: Bursa Uludağ Üniversitesi Fen-Edebiyat Fakültesi Lisans Programları Bitirme Çalışması Uygulama Esasları Yönergesi, tur: birim_yonergesi, hiyerarsi: 5, birim: [fen-edebiyat-fakultesi], duzey: [lisans], oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 208137}]}
 
+  # K-14 (12.10.2026): proje sahibinin altın set incelemesiyle kapsama alınanlar
+  - {id: buu-kutuphane, baslik: Bursa Uludağ Üniversitesi Kütüphane Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P2, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 202811}], notlar: "Mezuniyette kütüphane borcu (sy-100)."}
+  - {id: uu-erasmus-degisim-proseduru, baslik: Uludağ Üniversitesi Erasmus Öğrenci ve Personel Değişimi Prosedürü, tur: usul_esas, hiyerarsi: 5, oncelik: P2, durum: inceleme, kaynaklar: [{tur: kaysis, id: 67844}], notlar: "Eski kurum adı (2018 öncesi); güncelliği teyit edilmeden kullanılmaz. Erasmus kuralları büyük ölçüde Ulusal Ajans el kitabında (sy-092)."}
+  - {id: kanun-7179-askeralma, baslik: 7179 sayılı Askeralma Kanunu (öğrencilerin askerlik ertelemesi), tur: kanun, hiyerarsi: 1, oncelik: P2, durum: inceleme, kaynaklar: [{tur: url, url: "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.7179.pdf"}], notlar: "Yalnızca öğrenci ertelemesiyle ilgili madde(ler) seçilecek; madde numarası metinden teyit edilecek (sy-099)."}
+
   # ---------------- P3 · v2 kapsamı ----------------
   - {id: buu-yurtlar, baslik: Bursa Uludağ Üniversitesi Yurtlar Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 158058}]}
   - {id: buu-ucretsiz-yemek-bursu, baslik: Bursa Uludağ Üniversitesi Ücretsiz Yemek Bursu Yönergesi, tur: senato_yonergesi, hiyerarsi: 4, oncelik: P3, durum: yururlukte, kaynaklar: [{tur: kaysis, id: 174364}]}
