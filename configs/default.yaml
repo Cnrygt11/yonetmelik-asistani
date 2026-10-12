@@ -11,8 +11,8 @@ chunking:                  # plan 6.4
 llm:
   backend: ollama          # ollama (yerel API) | openai (llama.cpp, vLLM vb. OpenAI uyumlu sunucular)
   base_url: http://localhost:11434
-  model: qwen3.5:9b        # K-01; etiket kurulumda ollama.com/library üzerinden doğrulanacak
-  fallback_model: gemma4:e4b
+  model: qwen3.5:27b-q4_K_M  # K-16: L4 (24 GB) gerekir; 9B'ye göre sabit 40 soruda %50,0 → %64,7 (FAZ_4.md)
+  fallback_model: qwen3.5:9b # T4 (16 GB) yedeği (K-01); notebook GPU belleğine göre seçer
   temperature: 0.1
   seed: 42
   num_ctx: 8192            # Ollama varsayılanı küçük olabilir; açıkça ayarlanır

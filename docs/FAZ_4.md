@@ -196,3 +196,10 @@ modelleriyle birlikte). Puanlar `eval/reports/puanlar_alt40_v3_27b.jsonl`.
 - Okuma hataları sürüyor: koşullu geçme (wa-012, wa-016), wa-088 (%10 başarı sıralamasına sapma),
   wa-028 (cevap bağlamdayken ret).
 - 40 soruda +5 soru farkı belirgin ama örnek küçük; karar öncesi 134 soruluk geliştirme setinde doğrulanmalı.
+
+**K-16 (13.10.2026, proje sahibi):** Ana model **Qwen3.5-27B q4_K_M**, çalışma ortamı **Colab L4** (Colab Pro).
+T4 yedeği Qwen3.5-9B; notebook 4. hücre modeli GPU belleğine göre seçer. Varsayılan istem v3, arayüz de
+Adım 1 bağlam ayarını (en çok 5 kaynak, bağlantılı maddeler) kullanır. Gerekçe: sabit 40 soruda +5 doğru
+cevap, gerileme yok. Bedel: demo L4 ister (Colab Pro), cevap süresi ~12 sn'den ~26 sn'ye çıkar. Karar
+134 soruluk geliştirme ölçümüyle doğrulanacak. `eval/run_answers.py` artık ayar özeti (sözlük, bağlantılı
+maddeler, istem metni, model, arama ayarları) farklı olan bir dosyaya devam etmez.

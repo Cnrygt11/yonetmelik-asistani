@@ -9,6 +9,7 @@ import re
 from dataclasses import dataclass, field
 
 from yonetmelik_asistani.generation.pipeline import Answer, answer
+from yonetmelik_asistani.generation.prompts import PROMPT_VERSION
 
 # Profil seçenekleri: (görünen ad, manifestteki birim kimliği). Birim kimliği yalnızca birime özgü
 # belgelerin süzülmesinde kullanılır; listede olmayan birimler için "tum" belgeleri yeterlidir.
@@ -65,6 +66,9 @@ class AssistantService:
     repealed: list = field(default_factory=list)
     budget: int = 5000
     rel_rerank: float = 0.1
+    max_sources: int | None = None
+    links: dict[str, list[str]] = field(default_factory=dict)  # configs/ilgili_maddeler.yaml
+    istem: str = PROMPT_VERSION
 
     def ask(self, soru: str, *, birim: str | None = None, duzey: str | None = None) -> Result:
         soru = (soru or "").strip()
@@ -72,7 +76,8 @@ class AssistantService:
             return Result("Lütfen bir soru yazın.")
         profile = {"birim": birim, "duzey": duzey}
         a = answer(soru, self.retriever, self.llm, self.maddeler, profile=profile, budget=self.budget,
-                   rel_rerank=self.rel_rerank, repealed=self.repealed)
+                   rel_rerank=self.rel_rerank, max_sources=self.max_sources, links=self.links,
+                   repealed=self.repealed, istem=self.istem)
         return Result(a.cevap, [] if a.ret else cited_sources(a, self.maddeler), a.ret, a.terim_notlari, a.sure_s)
 
 

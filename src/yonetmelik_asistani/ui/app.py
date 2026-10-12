@@ -22,17 +22,20 @@ from yonetmelik_asistani.ui.service import (
 def build_service() -> AssistantService:
     from yonetmelik_asistani.config import REPO_ROOT, load_config
     from yonetmelik_asistani.generation.llm_client import LLMClient
-    from yonetmelik_asistani.generation.pipeline import load_maddeler, load_repealed
+    from yonetmelik_asistani.generation.pipeline import load_links, load_maddeler, load_repealed
     from yonetmelik_asistani.retrieval.service import load_retriever
 
     cfg = load_config()
+    gen = cfg.section("generation")
     return AssistantService(
         retriever=load_retriever(cfg),
         llm=LLMClient(cfg.llm),
         maddeler=load_maddeler(cfg.data_dir / "processed"),
         repealed=load_repealed(REPO_ROOT / cfg.section("paths").get("manifest", "configs/corpus_manifest.yaml")),
         budget=cfg.section("retrieval").get("context_token_budget", 5000),
-        rel_rerank=cfg.section("generation").get("rel_rerank", 0.1),
+        rel_rerank=gen.get("rel_rerank", 0.1),
+        max_sources=gen.get("max_sources"),
+        links=load_links(REPO_ROOT / gen["ilgili_maddeler"]) if gen.get("ilgili_maddeler") else {},
     )
 
 

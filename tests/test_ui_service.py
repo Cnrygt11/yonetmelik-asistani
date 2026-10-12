@@ -1,3 +1,4 @@
+import json
 import types
 
 from yonetmelik_asistani.generation.prompts import RET_CUMLESI
@@ -31,9 +32,15 @@ class LLM:
         return types.SimpleNamespace(text=self.text, wall_s=1.2, model="sahte", prompt_tokens=None)
 
 
+def v3(cevap, alintilar=()):
+    return json.dumps({"alintilar": [{"kaynak": k, "metin": m} for k, m in alintilar], "cevap": cevap,
+                       "ayrintilar": [], "eksik": False}, ensure_ascii=False)
+
+
 def test_service_returns_only_cited_sources_and_passes_profile():
     r = Retriever()
-    s = AssistantService(r, LLM("10 iş günü içinde başvurulur [K1]."), MADDELER)
+    s = AssistantService(r, LLM(v3("10 iş günü içinde başvurulur [K1].", [("K1", "10 iş günü içinde başvurulur.")])),
+                         MADDELER)
     res = s.ask("kaydımı dondurmak istiyorum", birim="muhendislik-fakultesi", duzey="lisans")
     assert [k["etiket"] for k in res.kaynaklar] == ["K1"]
     assert r.profiles[-1] == {"birim": "muhendislik-fakultesi", "duzey": "lisans"}
@@ -42,7 +49,13 @@ def test_service_returns_only_cited_sources_and_passes_profile():
 
 
 def test_service_refusal_has_no_sources_and_empty_question():
-    s = AssistantService(Retriever(), LLM(RET_CUMLESI), MADDELER)
+    s = AssistantService(Retriever(), LLM(v3(RET_CUMLESI)), MADDELER)
     res = s.ask("yurt ücreti ne kadar")
     assert res.ret and res.kaynaklar == []
     assert s.ask("   ").cevap == "Lütfen bir soru yazın."
+
+
+def test_service_v2_plain_text_path_still_works():
+    s = AssistantService(Retriever(), LLM("10 iş günü içinde başvurulur [K1]."), MADDELER, istem="v2")
+    res = s.ask("kaydımı dondurmak istiyorum")
+    assert not res.ret and [k["etiket"] for k in res.kaynaklar] == ["K1"]

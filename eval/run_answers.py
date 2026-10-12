@@ -18,6 +18,7 @@ Sonda özet basılır ve `<out>.ozet.json` yazılır.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import statistics
 import sys
@@ -37,9 +38,29 @@ from yonetmelik_asistani.generation.pipeline import (
     load_repealed,
     numbers_covered,
 )
-from yonetmelik_asistani.generation.prompts import PROMPT_VERSION, PROMPT_VERSIONS
+from yonetmelik_asistani.generation.prompts import (
+    PROMPT_VERSION,
+    PROMPT_VERSIONS,
+    SYSTEM_PROMPT,
+    SYSTEM_PROMPT_V3,
+)
 from yonetmelik_asistani.retrieval.service import load_retriever
 from yonetmelik_asistani.smoke import gpu_report
+
+
+def settings_digest(cfg, ayar: dict) -> str:
+    """Cevapları etkileyen her şeyin özeti: sözlük, bağlantılı maddeler, istem metni, arama ve üretim
+    ayarları, belge sürümü. Yarıda kalan dosyaya yalnızca özet aynıysa devam edilir."""
+    h = hashlib.sha256()
+    paths = cfg.section("paths")
+    for rel in (paths.get("glossary", "data/glossary.yaml"), cfg.section("generation").get("ilgili_maddeler")):
+        if rel and (REPO_ROOT / rel).exists():
+            h.update((REPO_ROOT / rel).read_bytes())
+    h.update((SYSTEM_PROMPT_V3 if ayar["istem"] == "v3" else SYSTEM_PROMPT).encode())
+    h.update(json.dumps({**ayar, "model": cfg.llm.model, "corpus": cfg.corpus_version,
+                         **{k: cfg.section(k) for k in ("retrieval", "reranker", "embedding", "generation")}},
+                        sort_keys=True, ensure_ascii=False, default=str).encode())
+    return h.hexdigest()[:12]
 
 
 def summarize(rows: list[dict]) -> dict:
@@ -102,9 +123,6 @@ def main(argv: list[str] | None = None) -> int:
     print(f"{len(subset)} soru · {len(done)} hazır · {len(todo)} üretilecek · istem {args.istem}"
           + (" · düşünme açık" if args.think else ""))
 
-    retriever = load_retriever(cfg)
-    maddeler = load_maddeler(cfg.data_dir / "processed")
-    repealed = load_repealed(REPO_ROOT / cfg.section("paths").get("manifest", "configs/corpus_manifest.yaml"))
     budget = cfg.section("retrieval").get("context_token_budget", 5000)
     gen = cfg.section("generation")
     rel = gen.get("rel_rerank", 0.1)
@@ -117,6 +135,16 @@ def main(argv: list[str] | None = None) -> int:
         llm_cfg = replace(llm_cfg, num_ctx=max(llm_cfg.num_ctx, 12288))
     ayar = {"istem": args.istem, "think": args.think, "max_tokens": max_tokens, "num_ctx": llm_cfg.num_ctx,
             "max_kaynak": max_sources, "ilgili": bool(links), "rel_rerank": rel, "butce": budget}
+    ayar["ozet"] = settings_digest(replace(cfg, llm=llm_cfg), ayar)
+    if done:  # başka ayarla üretilmiş dosyaya ekleme yapılmaz (eski cevaplar yeni ölçüm sanılır)
+        old = (next(iter(done.values())).get("ayar") or {}).get("ozet")  # eski biçimde yok: yine reddedilir
+        if old != ayar["ozet"]:
+            print(f"HATA: {args.out} başka ayarlarla üretilmiş (özet {old} ≠ {ayar['ozet']}): sözlük, bağlantılı "
+                  "maddeler, istem, model ya da arama ayarı değişmiş. Yeni bir --out verin.")
+            return 2
+    retriever = load_retriever(cfg)
+    maddeler = load_maddeler(cfg.data_dir / "processed")
+    repealed = load_repealed(REPO_ROOT / cfg.section("paths").get("manifest", "configs/corpus_manifest.yaml"))
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
     with LLMClient(llm_cfg) as llm, args.out.open("a", encoding="utf-8") as fh:

@@ -1,5 +1,5 @@
 """İstem şablonları (plan Ek B). Sürüm 2 (Faz 4): uçtan uca denemenin hatalarına göre kurallar eklendi.
-Sürüm 3 (Faz 4, Adım 2): önce alıntı, JSON çıktı (aşağıda).
+Sürüm 3 (Faz 4, Adım 2): önce alıntı, JSON çıktı (aşağıda). K-16'dan beri varsayılan.
 
 v2'de eklenenler (FAZ_3.md "Faz 4 için ön bulgular"):
   * Karma ret yok: sorunun bir kısmı cevaplanabiliyorsa ret cümlesi yazılmaz (harç sorusu).
@@ -13,7 +13,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"  # varsayılan (K-16); v2 karşılaştırma için korunur
 PROMPT_VERSIONS = ("v2", "v3")
 
 # Rete karar verildiğinde modelin kullanacağı sabit cümle; çıktı denetimi bunu arar.

@@ -8,7 +8,8 @@ from yonetmelik_asistani.config import CONFIG_DIR, LLMConfig, load_config
 
 def test_default_config_loads_plan_values():
     cfg = load_config(env={})
-    assert cfg.llm.model == "qwen3.5:9b"
+    assert cfg.llm.model == "qwen3.5:27b-q4_K_M"   # K-16
+    assert cfg.llm.fallback_model == "qwen3.5:9b"
     assert cfg.llm.think is False
     assert cfg.llm.num_ctx == 8192
     assert cfg.section("retrieval")["rrf_k"] == 60
