@@ -74,3 +74,22 @@ def test_numbers_covered():
 
     assert numbers_covered("en geç 10 iş günü, en çok 4 yarıyıl", "10 iş günü içinde [K1]") == 0.5
     assert numbers_covered("sayı yok", "x") is None
+
+
+def test_score_answers_metrics():
+    import sys
+    from pathlib import Path
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "eval"))
+    from score_answers import auto_atif, score
+
+    def row(qid, gold, cevap, kaynak="whatsapp", kat="tek_madde"):
+        return {"id": qid, "altin_maddeler": gold, "cevap": cevap, "kaynak": kaynak, "kategori": kat,
+                "kaynaklar": [{"etiket": "K1", "madde_id": "eoy:md19"}, {"etiket": "K2", "madde_id": "eoy:md10"}]}
+
+    rows = [row("a", ["eoy:md19"], "10 gün [K1]."), row("b", ["eoy:md19"], "Yanlış madde [K2]."),
+            row("c", [], "Bulamadım.", kat="cevapsiz")]
+    assert auto_atif(rows[0]) is True and auto_atif(rows[1]) is False and auto_atif(rows[2]) is None
+    res = score(rows, {"a": {"karar": "dogru"}, "b": {"karar": "kismen"}, "c": {"karar": "dogru"}})
+    h = res["hepsi"]
+    assert (h["dogru_cevap"], h["kismen"], h["dogru_atif"], h["dogru_ret"]) == (0.5, 0.5, 0.5, 1.0)
