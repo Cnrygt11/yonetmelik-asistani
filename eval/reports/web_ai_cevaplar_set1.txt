@@ -1,0 +1,284 @@
+Yapay Zeka: Claude Opus 4.6 (Antigravity aracılığıyla)
+Tarih: 13 Ekim 2026
+Kaynaklar: BUÜ KAYSİS yönetmelikleri (PDF) + internet araştırması
+
+======================================================================
+PARTİ 1 (sorular p01–p10)
+======================================================================
+
+### p01
+CEVAP: Hazırlıkta yeterlik sınavına girebilmek için iki yarıyılın genel başarı notu ortalamasının 100 üzerinden 60 ve üzerinde olması ve devam koşulunun sağlanması gerekir.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yabancı Dil Eğitim-Öğretim ve Sınav Yönetmeliği, Madde 20/1 | "Hazırlık sınıfı okuyan öğrencilerden iki yarıyılın genel başarı notu ortalaması 60 ve üzerinde olanlar, devam koşulunu da sağlamak şartıyla ikinci yarıyılın sonunda yapılan yeterlik sınavına girmeye hak kazanırlar."
+
+### p02
+CEVAP: Evet, bütünlemeye kalan öğrenciler de sınıf ortalamasına dahil edilir. BUÜ Yönetmeliği'nde bütünleme sınavına giren öğrencilerin de başarı sıralamasında dikkate alındığı açıkça belirtilmektedir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 35/2-c | "Güz ve bahar yarıyıllarında yapılan bütünleme sınavlarına katılan öğrenciler de başarı sıralamasında dikkate alınır."
+
+### p03
+CEVAP: Evet, DC notu alan öğrenci bütünleme sınavına girebilir. Bütünleme sınavına FF veya FD alan öğrenciler ile yarıyıl sonu sınavına girme hakkı olduğu halde giremeyen öğrenciler girebilir. DC koşullu geçer not olup başarılı sayıldığından doğrudan bütünlemeye girme hakkı yoktur. Ancak DC alan öğrenci GANO'su 2.00'nin altında kalırsa dersi tekrar alabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 29/9-a | "Bütünleme sınavlarına, almış oldukları ders veya derslerin yarıyıl/yıl sonu sınavına girme hakkı elde ettiği halde sınava giremeyen veya girdiği halde bu derslerden (FF), (FD) alarak başarısız olan öğrenciler girebilirler."
+
+### p04
+CEVAP: Ön koşullu ders, kaydolabilmek için önce ön koşul dersini başarmak gereken derstir. Ön koşul dersinden kalındığında, ön koşullu ders seçilemez; önce ön koşul dersinin başarılması gerekir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 21/2 | "a) Ön koşul dersi; öğrencinin ön koşullu derse kaydını yaptırması için, başarmak zorunda olduğu derstir. b) Ön koşullu ders; öğrencinin kayıt yaptıracağı ders; bir veya daha fazla ön koşula bağlı ise bu ders ön koşullu derstir."
+
+### p05
+CEVAP: Evet, online (uzaktan öğretim) derslerde de devamsızlık limiti vardır. BUÜ Yönetmeliği kuramsal derslere en az %70, uygulamalara en az %80 devam zorunluluğu getirmektedir. Uzaktan öğretim yöntemiyle yürütülen derslerin devam koşullarına ilişkin detaylar Senato tarafından belirlenir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 18/1 | "Öğrencilerin; kuramsal derslere en az %70, uygulama, laboratuvar, işyeri eğitimi ve benzeri çalışmalara en az %80 oranında devamı zorunludur."
+
+### p06
+CEVAP: Fen-Edebiyat Fakültesi'nde tek dersten kalan öğrenci, eğer o ders bitirme çalışmasının ön koşulu değilse ve GANO'su 2.00 ve üzerindeyse bitirme çalışması alabilir. Yaz öğretiminde ise bitirme çalışması alabilmek için daha önce almış ancak başaramamış olmak gerekir; yaz öğretimi sonunda mezun olacak öğrenciler bu şarttan muaftır.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 10/1-e | "Bitirme ödevi, proje, bitirme projesi, araştırma yöntemleri, güncel konular gibi derslerin alınabilmesi için, öğrencilerin bu dersleri yaz öğretiminden önce almış ancak başaramamış olmaları gerekir. Yaz öğretimi sonunda mezun olacak öğrenciler bu şarttan muaftır."
+
+### p07
+CEVAP: BUÜ Yönetmeliği'ne göre mezuniyet tarihi, tüm eğitim-öğretim çalışmalarının ve sınavların başarılmasına, varsa stajların tamamlanmasına bağlı olarak birim yönetim kurulu kararıyla belirlenir. Öğrenci diplomasını ilgili birimden şahsen veya noter vekaletnamesiyle alır. Ek bir belge/imza verme zorunluluğu yönetmelikte açıkça düzenlenmemiştir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 37/7 | "Mezuniyet tarihi, tüm eğitim-öğretim çalışmalarının ve sınavların başarılmasına, varsa stajların tamamlanmasına bağlı olarak birim yönetim kurulu kararı ile mezun edildiği tarihtir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 37/4 | "Mezun olan öğrenciler, diplomalarını mezun oldukları birimden şahsen veya noterden düzenlenen vekâletnameyle tayin ettikleri vekil aracılığı ile alır."
+
+### p08
+CEVAP: Muafiyet sınavı aslında öğrencinin o dersten muaf olup olmadığını belirleyen bir sınavdır. Yabancı dil muafiyet sınavından 60 ve üzeri alan öğrencilerin notu harf notuna çevrilir ve öğrenci kütüğüne işlenir. Bu not GANO hesabına dahil edilir, dolayısıyla ortalamayı etkiler.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 24/2 | "Ortak zorunlu yabancı dil muafiyet sınavından 60 ve üzerinde not alan öğrencilerin notu; Uludağ Üniversitesi Önlisans ve Lisans Öğretim Yönetmeliği hükümlerine göre harf notuna çevrilir ve bu not, her iki ders için aynı harf notu olarak öğrenci kütüğüne işlenir."
+
+### p09
+CEVAP: Hayır, alttan alınan dersler ilk kez devam koşulu sağlanmışsa tekrar devam zorunluluğu aranmaz (Madde 18/3'teki istisnai birimler hariç). Yani daha önce devam şartını sağlamış olduğunuz salt teorik dersleri tekrar aldığınızda devam zorunluluğu yoktur.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 18/3 | "Aşağıda sayılanlar hariç olmak üzere, bir kez devam şartı sağlanmış olan salt teorik dersler ile derse bağlı uygulama ve laboratuvar derslerinin tekrar alınması durumunda devam zorunluluğu aranmaz"
+
+### p10
+CEVAP: Koşullu geçilen ders (DC/DD notu), GANO 2.00'nin altındaysa başarısız kabul edilir ve tekrar alınması gerekir. Kredi limiti konusunda GANO'su 1.80-1.99 arası olan öğrenciye 30 AKTS'ye kadar ders alma hakkı verilir. Kredi limitini aşacak durumda sadece bir dersi kalan öğrenciler bu tek derse de yazılabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/5-a | "GANO'su 1.80-1.99 arası olanlara, 30 AKTS kredi yükü kadar ders almasına izin verilir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/8 | "Alabileceği en fazla ders yükü kadar derse yazılan ve bölüm veya programdan mezun olabilmesi için ders yükünü aşacak durumda sadece bir dersi kalan öğrenciler bu tek derse de yazılmak koşuluyla ders yükünü bir ders arttırabilirler."
+
+======================================================================
+PARTİ 2 (sorular p11–p20)
+======================================================================
+
+### p11
+CEVAP: Sınav notlarının ilanını takip eden 3 iş günü içinde yazılı olarak itiraz başvurusu yapılabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 34/1 | "Ara sınav, yarıyıl/yıl sonu ve bütünleme sınavlarının sayısal notlarındaki maddi hatanın düzeltilmesi için öğrenci, sınav sonucunun ilânını takip eden 3 iş günü içinde dersin yürütüldüğü birime yazılı olarak başvurabilir."
+
+### p12
+CEVAP: Hiç ders seçmeyince otomatik ders verilmez. Kaydını yenilemeyen öğrenci o yarıyıl derslere devam edemez ve sınavlara giremez, ancak kayıt yenilemediği süre azami öğrenim süresinden sayılır. Azami süre içinde kayıt yenilememek ilişiği kestirmez, ancak 4 yıl üst üste kayıt yenilenmemesi halinde ilişik kesilebilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 10/3 | "Kaydını yenilemeyen öğrenci, o yarıyıl/yıldaki derslere devam edemez, sınavlara giremez ve diğer öğrencilik haklarından yararlanamaz. Öğrencinin kayıt yenilemediği yarıyıl/yıl, 2547 sayılı Kanunda belirlenen azami öğrenim süresinden sayılır."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 10/5 | "...dört yıl üst üste katkı payı veya öğrenim ücretinin ödenmemesi ile kayıt yenilenmemesi nedeniyle öğrencilerin ilişikleri kesilebilir."
+
+### p13
+CEVAP: Her ikisi de GANO'yu olumsuz etkiler, ancak devamsızlıktan kalmak (D notu) GANO hesabında FF (0.0) olarak dahil edildiğinden, düşük notla kalmakla (FD = 0.5) aynı ya da daha kötü etkiye sahiptir. Devamsızlık D notu FF ile aynı ağırlık katsayısı (0.0) taşıdığından, düşük puanla kalmaktan (FD=0.5) daha çok ortalamayı düşürür.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/4-a | "(D) Devamsız: Derse devam yükümlülüğünü veya ders uygulamalarına ilişkin koşulları yerine getirmeyen öğrenciye verilir. (D), not ortalaması hesabına (FF) olarak dâhil edilir."
+
+### p14
+CEVAP: Evet, her yarıyıl kayıt yenileme işlemi yapılması gerekir. Öğrenci katkı payı/öğrenim ücretini ödeyip ders seçim işlemlerini gerçekleştirmek zorundadır.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 10/1 | "Öğrenci, kayıt yenileme işlemleri ve ilgili duyuruların takibinden, katkı payı/öğrenim ücretinin ödenmesinden, kayıt yenileme ile ders seçim işlemlerinin yapılmasından şahsen sorumludur."
+
+### p15
+CEVAP: BUÜ Yönetmeliği'nde "1.80 altında kalma" kuralı dönem (YANO) bazında değil, GANO bazında uygulanır. GANO 1.80'in altına düşen öğrenci yeni ders alamaz ve sadece başarısız olduğu/koşullu geçtiği dersleri alabilir. Tek bir dönemin ortalamasının düşük olması doğrudan "kalmak" anlamına gelmez.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/4 | "GANO'su 1.80'in altında olan öğrenci yeni ders alamaz. Bu durumda olan öğrenciler not yükseltme amacıyla, öncelikle başarısız olduğu derslerden başlamak ve dönemsel AKTS yükünü aşmamak kaydıyla geçmiş yıllardaki derslerine tekrar kaydolabilirler."
+
+### p16
+CEVAP: Evet, İngilizce muafiyet sınavını geçemezsen Yabancı Dil I ve II derslerini almak zorundasın.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 22/2 | "Bu sınavda başarılı olamayanlar birinci sınıfta yabancı dil dersini almak zorundadır."
+
+### p17
+CEVAP: İngilizce muafiyet sınavını geçemezsen alacağın İngilizce dersi (Yabancı Dil I ve II) zorunlu derstir, seçmeli değildir. 2547 sayılı Kanun'un 5/ı bendi gereği tüm öğrenciler bu dersleri almak zorundadır.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 23/1 | "Üniversiteye kayıt yaptıran öğrenciler 2547 sayılı Kanunun 5 inci maddesinin birinci fıkrasının (ı) bendi gereğince Yabancı Dil I ve II derslerini almak zorundadırlar."
+
+### p18
+CEVAP: Harf notu, Bağıl Değerlendirme Sistemi (BDS) ile belirlenir. Yarıyıl/yıl içi çalışmalar ve sınavlar 100 tam puan üzerinden değerlendirilir. Yarıyıl sonu sınavının ham başarı notuna etkisi %60, dönem içi çalışmaların etkisi toplamda %40'ı aşamaz. Elde edilen ham başarı notu, sınıf ortalaması ve standart sapma dikkate alınarak bağıl değerlendirme ile harf notuna çevrilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 29/6 | "...bir dersin, eğitim-öğretim etkinliklerinin yarıyıl/yıl sonu ham başarı notuna etkisi, toplamda % 40'ı aşmamak şartıyla ders yürütücüsü öğretim elemanı tarafından belirlenir. Yarıyıl/yıl sonu veya bütünleme sınavının ham başarı notuna etkisi ise % 60'tır."
+
+### p19
+CEVAP: Kuramsal (teorik) derslere en az %70, uygulama, laboratuvar, işyeri eğitimi ve benzeri çalışmalara en az %80 oranında devam zorunludur.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 18/1 | "Öğrencilerin; kuramsal derslere en az %70, uygulama, laboratuvar, işyeri eğitimi ve benzeri çalışmalara en az %80 oranında devamı zorunludur."
+
+### p20
+CEVAP: CC harf notunun ağırlık katsayısı 2.00'dir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/3 | "Geçer CC 2.00"
+
+======================================================================
+PARTİ 3 (sorular p21–p30)
+======================================================================
+
+### p21
+CEVAP: Hayır, dönem yanmaz. Azami süreler içinde katkı payı veya öğrenim ücretinin ödenmemesi ile kayıt yenilenmemesi nedeniyle öğrencilerin ilişikleri kesilmez. Ancak kayıt yenilemediği yarıyıl azami öğrenim süresinden sayılır ve o dönem derslere devam edilemez, sınavlara girilemez.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 10/3 | "Kaydını yenilemeyen öğrenci, o yarıyıl/yıldaki derslere devam edemez, sınavlara giremez ve diğer öğrencilik haklarından yararlanamaz. Öğrencinin kayıt yenilemediği yarıyıl/yıl, 2547 sayılı Kanunda belirlenen azami öğrenim süresinden sayılır."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 10/5 | "Azami süreler içinde katkı payı veya öğrenim ücretinin ödenmemesi ile kayıt yenilenmemesi nedeniyle öğrencilerin ilişikleri kesilmez."
+
+### p22
+CEVAP: Evet. BUÜ'de yaz öğretiminde açılmayan veya açılamayan dersleri başka bir devlet üniversitesinin yaz öğretiminden almak istiyorsanız, kayıtlı olduğunuz birimin izni (onayı) gereklidir. İçerik, ders saatleri ve/veya AKTS kredi saatlerinin aynı veya daha fazla olması koşulu aranır.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 10/1-g | "Öğrenciler, kayıtlı olduğu birimin izniyle Üniversitede yaz öğretiminde açılmayan veya açılamayan dersleri, içerik, ders saatleri ve/veya AKTS kredi saatleri aynı veya daha fazla olan diğer devlet üniversitelerinin yaz öğretimlerinde açılan derslerden alabilirler."
+
+### p23
+CEVAP: Evet, mezuniyet koşullarını sağlayan her öğrenci geçici mezuniyet belgesi alabilir. BUÜ Yönetmeliği'nde mezun olan öğrencilere diploma ve not durum belgesi verileceği belirtilmektedir; diploma hazırlanana kadar geçici mezuniyet belgesi düzenlenmesi genel üniversite uygulamasıdır. Bölüm bazında kısıtlama yönetmelikte yer almamaktadır.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 37/1 | "...öğrenciye, kayıtlı olduğu programın ön lisans veya lisans diploması, diploma eki ve not durum belgesi (transkript) verilir."
+
+### p24
+CEVAP: Hazırlık sınıfı öğretimi süresi en çok dört yarıyıldır (2 yıl). İki yıl içinde başarı ile tamamlayamayan öğrencilerin zorunlu hazırlık programından ilişiği kesilir.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 11/1 | "Hazırlık sınıfı öğretimi süresi en çok dört yarıyıldır."
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 12/3 | "...hazırlık sınıfını iki yıl içinde başarı ile tamamlayamayan öğrencilerin programdan ilişiği kesilir."
+
+### p25
+CEVAP: İzinli ayrılmak isteyen öğrencinin, akademik takvimde belirtilen ders başlangıç tarihinden en az 10 iş günü öncesinde kayıtlı olduğu birime yazılı olarak başvurması zorunludur.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 19/2 | "Bu fıkraya göre izinli sayılmak isteyen öğrencinin ilan edilen akademik takvimde belirtilen ders başlangıç tarihinden en az 10 iş günü öncesinde kayıtlı olduğu birime yazılı olarak başvurması zorunludur."
+
+### p26
+CEVAP: Evet, BUÜ'de Bağıl Değerlendirme Sistemi (BDS) uygulanır. Sınıf başarı ortalaması ve standart sapma dikkate alınarak harf notları belirlenir. Ancak Senato tarafından BDS ile değerlendirilemeyecek dersler de belirlenebilir; bu durumda öğretim elemanı HBAS ve YSSL sınırlarına bağlı kalarak harf notlarını doğrudan (mutlak) belirler. Yani sınıf ortalaması yeterince yüksekse çan eğrisi etkisiz olabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/1-2 | "Her eğitim-öğretim yılı başında; bağıl değerlendirmeye katma sınırı (BDKS), ham başarı notu alt sınırı (HBAS), yarıyıl/yıl sonu sınav limiti (YSSL) ve bağıl değerlendirme sistemiyle değerlendirilemeyecek özellikteki dersler Senato tarafından belirlenir. Bağıl Değerlendirme Sistemi ile değerlendirilemeyecek dersler için dersi veren öğretim elemanı, HBAS ve YSSL sınırlarına bağlı kalarak harf notlarını belirler."
+
+### p27
+CEVAP: Lisans mezuniyeti sonrası erkek öğrencilerin askerlik tecil hakkı 2 yıldır (mezuniyet tarihinden itibaren). Bu süre 7179 sayılı Askeralma Kanunu'na göre belirlenir ve 32 yaş sınırını geçemez.
+KAYNAK: 7179 sayılı Askeralma Kanunu | "Dört yıllık veya daha uzun süreli lisans programından mezun olanlara mezuniyet tarihinden itibaren 2 yıl askerlik erteleme hakkı tanınır."
+
+### p28
+CEVAP: Hayır, mazeret sınavına kesin alınacağının garantisi yoktur. Mazeretlerin kabul edilip edilmeyeceğine birim yönetim kurulu karar verir. Rapor almak tek başına yeterli olmayabilir; raporun tam teşekküllü sağlık kuruluşundan alınması ve sınava girememe durumunun belgelenmesi gerekir. Ayrıca yarıyıl sonu sınavları ve bütünleme sınavları için mazeret sınav hakkı verilmez.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 30/1 | "Ara sınavlara katılamayan öğrencilere birimin yönetim kurulu tarafından mazeret sınav hakkı verilebilir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 30/6 | "...yarıyıl/yıl sonu sınavları, bütünleme sınavları ve ek sınavlar için öğrenciye mazeret sınav hakkı verilmez."
+
+### p29
+CEVAP: Bulamadım. BUÜ kampüsünde araç park ücreti ile ilgili bilgi yönetmeliklerde yer almamaktadır. Güncel uygulama için BUÜ Rektörlüğü veya Genel Sekreterlik duyurularına bakılmalıdır.
+
+### p30
+CEVAP: Hayır, 31 AKTS dolmak zorunda değildir. GANO'su 1.80-1.99 arası olanlara 30 AKTS'ye kadar ders almasına izin verilir. GANO 2.00 ve üzeri olanlara ise 40 AKTS'ye kadar izin verilir. Ayrıca ders yükünü aşacak durumda sadece bir dersi kalan öğrenciler ek olarak bu derse de yazılabilir. Dolayısıyla 29 AKTS'de bırakmak sorun olmaz, eksik AKTS ile kayıt yaptırılabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/5 | "a) GANO'su 1.80-1.99 arası olanlara, 30 AKTS, b) GANO'su 2.00-2.99 arası olanlara, 40 AKTS, c) GANO'su 3.00 ve üzerinde olanlara, 50 AKTS, kredi yükü kadar ders almasına izin verilir."
+
+======================================================================
+PARTİ 4 (sorular p31–p40)
+======================================================================
+
+### p31
+CEVAP: Bulamadım. Yönetmelikte "son sene olanlara 41 AKTS" gibi özel bir düzenleme bulunmamaktadır. GANO'ya göre 30/40/50 AKTS limitleri uygulanır. Ders yükünü aşacak durumda sadece bir dersi kalan öğrenciler bir ders artırabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/5 ve 27/8
+
+### p32
+CEVAP: Evet, kaydını dondurmuş bir öğrenci yatay geçiş başvurusunda bulunabilir. Kayıt dondurmuş olmak yatay geçiş hakkından yararlanmaya engel teşkil etmez.
+KAYNAK: BUÜ Yatay Geçiş, Çift Anadal, Yan Dal Yönergesi, Madde 6/4 | "Kayıt dondurmuş olmak, yatay geçiş hakkından yararlanmaya engel teşkil etmez."
+
+### p33
+CEVAP: Yatay geçiş yapan öğrencinin eski okulunda aldığı derslerin sayılması (intibak süreci), BUÜ Muafiyet ve İntibak İşlemleri Yönergesi'ne göre yapılır. Geçiş yapılan programın ders planı esas alınarak, eski derslerin kredi ve içerik uyumuna göre (%70 eşleşme + ders saati eşit veya fazla) ilgili komisyon tarafından değerlendirilir ve birim yönetim kurulu kararıyla muafiyet verilir. Daha önce alınan notlar transkripte işlenir.
+KAYNAK: BUÜ Muafiyet ve İntibak İşlemleri Yönergesi, Madde 6/2 | "Muafiyet istenen başarılı ders/derslerin zorunlu veya seçmeli olması durumuna bakılmaksızın bölüm/program eşdeğerliliği dikkate alınarak, ders kazanımlarının en az %70'inin karşılanması ve ders saatinin eşit veya fazla olması koşuluyla komisyon tarafından karar verilir."
+KAYNAK: BUÜ Yatay Geçiş Yönergesi, Madde 28/2 | "Öğrencilerin önceki diploma programından aldığı ve başarılı olduğu derslerin intibakı Bursa Uludağ Üniversitesi Önlisans ve Lisans Programları Muafiyet ve İntibak İşlemleri Yönergesi hükümlerine göre yapılarak, bu derslere ilişkin daha önce alınan notlar transkript belgesine işlenir ve not ortalamasına eklenir."
+
+### p34
+CEVAP: Not dökümünde "DZ" görünmesi, BUÜ yönetmeliklerinde tanımlanmamıştır. Eğer kastedilen "D" (Devamsız) ise, bu öğrencinin devam yükümlülüğünü yerine getirmediği anlamına gelir ve GANO hesabında FF (0.0) olarak dahil edilir. Devamsızlıktan kalan ders bütünlemede kurtarılamaz, çünkü bütünlemeye girme hakkı devam şartını sağlayıp sınava girme hakkı elde etmiş olmaya bağlıdır.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/4-a | "(D) Devamsız: ...not ortalaması hesabına (FF) olarak dâhil edilir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 29/9-a | "Bütünleme sınavlarına, almış oldukları ders veya derslerin yarıyıl/yıl sonu sınavına girme hakkı elde ettiği halde sınava giremeyen veya girdiği halde bu derslerden (FF), (FD) alarak başarısız olan öğrenciler girebilirler."
+
+### p35
+CEVAP: ALES puanının geçerlilik süresi 5 yıldır (60 ay). Sınav sonuçlarının ilan edildiği tarihten itibaren 5 yıl boyunca yüksek lisans başvurularında kullanılabilir.
+KAYNAK: ÖSYM / YÖK Lisansüstü Eğitim ve Öğretim Yönetmeliği | "ALES puanının geçerlilik süresi sınav sonuçlarının açıklandığı tarihten itibaren 5 yıldır."
+
+### p36
+CEVAP: 1.80 ve 2.00 farklı kriterleri temsil eder. BUÜ Yönetmeliği'ne göre GANO 1.80'in altında olan öğrenci yeni ders alamaz. KYK burs/kredi kesilmesi ise 2.00 GANO kriterine bağlıdır. GANO 2.00'nin altında kalan öğrencilerin KYK bursu öğrenim kredisine dönüştürülür. Dolayısıyla 1.80 BUÜ'nün iç kuralı, 2.00 ise KYK'nın başarı kriteridir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/4 | "GANO'su 1.80'in altında olan öğrenci yeni ders alamaz."
+KAYNAK: KYK (Kredi ve Yurtlar Genel Müdürlüğü) kuralları | "KYK bursunun devamı için yıl sonu GANO'sunun 4'lük sistemde en az 2.00 olması gerekir; altında kalanların bursu krediye dönüştürülür."
+
+### p37
+CEVAP: Danışman hocanın ders onayı süreci BUÜ Yönetmeliği'nde doğrudan düzenlenmemiştir. Akademik takvimde belirlenen süreler içinde ders seçimi otomasyon sisteminden yapılır. Danışman onayı verilmezse öğrenci ilgili birime (bölüm başkanlığı/dekanlık) başvurarak durumu bildirmelidir. Ders seçimi otomasyonda gerçekleşmemişse geçersiz sayılabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/2 | "Öğrenci ders alma işlemlerini, otomasyon sisteminde gerçekleştirir."
+
+### p38
+CEVAP: FF olan fazladan dersler (dönemsel AKTS sınırı aşıldığında veya ders planı dışı) otomatik silinmez. Ancak bir seçmeli dersten başarısız olan öğrenci, aynı dersi tekrar edebileceği gibi farklı bir seçmeli ders de alabilir. Öğrenci akademik takvimde belirtilen tarihlerde kapanan seçmeli derslerini iptal ederek açık bulunan derslere kayıt yaptırabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 28/3 | "Bir seçmeli dersten başarısız olan öğrenci, aynı dersi tekrar edebileceği gibi, dersin ait olduğu yarıyılda/yılda yer alan farklı bir seçmeli dersi de alabilir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/10 | "Öğrenciler akademik takvimde belirtilen tarihlerde kapanan seçmeli derslerini iptal ederek, açık bulunan seçmeli veya zorunlu derslere kayıt yaptırabilirler."
+
+### p39
+CEVAP: Hayır, hoca devamsızlık sınırını kendi isteğiyle esnetemez. Devam zorunluluğu yönetmelikle belirlenmiş olup kuramsal derslerde %70, uygulamalarda %80'dir. Bu sınırlar öğretim elemanının takdirine bırakılmamıştır.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 18/1 | "Öğrencilerin; kuramsal derslere en az %70, uygulama, laboratuvar, işyeri eğitimi ve benzeri çalışmalara en az %80 oranında devamı zorunludur."
+
+### p40
+CEVAP: Hayır, yaz okulunda bütünleme sınav hakkı yoktur. Tek sınavla (yarıyıl sonu sınavı) sonuçlanır. Ancak mezuniyeti için en çok iki dersten başarısız olan öğrenciler yaz öğretimi sonunda yapılan ek sınavlara katılabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 12/2 | "Yaz öğretiminde alınan dersler için bütünleme sınavı yapılmaz."
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 13/3 | "Yaz öğretimi sonunda, devam şartını yerine getirmiş olduğu halde, mezuniyeti için en çok iki dersten başarısız olan öğrenciler yaz öğretimi sonunda yapılan ek sınavlara katılabilirler."
+
+======================================================================
+PARTİ 5 (sorular p41–p50)
+======================================================================
+
+### p41
+CEVAP: Evet, FF dışındaki tüm harf notları (FD hariç) farklı başarı derecelerine karşılık gelir. Ancak başarılı sayılmak için notun en az DC veya DD olması gerekir. FD (0.5) ve FF (0.0) başarısız notlardır. DC (1.5) ve DD (1.0) "koşullu geçer" notlarıdır; GANO 2.00 ve üzeriyse geçmiş sayılırsınız, altındaysa başarısız kabul edilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/3 | "Koşullu Geçer DC 1.5, Koşullu Geçer DD 1.0, Başarısız FD 0.5, Başarısız FF 0.0"
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 35/1 | "GANO değeri en az 2.00 olan öğrenci, herhangi bir dersinin (FF), (FD), (D) veya (K) olmaması koşulu ile başarılı kabul edilir."
+
+### p42
+CEVAP: D notu, devamsızlıktan kalan öğrenciye verilir ve GANO hesabında FF (0.0) olarak dahil edilir. Yaz okulunda bu dersi alma zorunluluğunuz yoktur; yaz okulu isteğe bağlıdır. Ancak dersi tekrar verildiği ilk yarıyılda almak zorundasınız.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/4-a | "(D) Devamsız: Derse devam yükümlülüğünü veya ders uygulamalarına ilişkin koşulları yerine getirmeyen öğrenciye verilir. (D), not ortalaması hesabına (FF) olarak dâhil edilir."
+KAYNAK: BUÜ Yaz Öğretimi Yönetmeliği, Madde 10/1-a | "Yaz öğretiminden ders almak öğrencinin isteğine bağlıdır."
+
+### p43
+CEVAP: Evet, yasal olarak mümkündür. Yüksek lisans ve lisans farklı eğitim düzeyleri olduğundan, YÖK mevzuatına göre aynı anda farklı düzeylerde eğitim görülebilir. Ancak aynı düzeyde iki örgün programa kayıt yasaktır.
+KAYNAK: 2547 sayılı YÖK Kanunu ve YÖK uygulamaları | "Lisans ve yüksek lisans farklı eğitim düzeyleri olduğundan eş zamanlı kayıt yapılabilir."
+
+### p44
+CEVAP: Koşullu geçmek (DC=1.5 veya DD=1.0 notu almak) için GANO'nun en az 2.00 olması gerekir. GANO 2.00 ve üzerinde olan öğrencinin DC veya DD notu aldığı dersler başarılı sayılır. GANO 2.00'nin altındaysa koşullu geçilen dersler başarısız kabul edilir ve tekrar alınması gerekir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 35/1 | "GANO değeri en az 2.00 olan öğrenci, herhangi bir dersinin (FF), (FD), (D) veya (K) olmaması koşulu ile başarılı kabul edilir."
+
+### p45
+CEVAP: Yaz okulu ücreti, Yönetim Kurulu tarafından belirlenen ders saati ücreti başına katkı payı olarak hesaplanır. Ücret, dersin haftalık ders saati ile birim ders saati ücretinin çarpılmasıyla bulunur (7 hafta ile değil, ders saati başına). Güncel ücretler her yıl BUÜ tarafından ilan edilir.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 11/1 | "Yaz öğretiminde açılacak derslere kesin kayıt yaptıracak öğrenci her yıl mevzuat hükümlerince Yönetim Kurulu tarafından belirlenen ders saati ücreti başına katkı payı öder."
+
+### p46
+CEVAP: Evet, bazı koşullar altında çan eğrisi uygulanmayabilir. Senato tarafından "bağıl değerlendirme sistemiyle değerlendirilemeyecek özellikteki dersler" belirlenir. Bu dersler için hoca, HBAS ve YSSL sınırlarına bağlı kalarak harf notlarını doğrudan (mutlak olarak) belirler.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 32/1-2 | "...bağıl değerlendirme sistemiyle değerlendirilemeyecek özellikteki dersler Senato tarafından belirlenir. Bağıl Değerlendirme Sistemi ile değerlendirilemeyecek dersler için dersi veren öğretim elemanı, HBAS ve YSSL sınırlarına bağlı kalarak harf notlarını belirler."
+
+### p47
+CEVAP: Hayır, kaldığınız dersi yaz okulunda almak zorunlu değildir; yaz öğretiminden ders almak isteğe bağlıdır. Ancak başarısız olunan ders, tekrar verildiği ilk yarıyılda alınmak zorundadır.
+KAYNAK: BUÜ Yaz Öğretimi Yönetmeliği, Madde 10/1-a | "Yaz öğretiminden ders almak öğrencinin isteğine bağlıdır."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 28/1 | "Bir dersten başarısız olan, devamsızlıktan kalan ya da bir dersi alması gereken yarıyılda/yılda almayan veya alamayan öğrenciler, bu dersi tekrar verildiği ilk yarıyılda/yılda almak zorundadırlar."
+
+### p48
+CEVAP: Yaz okulu başvuru tarihleri ve ücretleri her yıl Senato kararıyla belirlenir ve akademik takvimde ilan edilir. Ücret, Yönetim Kurulu tarafından belirlenen ders saati ücreti başına hesaplanır. Güncel ücret ve tarihler için BUÜ'nün resmî internet sayfasındaki yaz öğretimi duyurularına bakılmalıdır.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 6/1 | "Yaz öğretiminde ders açılması, derslere kayıt, derslerin başlangıç ve bitişi, sınavlar ve diğer hususlar Senato tarafından belirlenen akademik takvime göre yürütülür."
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 11/1 | "...her yıl mevzuat hükümlerince Yönetim Kurulu tarafından belirlenen ders saati ücreti başına katkı payı öder."
+
+### p49
+CEVAP: Ortalama 1.80'in altına düşerse yeni ders alamazsınız, ancak başarısız olduğunuz ve koşullu geçtiğiniz dersleri alabilirsiniz. Kayıt yapabilir, ancak sadece eski dersleri tekrar edebilirsiniz.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 27/4 | "GANO'su 1.80'in altında olan öğrenci yeni ders alamaz. Bu durumda olan öğrenciler not yükseltme amacıyla, öncelikle başarısız olduğu derslerden başlamak ve dönemsel AKTS yükünü aşmamak kaydıyla geçmiş yıllardaki derslerine tekrar kaydolabilirler."
+
+### p50
+CEVAP: Koşullu geçmenin koşulu GANO'nun 2.00 ve üzerinde olmasıdır. İngilizce dersinden DC veya DD aldıysanız, GANO'nuz 2.00 ve üzerindeyse o ders başarılı sayılır. GANO 2.00'nin altına düşerse koşullu geçtiğiniz dersler (DC/DD) başarısız kabul edilir ve tekrar almanız gerekir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 35/1 | "GANO değeri en az 2.00 olan öğrenci, herhangi bir dersinin (FF), (FD), (D) veya (K) olmaması koşulu ile başarılı kabul edilir."
+
+======================================================================
+PARTİ 6 (sorular p51–p60)
+======================================================================
+
+### p51
+CEVAP: Hayır, İngilizce muafiyetinden geçen öğrenciler zorunlu olarak Almanca veya Fransızca seçmek zorunda değildir. Muafiyet sınavını geçen veya zorunlu/isteğe bağlı hazırlık eğitimini başarıyla tamamlayan öğrenciler ortak zorunlu Yabancı Dil I ve II derslerinden muaf olurlar. Ancak müfredatta farklı bir yabancı dil dersi (mesleki yabancı dil gibi) varsa, o dersin koşulları bölüm ders planına göre belirlenir.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 24/4 | "Zorunlu veya isteğe bağlı hazırlık eğitimini başarı ile tamamlayan öğrenciler bu derslerden muaf olurlar."
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 24/1 | "Bu sınavdan 60 ve üzerinde not alan öğrenciler, ortak zorunlu Yabancı Dil I ve II derslerinden muaf olurlar."
+
+### p52
+CEVAP: Evet, alttan kalınan seçmeli dersin yerine sonraki dönem farklı bir seçmeli ders alınabilir. Öğrenci aynı dersi tekrar edebileceği gibi, dersin ait olduğu yarıyılda yer alan farklı bir seçmeli ders de alabilir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 28/3 | "Bir seçmeli dersten başarısız olan öğrenci, aynı dersi tekrar edebileceği gibi, dersin ait olduğu yarıyılda/yılda yer alan farklı bir seçmeli dersi de alabilir."
+
+### p53
+CEVAP: Üniversite içi yatay geçiş kontenjanları, birim kurulları tarafından belirlenir. İkinci yarıyıldan başlayarak beşinci yarıyıl dahil olmak üzere, ÖSYM Kılavuzunda öngörülen öğrenci kontenjanının yıllık %15'ini geçmeyecek biçimde dönemlere bölünerek ilgili birim yönetim kurulları tarafından karara bağlanır.
+KAYNAK: BUÜ Yatay Geçiş Yönergesi, Madde 11/2 | "Kurum içi yatay geçiş kontenjanı birim kurulları tarafından her dönem için belirlenebilir. ...ÖSYM Kılavuzunda öngörülen öğrenci kontenjanının yıllık %15'ini geçmeyecek biçimde dönemlere bölünerek ilgili birim yönetim kurulları tarafından karara bağlanır."
+
+### p54
+CEVAP: Hazırlık sınıfı en fazla 2 yıl (4 yarıyıl) olabilir. İlk yıl başarılı olunursa 1 yıl sürer. Başarısız olunursa en fazla 1-2 yarıyıl daha devam edilebilir, ancak toplam süre 4 yarıyılı (2 yılı) geçemez.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 11/1 | "Hazırlık sınıfı öğretimi süresi en çok dört yarıyıldır."
+
+### p55
+CEVAP: Hazırlık yeterlik sınavı, bahar yarıyılı sonunda ve yaz öğretimi sonunda yapılır. Muafiyet/seviye tespit sınavı ise eğitim-öğretim yılı başlangıcında (güz yarıyılı başında) yapılır.
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 20/3 | "Yeterlik sınavı; hazırlık sınıfına devam eden ve Yüksekokul Kurulu tarafından ilgili yabancı dillere göre belirlenen başarı koşulunu sağlayan öğrenciler için bahar yarıyılı ve yaz öğretimi sonunda yapılır."
+KAYNAK: BUÜ Yabancı Diller Yüksekokulu Yönetmeliği, Madde 7/1 | "Yabancı dil muafiyet/seviye tespit sınavı; eğitim-öğretim yılı başlangıcında...yapılır."
+
+### p56
+CEVAP: Yatay geçiş yapmak KYK bursunu veya kredisini otomatik olarak kestirmez. Ancak yeni okula kayıt olduktan sonra e-Devlet üzerinden KYK nakil başvurusu yapılması zorunludur. Nakil başvurusu yapılmazsa burs/kredi kesilir.
+KAYNAK: KYK (Kredi ve Yurtlar Genel Müdürlüğü) uygulamaları | "Yatay geçiş sonrasında e-Devlet üzerinden nakil başvurusu yapılması halinde burs/kredi devam eder."
+
+### p57
+CEVAP: Alttan dersiniz bu dönemdeki dersle çakışıyorsa, çakışma durumu mazeret olarak kabul edilir ve mazeret sınavı hakkı verilebilir. Ayrıca daha önce devam şartı sağlanmış teorik derslerde tekrar devam zorunluluğu aranmadığından, çakışan dersin devamını daha önce almışsanız sadece sınavına girebilirsiniz.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 30/5 | "Sınav programdaki çakışmalar haklı ve geçerli neden kabul edilir."
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 18/3 | "...bir kez devam şartı sağlanmış olan salt teorik dersler ile derse bağlı uygulama ve laboratuvar derslerinin tekrar alınması durumunda devam zorunluluğu aranmaz"
+
+### p58
+CEVAP: 2547 sayılı YÖK Kanunu'nun 54. maddesi kapsamında: kopya çekmeye teşebbüs kınama cezası, kopya çekmek veya çektirmek yükseköğretim kurumundan bir yarıyıl uzaklaştırma, tehditle kopya veya yerine sınava girmek iki yarıyıl uzaklaştırma cezasıdır.
+KAYNAK: 2547 sayılı YÖK Kanunu, Madde 54 | "Sınavlarda kopya çekmek veya çektirmek: Yükseköğretim kurumundan bir yarıyıl uzaklaştırma cezası."
+
+### p59
+CEVAP: Sınav tarihleri bölüm veya birim tarafından akademik takvimde belirlenen tarihler arasında programlanır ve ilan edilir. Ara sınav tarihleri de bölüm/birim tarafından en az iki hafta önce ilan edilmelidir. Hocanın kendi kafasına göre sınav günü değiştirmesi yönetmeliğe uygun değildir.
+KAYNAK: BUÜ Önlisans ve Lisans Eğitim Öğretim Yönetmeliği, Madde 29/1 | "Yarıyıl/yıl sonu ve bütünleme sınav programları akademik takvimde belirlenen tarihler arasında, bölüm veya birim tarafından programlanır ve ilân edilir. Ara sınav tarihleri, bölüm veya birim tarafından programlanır ve sınavların başlangıcından en az iki hafta önce ilan edilir."
+
+### p60
+CEVAP: Başka üniversitede okuyan öğrenci BUÜ'den yaz okulu dersi almak istiyorsa, kontenjan uygun olduğu takdirde ilgili birim yönetim kurulu kararı ile kabul edilebilir. Öğrencinin kendi üniversitesinden izin/onay alması ve BUÜ'ye başvurması gerekir.
+KAYNAK: BUÜ Önlisans ve Lisans Yaz Öğretimi Yönetmeliği, Madde 10/1-ğ | "Yaz öğretiminde açılan derslere diğer üniversitelerin öğrencileri kontenjan uygun olduğu takdirde ilgili birim yönetim kurulu kararı ile kabul edilebilir."
