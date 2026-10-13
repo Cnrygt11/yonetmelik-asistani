@@ -42,3 +42,6 @@ rag_dergi_yayin.pdf
 eval/reports/*.tarama.json
 # Altın setin ham hazırlık dosyası (altın set: eval/gold_set.jsonl)
 rag_buu_altin_set.txt
+
+# Kör puanlama sayfaları: eval/puanlama_hazirla.py ile aynı tohumdan birebir üretilir
+eval/puanlama/set*.html

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kör Puanlama</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --kart: #ffffff; --yazi: #1d2330; --soluk: #5d6677; --cizgi: #dde1e8;
+    --vurgu: #2f5bd3; --evet: #1e7f4f; --hayir: #b3261e; --emin: #7a6a12;
+    --evet-bg: #e3f4ea; --hayir-bg: #fbe6e4; --emin-bg: #f5efcf; --kaynak: #eef2fb; --altin: #fff8e1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171d; --kart: #1d2129; --yazi: #e6e9ef; --soluk: #9aa3b2; --cizgi: #333a46;
+      --vurgu: #7fa2ff; --evet: #6fd39b; --hayir: #ff8d84; --emin: #e3cf6a;
+      --evet-bg: #1d3a2b; --hayir-bg: #432321; --emin-bg: #3a3518; --kaynak: #222a3a; --altin: #3a3320;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--yazi); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: var(--kart); border-bottom: 1px solid var(--cizgi);
+           padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+  header h1 { font-size: 17px; margin: 0; }
+  .ilerleme { color: var(--soluk); font-size: 14px; }
+  .bar { flex: 1 1 160px; height: 6px; background: var(--cizgi); border-radius: 3px; overflow: hidden; min-width: 120px; }
+  .bar > div { height: 100%; background: var(--vurgu); width: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 16px; }
+  .kart { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+  .ust { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--soluk); font-size: 14px; margin-bottom: 6px; }
+  .rozet { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--kaynak); font-size: 13px; color: var(--yazi); }
+  .soru { font-size: 20px; font-weight: 600; margin: 4px 0 2px; }
+  .etiket { display: inline-block; font-size: 12px; font-weight: 700; padding: 0 5px; border-radius: 4px;
+            background: var(--vurgu); color: #fff; vertical-align: 1px; }
+  .cevap { border-left: 4px solid var(--vurgu); padding: 6px 12px; margin-top: 6px; }
+  .cevap ul { margin: 6px 0; padding-left: 20px; }
+  .retbilgi { background: var(--emin-bg); border-radius: 6px; padding: 6px 10px; font-size: 14px; margin-top: 8px; }
+  details.kaynak { background: var(--kaynak); border-radius: 8px; padding: 6px 12px; margin: 8px 0; }
+  details.kaynak summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+  details.kaynak .not { font-weight: 400; color: var(--soluk); }
+  .metin { white-space: pre-wrap; font-size: 14.5px; margin: 8px 0 4px; }
+  .sorular h2, .kaynaklar h2 { font-size: 15px; margin: 0 0 10px; color: var(--soluk); text-transform: uppercase; letter-spacing: .03em; }
+  .s { padding: 10px 0; border-top: 1px solid var(--cizgi); }
+  .s:first-of-type { border-top: 0; }
+  .s p { margin: 0 0 6px; font-weight: 600; }
+  .secenek { display: flex; gap: 8px; flex-wrap: wrap; }
+  button { font: inherit; cursor: pointer; border-radius: 7px; border: 1px solid var(--cizgi); background: var(--kart);
+           color: var(--yazi); padding: 6px 14px; }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  button.evet.secili { background: var(--evet-bg); border-color: var(--evet); color: var(--evet); font-weight: 700; }
+  button.hayir.secili { background: var(--hayir-bg); border-color: var(--hayir); color: var(--hayir); font-weight: 700; }
+  button.emin.secili { background: var(--emin-bg); border-color: var(--emin); color: var(--emin); font-weight: 700; }
+  button.ana { background: var(--vurgu); color: #fff; border-color: var(--vurgu); font-weight: 600; }
+  textarea { width: 100%; font: inherit; font-size: 15px; padding: 8px; border-radius: 7px; border: 1px solid var(--cizgi);
+             background: var(--bg); color: var(--yazi); min-height: 56px; }
+  .altin { background: var(--altin); border-radius: 8px; padding: 10px 12px; margin-top: 12px; }
+  .gezinti { display: flex; gap: 10px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .kilit { font-size: 13px; color: var(--soluk); }
+  .ipucu { font-size: 13px; color: var(--soluk); }
+  details.yardim { font-size: 14px; }
+  details.yardim li { margin-bottom: 4px; }
+  input[type=number] { width: 70px; font: inherit; padding: 4px; border-radius: 6px; border: 1px solid var(--cizgi);
+                       background: var(--bg); color: var(--yazi); }
+  @media (max-width: 600px) { .soru { font-size: 18px; } main { padding: 10px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Kör puanlama · <span id="setadi"></span></h1>
+  <span class="ilerleme" id="ilerleme"></span>
+  <div class="bar"><div id="bar"></div></div>
+  <label class="ipucu">Git: <input type="number" id="git" min="1"></label>
+  <button id="disa">Dışa aktar (.jsonl)</button>
+</header>
+<main>
+  <details class="kart yardim">
+    <summary><b>Nasıl puanlanır?</b> (bir kez okuyun)</summary>
+    <ul>
+      <li>Cevabı <b>aşağıdaki madde metinlerine</b> göre yargılayın; kendi bilginize ya da başkasının cevabına göre değil.</li>
+      <li><b>Yanıltıcı bilgi:</b> metinle çelişen, metinde olmayan bir kural uyduran ya da öğrenciyi yanlış bir şey yapmaya yönlendirecek bilgi. Sadece eksik olmak yanıltıcı değildir; eksikliği 3. soruda işaretleyin.</li>
+      <li><b>Asıl soru cevaplandı mı:</b> öğrencinin gerçekten öğrenmek istediği şey cevapta var mı? Konuyla ilgili ama soruyu cevaplamayan bilgi "Hayır"dır.</li>
+      <li><b>Önemli koşul atlandı mı:</b> cevap doğru ama öğrencinin bilmezse zarar göreceği bir koşul, istisna ya da süre eksikse "Evet".</li>
+      <li><b>Kaynak destekliyor mu:</b> cevapta [K1] gibi gösterilen maddeler, cevaptaki bilgiyi gerçekten içeriyor mu?</li>
+      <li>Karar veremiyorsanız <b>Emin değilim</b> deyin; o soru karşılaştırmaya katılmaz. Tahmin etmeyin.</li>
+      <li>Puanı kaydedince altın cevap açılır ve puanlar kilitlenir. Puanlar bu tarayıcıda otomatik saklanır; bitince ya da ara verirken <b>Dışa aktar</b>'a basın.</li>
+      <li>Kısayollar: ← → önceki/sonraki öğe, Ctrl+Enter kaydet.</li>
+    </ul>
+  </details>
+  <div id="oge"></div>
+</main>
+<script>
+const VERI = /*VERI*/null;
+const ANAHTAR = "puanlama:" + VERI.set;
+const SORULAR_CEVAP = [
+  ["yaniltici", "1. Cevapta yanlış ya da yanıltıcı bir bilgi var mı?"],
+  ["cevaplandi", "2. Sorunun asıl sorduğu şey cevaplandı mı?"],
+  ["eksik", "3. Öğrencinin bilmesi gereken önemli bir koşul ya da istisna atlanmış mı?"],
+  ["kaynak", "4. Cevapta gösterilen kaynak maddeler cevabı destekliyor mu?"],
+];
+const SORULAR_RET = [
+  ["retde_cevap_vardi", "Sistem cevap vermedi. Aşağıdaki madde metinlerinde sorunun cevabı (ya da bir kısmı) var mıydı?"],
+];
+const SECENEKLER = [["evet", "Evet"], ["hayir", "Hayır"], ["emin_degilim", "Emin değilim"]];
+const PROFIL = {"muhendislik-fakultesi": "Mühendislik Fakültesi", "fen-edebiyat-fakultesi": "Fen-Edebiyat Fakültesi"};
+
+let durum = {};
+try { durum = JSON.parse(localStorage.getItem(ANAHTAR) || "{}"); } catch (e) { durum = {}; }
+let sira = 0;
+try { sira = Math.min(VERI.ogeler.length - 1, Math.max(0, parseInt(localStorage.getItem(ANAHTAR + ":sira") || "0", 10) || 0)); } catch (e) {}
+
+function sakla() {
+  try { localStorage.setItem(ANAHTAR, JSON.stringify(durum)); localStorage.setItem(ANAHTAR + ":sira", String(sira)); }
+  catch (e) { alert("Tarayıcı puanları saklayamadı. Lütfen şimdi 'Dışa aktar'a basın."); }
+}
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c])); }
+function etiketle(s) { return esc(s).replace(/\[(K\d+)\]/g, '<span class="etiket">$1</span>'); }
+function cevapHtml(t) {
+  const satirlar = String(t).split("\n"), out = []; let liste = false;
+  for (const s of satirlar) {
+    if (/^\s*-\s+/.test(s)) { if (!liste) { out.push("<ul>"); liste = true; } out.push("<li>" + etiketle(s.replace(/^\s*-\s+/, "")) + "</li>"); }
+    else { if (liste) { out.push("</ul>"); liste = false; } if (s.trim()) out.push("<p>" + etiketle(s) + "</p>"); }
+  }
+  if (liste) out.push("</ul>");
+  return out.join("");
+}
+function kayit(oge) { return durum[oge.oge] || (durum[oge.oge] = {cevaplar: {}, not: "", kaydedildi: false}); }
+function sorular(oge) { return oge.ret ? SORULAR_RET : SORULAR_CEVAP; }
+function tamamMi(oge) { const k = durum[oge.oge]; return !!(k && k.kaydedildi); }
+
+function ciz() {
+  const oge = VERI.ogeler[sira], k = kayit(oge), kilitli = k.kaydedildi;
+  const tamam = VERI.ogeler.filter(tamamMi).length;
+  document.getElementById("setadi").textContent = VERI.set;
+  document.getElementById("ilerleme").textContent = `Öğe ${sira + 1} / ${VERI.ogeler.length} · ${tamam} tamamlandı · ${VERI.ogeler.length - tamam} kaldı`;
+  document.getElementById("bar").style.width = (100 * tamam / VERI.ogeler.length) + "%";
+  const p = oge.profil || {};
+  const profil = [PROFIL[p.birim] || p.birim || "fakülte belirtilmedi", p.duzey || ""].filter(Boolean).join(" · ");
+  const kaynaklar = oge.kaynaklar.map(s => `
+    <details class="kaynak" ${s.gosterilen ? "open" : ""}>
+      <summary>[${esc(s.etiket)}] ${esc(s.baslik)} <span class="not">${s.gosterilen ? "· cevapta gösterildi" : "· bağlamda vardı, cevapta gösterilmedi"}</span></summary>
+      <div class="metin">${esc(s.metin)}</div>
+    </details>`).join("") || "<p class='ipucu'>Bağlamda kaynak yoktu.</p>";
+  const soruHtml = sorular(oge).map(([ad, metin]) => `
+    <div class="s"><p>${esc(metin)}</p><div class="secenek">${SECENEKLER.map(([d, y]) =>
+      `<button class="${d === "evet" ? "evet" : d === "hayir" ? "hayir" : "emin"} ${k.cevaplar[ad] === d ? "secili" : ""}"
+        data-soru="${ad}" data-deger="${d}" ${kilitli ? "disabled" : ""}>${y}</button>`).join("")}</div></div>`).join("");
+  const hepsi = sorular(oge).every(([ad]) => k.cevaplar[ad]);
+  const altin = kilitli ? `
+    <div class="altin"><b>Altın cevap (asistanın yazdığı beklenen cevap):</b><div class="metin">${esc(oge.altin_cevap)}</div>
+      <div class="s"><p>Bu altın cevap madde metinlerine göre doğru mu?</p><div class="secenek">${SECENEKLER.map(([d, y]) =>
+        `<button class="${d === "evet" ? "evet" : d === "hayir" ? "hayir" : "emin"} ${k.altin_dogru === d ? "secili" : ""}" data-altin="${d}">${y}</button>`).join("")}</div></div>
+      <textarea id="altinnot" placeholder="Altın cevap hakkında not (isteğe bağlı)">${esc(k.altin_not || "")}</textarea>
+    </div>` : "";
+  document.getElementById("oge").innerHTML = `
+    <div class="kart">
+      <div class="ust"><b>${esc(oge.oge)}</b><span class="rozet">${esc(profil)}</span></div>
+      <div class="soru">${esc(oge.soru)}</div>
+      <div class="cevap">${cevapHtml(oge.cevap)}</div>
+      ${oge.ret ? '<div class="retbilgi">Sistem bu soruya cevap vermedi ("bulamadım" dedi).</div>' : ""}
+    </div>
+    <div class="kart sorular"><h2>Puanınız</h2>${soruHtml}
+      <div class="s"><p>Not (isteğe bağlı): yanlışsa doğrusu ne olmalıydı, ne eksikti?</p>
+        <textarea id="not" ${kilitli ? "disabled" : ""}>${esc(k.not)}</textarea></div>
+      <div class="gezinti">
+        <button id="onceki">← Önceki</button>
+        ${kilitli ? '<span class="kilit">Kaydedildi; altın cevap açıldığı için puanlar kilitli.</span>'
+                  : `<button class="ana" id="kaydet" ${hepsi ? "" : "disabled"}>Kaydet ve altın cevabı göster</button>`}
+        <button id="sonraki">Sonraki →</button>
+      </div>
+      ${altin}
+    </div>
+    <div class="kart kaynaklar"><h2>Modelin gördüğü madde metinleri</h2>${kaynaklar}</div>`;
+  baglan(oge);
+}
+
+function baglan(oge) {
+  const k = kayit(oge);
+  document.querySelectorAll("button[data-soru]").forEach(b => b.onclick = () => {
+    k.cevaplar[b.dataset.soru] = b.dataset.deger; sakla(); ciz(); });
+  document.querySelectorAll("button[data-altin]").forEach(b => b.onclick = () => {
+    k.altin_dogru = b.dataset.altin; sakla(); ciz(); });
+  const not = document.getElementById("not");
+  if (not) not.oninput = () => { k.not = not.value; sakla(); };
+  const an = document.getElementById("altinnot");
+  if (an) an.oninput = () => { k.altin_not = an.value; sakla(); };
+  const kaydet = document.getElementById("kaydet");
+  if (kaydet) kaydet.onclick = () => kaydetOge(oge);
+  document.getElementById("onceki").onclick = () => git(sira - 1);
+  document.getElementById("sonraki").onclick = () => git(sira + 1);
+}
+
+function kaydetOge(oge) {
+  const k = kayit(oge);
+  if (k.kaydedildi || !sorular(oge).every(([ad]) => k.cevaplar[ad])) return;
+  k.kaydedildi = true; k.zaman = new Date().toISOString(); sakla(); ciz();
+}
+// aynı öğeye gidişte yeniden çizilmez: Git kutusundan çıkış, ardından gelen tıklamayı kaybettirmesin
+function git(i) { if (i < 0 || i >= VERI.ogeler.length || i === sira) return; sira = i; sakla(); ciz(); window.scrollTo(0, 0); }
+
+document.addEventListener("keydown", e => {
+  const yaziyor = ["TEXTAREA", "INPUT"].includes(document.activeElement && document.activeElement.tagName);
+  if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); kaydetOge(VERI.ogeler[sira]); return; }
+  if (yaziyor) return;
+  if (e.key === "ArrowLeft") git(sira - 1);
+  if (e.key === "ArrowRight") git(sira + 1);
+});
+document.getElementById("git").onchange = e => git(parseInt(e.target.value, 10) - 1);
+document.getElementById("disa").onclick = () => {
+  const satirlar = VERI.ogeler.filter(o => durum[o.oge] && (durum[o.oge].kaydedildi || Object.keys(durum[o.oge].cevaplar).length)).map(o => {
+    const k = durum[o.oge];
+    return JSON.stringify({set: VERI.set, oge: o.oge, soru_id: o.soru_id, model: o.model, tur: o.ret ? "ret" : "cevap",
+      ...k.cevaplar, not: k.not || "", kaydedildi: !!k.kaydedildi, altin_dogru: k.altin_dogru || null,
+      altin_not: k.altin_not || "", zaman: k.zaman || null});
+  });
+  const blob = new Blob([satirlar.join("\n") + "\n"], {type: "application/x-ndjson"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = `puanlar_kullanici_${VERI.set}.jsonl`; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+ciz();
+</script>
+</body>
+</html>
