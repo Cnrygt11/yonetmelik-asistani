@@ -67,17 +67,20 @@ def test_ask_and_feedback_are_logged_with_previous_question(tmp_path):
     s = AssistantService(Retriever(), LLM(v3("10 iş günü içinde başvurulur [K1].",
                                               [("K1", "10 iş günü içinde başvurulur.")])), MADDELER)
     k = Kayit(tmp_path / "k.jsonl", "2026.10.2")
-    cevap, kaynak, q1 = ask_handler(s, k, "kaydımı dondurmak istiyorum", "Mühendislik Fakültesi", "Lisans", None)
+    cevap, kaynak, q1, duz = ask_handler(s, k, "kaydımı dondurmak istiyorum", "Mühendislik Fakültesi", "Lisans", None)
     assert "[K1]" in cevap and f"kayıt {q1}" in cevap and "İzinli ayrılma" in kaynak
-    _, _, q2 = ask_handler(s, k, "peki ne zamana kadar", "Mühendislik Fakültesi", "Lisans", q1)
-    assert feedback_handler(k, q2, "Yanlış", " takip sorusu ").startswith("Kaydedildi")
+    assert duz == "10 iş günü içinde başvurulur [K1]."            # geçmişe eklenecek düz cevap
+    _, _, q2, _ = ask_handler(s, k, "peki ne zamana kadar", "Mühendislik Fakültesi", "Lisans", q1,
+                              [("kaydımı dondurmak istiyorum", duz)])
+    assert feedback_handler(k, q2, "Yanıltıcı bilgi var", " takip sorusu ").startswith("Kaydedildi")
     assert feedback_handler(k, None, "Doğru", "") == "Önce bir soru sorun."
     assert feedback_handler(k, q2, None, "") == "Bir seçenek işaretleyin."
     rows = [json.loads(line) for line in (tmp_path / "k.jsonl").read_text(encoding="utf-8").splitlines()]
     assert [r["tur"] for r in rows] == ["soru", "soru", "degerlendirme"]
     assert rows[0]["birim"] == "muhendislik-fakultesi" and rows[0]["gosterilen"] == ["eoy:md19"]
     assert rows[0]["corpus_version"] == "2026.10.2" and rows[1]["onceki_id"] == q1
-    assert (rows[2]["id"], rows[2]["karar"], rows[2]["not"]) == (q2, "yanlis", "takip sorusu")
+    assert (rows[2]["id"], rows[2]["karar"], rows[2]["not"]) == (q2, "yaniltici", "takip sorusu")
+    assert "yeniden_yazilan" in rows[1] and "cikarilan" in rows[1]
 
 
 def test_ask_handler_survives_llm_errors_and_logs_them(tmp_path):
@@ -88,9 +91,9 @@ def test_ask_handler_survives_llm_errors_and_logs_them(tmp_path):
             raise RuntimeError("bağlantı koptu")
 
     k = Kayit(tmp_path / "k.jsonl")
-    cevap, kaynak, qid = ask_handler(AssistantService(Retriever(), Broken(), MADDELER), k, "soru",
-                                     "Belirtmek istemiyorum", "Lisans", "eski")
-    assert "hata" in cevap.lower() and kaynak == "" and qid == "eski"   # önceki soru bağı korunur
+    cevap, kaynak, qid, duz = ask_handler(AssistantService(Retriever(), Broken(), MADDELER), k, "soru",
+                                          "Belirtmek istemiyorum", "Lisans", "eski")
+    assert "hata" in cevap.lower() and kaynak == "" and qid == "eski" and duz is None  # bağ korunur
     row = json.loads((tmp_path / "k.jsonl").read_text(encoding="utf-8"))
     assert row["tur"] == "hata" and "bağlantı koptu" in row["hata"]
 
@@ -99,5 +102,5 @@ def test_without_kayit_nothing_is_written(tmp_path):
     from yonetmelik_asistani.ui.app import Kayit, ask_handler
 
     s = AssistantService(Retriever(), LLM(v3(RET_CUMLESI)), MADDELER)
-    cevap, _, _ = ask_handler(s, Kayit(None), "yurt ücreti", "Belirtmek istemiyorum", "Lisans", None)
+    cevap, _, _, _ = ask_handler(s, Kayit(None), "yurt ücreti", "Belirtmek istemiyorum", "Lisans", None)
     assert "kayıt" not in cevap and list(tmp_path.iterdir()) == []

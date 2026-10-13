@@ -186,3 +186,74 @@ def test_hit_madde_first_queued_as_link_still_brings_its_own_links():
     hits = [Hit("y:md7", "y:md7", 0.9, {"rerank": 0.9}), Hit("y:md24", "y:md24", 0.8, {"rerank": 0.8})]
     ctx = build_context(hits, chunks, maddeler, links=links)
     assert [(c.madde_id, c.bagli) for c in ctx] == [("y:md7", ""), ("y:md24", ""), ("y:md23", "y:md24")]
+
+
+def test_split_sentences_keeps_abbreviations_and_decimals():
+    from yonetmelik_asistani.generation.pipeline import split_sentences
+
+    t = "GANO'n 1.80'in altındaysa yeni ders alamazsın [K1]. Ayrıntı md. 27'de [K1]. (Not) son."
+    assert split_sentences(t) == ["GANO'n 1.80'in altındaysa yeni ders alamazsın [K1].", "Ayrıntı md. 27'de [K1].",
+                                  "(Not) son."]
+
+
+def test_support_checker_drops_flagged_sentences_and_refuses_if_nothing_left():
+    import json
+    import types
+
+    from yonetmelik_asistani.generation.pipeline import SupportChecker, render
+
+    ctx = [ContextItem("K1", "h", "Yaz öğretiminde alınan dersler için bütünleme sınavı yapılmaz.")]
+    raw = json.dumps({"alintilar": [{"kaynak": "K1", "metin": "Yaz öğretiminde alınan dersler için bütünleme sınavı yapılmaz."}],
+                      "cevap": "Hayır, yaz okulunda büt yok [K1]. Başarısızlıkta ek sınav hakkı da tanınmaz [K1].",
+                      "ayrintilar": ["Bağlamda başka bir kural yok."], "eksik": False}, ensure_ascii=False)
+
+    class LLM:
+        def __init__(self, flagged):
+            self.flagged, self.seen = flagged, None
+
+        def chat(self, messages, **kw):
+            self.seen = messages[-1]["content"]
+            return types.SimpleNamespace(text=json.dumps({"desteklenmeyen": self.flagged}), wall_s=1.0)
+
+    llm = LLM([{"no": 1, "neden": "ek sınav Yaz md. 13/3'te var"}])
+    text, _, err, removed = render(raw, ctx, SupportChecker(llm, ctx), sade=True)
+    assert text == "Hayır, yaz okulunda büt yok [K1].\n- Yönetmeliklerde başka bir kural yok." and not err
+    assert removed == [{"cumle": "Başarısızlıkta ek sınav hakkı da tanınmaz [K1].", "neden": "ek sınav Yaz md. 13/3'te var"}]
+    assert "1. Başarısızlıkta ek sınav" in llm.seen and "<metinler>" in llm.seen
+    hepsi = LLM([{"no": 0, "neden": "x"}, {"no": 1, "neden": "y"}])
+    assert render(raw, ctx, SupportChecker(hepsi, ctx))[0].startswith(RET_CUMLESI)
+
+
+def test_follow_up_question_is_rewritten_before_search():
+    import json
+    import types
+
+    from yonetmelik_asistani.generation.pipeline import answer
+
+    class Retriever:
+        chunks = CHUNKS
+        expander = None
+
+        def __init__(self):
+            self.queries = []
+
+        def search(self, q, profile=None, mode="hybrid_rerank"):
+            self.queries.append(q)
+            return [Hit("eoy:md19:f1", "eoy:md19", 0.9, {"rerank": 0.8})]
+
+    class LLM:
+        def chat(self, messages, schema=None, **kw):
+            if schema and "soru" in schema["properties"]:
+                return types.SimpleNamespace(text=json.dumps({"soru": "Kaydımı dondurursam ikinci öğretimde harç öder miyim?"}),
+                                             wall_s=0.5, model="sahte", prompt_tokens=1)
+            out = {"alintilar": [{"kaynak": "K1", "metin": "İzinli ayrılma (1)"}], "cevap": "Evet [K1].",
+                   "ayrintilar": [], "eksik": False}
+            return types.SimpleNamespace(text=json.dumps(out, ensure_ascii=False), wall_s=2.0, model="sahte",
+                                         prompt_tokens=9)
+
+    r = Retriever()
+    a = answer("peki ikinci öğretimde?", r, LLM(), MADDELER, gecmis=[("Kaydımı dondurursam harç öder miyim?", "…")])
+    assert r.queries == ["Kaydımı dondurursam ikinci öğretimde harç öder miyim?"]
+    assert a.soru == "peki ikinci öğretimde?" and a.yeniden_yazilan.startswith("Kaydımı dondurursam") and a.sure_s == 2.5
+    b = answer("izin?", Retriever(), LLM(), MADDELER)          # geçmiş yoksa yeniden yazılmaz
+    assert b.yeniden_yazilan == ""

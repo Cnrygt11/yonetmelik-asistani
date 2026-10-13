@@ -70,22 +70,25 @@ class AssistantService:
     max_sources: int | None = None
     links: dict[str, list[str]] = field(default_factory=dict)  # configs/ilgili_maddeler.yaml
     istem: str = PROMPT_VERSION
+    dogrula: bool = False  # cevap cümlelerinin bağlama karşı ikinci model çağrısıyla denetlenmesi
 
-    def ask(self, soru: str, *, birim: str | None = None, duzey: str | None = None) -> Result:
+    def ask(self, soru: str, *, birim: str | None = None, duzey: str | None = None,
+            gecmis: list[tuple[str, str]] | None = None) -> Result:
         soru = (soru or "").strip()
         if not soru:
             return Result("Lütfen bir soru yazın.")
         profile = {"birim": birim, "duzey": duzey}
         a = answer(soru, self.retriever, self.llm, self.maddeler, profile=profile, budget=self.budget,
                    rel_rerank=self.rel_rerank, max_sources=self.max_sources, links=self.links,
-                   repealed=self.repealed, istem=self.istem)
+                   repealed=self.repealed, istem=self.istem, dogrula=self.dogrula, gecmis=gecmis)
         shown = [] if a.ret else cited_sources(a, self.maddeler)
         kayit = {"soru": soru, "birim": birim, "duzey": duzey, "cevap": a.cevap, "ret": a.ret,
                  "baglam": [k["madde_id"] for k in a.kaynaklar], "gosterilen": [k["madde_id"] for k in shown],
                  "sure_s": a.sure_s, "model": a.model, "istem": a.istem,
                  "sorgu_tr": getattr(self.retriever, "last_neural_query", ""),
                  "sozluk": getattr(self.retriever, "last_expansion", []),
-                 "gecersiz_alinti": sum(not q["gecerli"] for q in a.alintilar), "json_hatasi": a.json_hatasi}
+                 "gecersiz_alinti": sum(not q["gecerli"] for q in a.alintilar), "json_hatasi": a.json_hatasi,
+                 "yeniden_yazilan": a.yeniden_yazilan, "cikarilan": a.cikarilan}
         return Result(a.cevap, shown, a.ret, a.terim_notlari, a.sure_s, kayit)
 
 

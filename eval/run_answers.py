@@ -39,10 +39,13 @@ from yonetmelik_asistani.generation.pipeline import (
     numbers_covered,
 )
 from yonetmelik_asistani.generation.prompts import (
+    DOGRULAMA_PROMPT,
     PROMPT_VERSION,
     PROMPT_VERSIONS,
     SYSTEM_PROMPT,
     SYSTEM_PROMPT_V3,
+    SYSTEM_PROMPT_V4,
+    YENIDEN_YAZ_PROMPT,
 )
 from yonetmelik_asistani.retrieval.service import load_retriever
 from yonetmelik_asistani.smoke import gpu_report
@@ -56,7 +59,8 @@ def settings_digest(cfg, ayar: dict) -> str:
     for rel in (paths.get("glossary", "data/glossary.yaml"), cfg.section("generation").get("ilgili_maddeler")):
         if rel and (REPO_ROOT / rel).exists():
             h.update((REPO_ROOT / rel).read_bytes())
-    h.update((SYSTEM_PROMPT_V3 if ayar["istem"] == "v3" else SYSTEM_PROMPT).encode())
+    h.update({"v2": SYSTEM_PROMPT, "v3": SYSTEM_PROMPT_V3, "v4": SYSTEM_PROMPT_V4}[ayar["istem"]].encode())
+    h.update((DOGRULAMA_PROMPT + YENIDEN_YAZ_PROMPT).encode())
     h.update(json.dumps({**ayar, "model": cfg.llm.model, "corpus": cfg.corpus_version,
                          **{k: cfg.section(k) for k in ("retrieval", "reranker", "embedding", "generation")}},
                         sort_keys=True, ensure_ascii=False, default=str).encode())
@@ -129,12 +133,13 @@ def main(argv: list[str] | None = None) -> int:
     max_sources = args.max_kaynak or gen.get("max_sources")
     links = (load_links(REPO_ROOT / gen["ilgili_maddeler"])
              if args.ilgili == "acik" and gen.get("ilgili_maddeler") else {})
-    max_tokens = args.max_tokens or (3000 if args.think else 1000 if args.istem == "v3" else None)
+    max_tokens = args.max_tokens or (3000 if args.think else 1000 if args.istem in ("v3", "v4") else None)
     llm_cfg = cfg.llm
     if args.think:  # düşünce token'ları da bağlam penceresine sığmalı
         llm_cfg = replace(llm_cfg, num_ctx=max(llm_cfg.num_ctx, 12288))
     ayar = {"istem": args.istem, "think": args.think, "max_tokens": max_tokens, "num_ctx": llm_cfg.num_ctx,
-            "max_kaynak": max_sources, "ilgili": bool(links), "rel_rerank": rel, "butce": budget}
+            "max_kaynak": max_sources, "ilgili": bool(links), "rel_rerank": rel, "butce": budget,
+            "dogrulama": bool(gen.get("dogrulama"))}
     ayar["ozet"] = settings_digest(replace(cfg, llm=llm_cfg), ayar)
     if done:  # başka ayarla üretilmiş dosyaya ekleme yapılmaz (eski cevaplar yeni ölçüm sanılır)
         old = (next(iter(done.values())).get("ayar") or {}).get("ozet")  # eski biçimde yok: yine reddedilir
@@ -154,7 +159,8 @@ def main(argv: list[str] | None = None) -> int:
         for i, g in enumerate(todo, 1):
             a = answer(g["soru"], retriever, llm, maddeler, profile=g.get("profil"), budget=budget,
                        rel_rerank=rel, max_sources=max_sources, links=links, repealed=repealed,
-                       istem=args.istem, think=args.think, max_tokens=max_tokens)
+                       istem=args.istem, think=args.think, max_tokens=max_tokens,
+                       dogrula=bool(gen.get("dogrulama")))
             baglam = [k["madde_id"] for k in a.kaynaklar]
             row = {"id": g["id"], "kategori": g["kategori"], "kaynak": g.get("kaynak", "ilk"),
                    "altin_maddeler": g["altin_maddeler"], "altin_cevap": g["altin_cevap"],

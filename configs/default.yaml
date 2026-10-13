@@ -51,6 +51,8 @@ generation:                # Faz 4 bağlam derleme
   rel_rerank: 0.1          # reranker skoru en iyi kaynağın %10'unun altındaki kaynaklar atılır
   max_sources: 5           # bağlamdaki en çok kaynak; Adım 1 taraması (FAZ_4.md)
   ilgili_maddeler: configs/ilgili_maddeler.yaml  # bağlantılı maddeler; boş bırakılırsa kapalı
+  dogrulama: true          # cevap cümleleri ikinci model çağrısıyla bağlama karşı denetlenir (istem v4)
+  takip: true              # arayüzde takip sorusu son iki soruya bakılarak yeniden yazılır
 
 paths:
   # Colab'da YA_DATA_DIR ortam değişkeni Drive'daki dizini gösterir.

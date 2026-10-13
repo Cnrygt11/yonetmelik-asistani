@@ -21,11 +21,17 @@ import yaml
 
 from yonetmelik_asistani.generation.prompts import (
     ANSWER_SCHEMA_V3,
+    ANSWER_SCHEMA_V4,
+    DOGRULAMA_SCHEMA,
     EKSIK_CUMLESI,
+    JSON_VERSIONS,
     PROMPT_VERSION,
     RET_CUMLESI,
+    YENIDEN_YAZ_SCHEMA,
     ContextItem,
+    build_check_messages,
     build_messages,
+    build_rewrite_messages,
 )
 from yonetmelik_asistani.ingest.normalize import ascii_fold, turkish_lower
 from yonetmelik_asistani.retrieval.hybrid import Hit
@@ -196,6 +202,8 @@ class Answer:
     alintilar: list[dict] = field(default_factory=list)  # v3: {kaynak, metin, gecerli, bulundugu}
     json_hatasi: bool = False
     prompt_tokens: int | None = None
+    yeniden_yazilan: str = ""  # takip sorusu tek başına anlaşılır hâle getirildiyse aramada kullanılan soru
+    cikarilan: list[dict] = field(default_factory=list)  # destek kontrolünde çıkarılan cümleler {cumle, neden}
 
 
 def check_answer(text: str, context: list[ContextItem]) -> dict:
@@ -225,15 +233,68 @@ def verify_quote(metin: str, kaynak: str, context: list[ContextItem]) -> str | N
     return None
 
 
-def render_v3(raw: str, context: list[ContextItem]) -> tuple[str, list[dict], bool]:
-    """v3 JSON çıktısından öğrenciye gösterilecek metni kurar → (metin, alıntılar, json_hatasi).
-    Doğrulanan alıntı yoksa ya da model ret ettiyse metin ret cümlesidir."""
+# Cümle sınırı: nokta/soru/ünlemden sonra boşluk ve büyük harf ya da etiket. "md. 18" ve "1.80" bölünmez.
+_SENT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÇĞİÖŞÜ\[(\"'])")
+# v4: öğrencinin görmediği iç ifadeler (proje sahibinin notları); model kuralı kaçırırsa programla düzeltilir
+_SADELE = [(re.compile(r"\bBağlamda\b"), "Yönetmeliklerde"), (re.compile(r"\bbağlamda\b"), "yönetmeliklerde"),
+           (re.compile(r"\bMetinde\b"), "Yönetmelikte"), (re.compile(r"\bmetinde\b"), "yönetmelikte")]
+
+
+def split_sentences(text: str) -> list[str]:
+    return [s.strip() for s in _SENT_RE.split(text.strip()) if s.strip()]
+
+
+def sadele(text: str) -> str:
+    for pat, rep in _SADELE:
+        text = pat.sub(rep, text)
+    return text
+
+
+@dataclass
+class SupportChecker:
+    """Cevap cümlelerini bağlamla karşılaştıran ikinci model çağrısı; desteklenmeyenleri döndürür."""
+    llm: object
+    context: list[ContextItem]
+    wall_s: float = 0.0
+
+    def __call__(self, sentences: list[str]) -> list[dict]:
+        r = self.llm.chat(build_check_messages(sentences, self.context), schema=DOGRULAMA_SCHEMA, think=False,
+                          max_tokens=600)
+        self.wall_s += r.wall_s
+        try:
+            data = json.loads(r.text)
+        except ValueError:
+            return []
+        out = data.get("desteklenmeyen") if isinstance(data, dict) else None
+        return [x for x in out or [] if isinstance(x, dict) and isinstance(x.get("no"), int)]
+
+
+def rewrite_question(question: str, history: list[tuple[str, str]], llm) -> tuple[str, float]:
+    """Takip sorusunu son iki tura bakarak tek başına anlaşılır hâle getirir → (soru, süre)."""
+    if not history:
+        return question, 0.0
+    r = llm.chat(build_rewrite_messages(question, history[-2:]), schema=YENIDEN_YAZ_SCHEMA, think=False,
+                 max_tokens=200)
+    try:
+        data = json.loads(r.text)
+    except ValueError:
+        data = None
+    soru = str(data.get("soru") or "").strip() if isinstance(data, dict) else ""
+    return (soru or question), r.wall_s
+
+
+def render(raw: str, context: list[ContextItem], checker=None, sade: bool = False
+           ) -> tuple[str, list[dict], bool, list[dict]]:
+    """JSON çıktısından (v3/v4) öğrenciye gösterilecek metni kurar → (metin, alıntılar, json_hatasi, çıkarılan).
+    Doğrulanan alıntı yoksa, model ret ettiyse ya da destek kontrolü ana cevabın bütün cümlelerini
+    çıkardıysa metin ret cümlesidir."""
+    ret = f"{RET_CUMLESI} {RET_YONLENDIRME}"
     try:
         data = json.loads(raw)
     except ValueError:
         data = None
     if not isinstance(data, dict):
-        return f"{RET_CUMLESI} {RET_YONLENDIRME}", [], True
+        return ret, [], True, []
     quotes = []
     for q in data.get("alintilar") or []:
         if not isinstance(q, dict):
@@ -244,39 +305,65 @@ def render_v3(raw: str, context: list[ContextItem]) -> tuple[str, list[dict], bo
     valid = [q for q in quotes if q["gecerli"]]
     cevap = str(data.get("cevap") or "").strip()
     if not valid or RET_CUMLESI in cevap:
-        return f"{RET_CUMLESI} {RET_YONLENDIRME}", quotes, False
+        return ret, quotes, False, []
+    main = split_sentences(cevap)
+    details = [str(a).strip() for a in data.get("ayrintilar") or [] if str(a).strip()]
+    removed: list[dict] = []
+    if checker is not None:
+        flagged = {f["no"]: str(f.get("neden", "")) for f in checker(main + details)}
+        removed = [{"cumle": s, "neden": flagged[i]} for i, s in enumerate(main + details) if i in flagged]
+        details = [d for j, d in enumerate(details) if len(main) + j not in flagged]
+        main = [s for i, s in enumerate(main) if i not in flagged]
+        if not main:
+            return ret, quotes, False, removed
+    cevap = " ".join(main)
     if not _LABEL_RE.search(cevap):  # etiket unutulduysa doğrulanan alıntıların kaynakları eklenir
         cevap += " " + "".join(f"[{lab}]" for lab in dict.fromkeys(q["bulundugu"] for q in valid))
-    lines = [cevap]
-    lines += [f"- {str(a).strip()}" for a in data.get("ayrintilar") or [] if str(a).strip()]
+    lines = [cevap] + [f"- {d}" for d in details]
     if data.get("eksik") and EKSIK_CUMLESI not in cevap:
         lines.append(f"{EKSIK_CUMLESI} Bu kısım için birim öğrenci işlerine başvurabilirsin.")
-    return "\n".join(lines), quotes, False
+    text = "\n".join(lines)
+    return (sadele(text) if sade else text), quotes, False, removed
+
+
+def render_v3(raw: str, context: list[ContextItem]) -> tuple[str, list[dict], bool]:
+    """v3 çıktısı, destek kontrolü olmadan → (metin, alıntılar, json_hatasi)."""
+    return render(raw, context)[:3]
 
 
 def answer(question: str, retriever, llm, maddeler: dict[str, dict], *, profile: dict | None = None,
            budget: int = 5000, rel_rerank: float = 0.1, max_sources: int | None = None,
            links: dict[str, list[str]] | None = None, repealed: list[Repealed] | None = None,
-           istem: str = PROMPT_VERSION, think: bool | None = None, max_tokens: int | None = None) -> Answer:
-    hits = retriever.search(question, profile=profile, mode="hybrid_rerank")
+           istem: str = PROMPT_VERSION, think: bool | None = None, max_tokens: int | None = None,
+           dogrula: bool = False, gecmis: list[tuple[str, str]] | None = None) -> Answer:
+    """gecmis: aynı oturumdaki önceki (soru, cevap) çiftleri; varsa soru önce tek başına anlaşılır hâle getirilir.
+    dogrula: JSON istemlerinde cevap cümleleri ikinci bir model çağrısıyla bağlama karşı denetlenir."""
+    aranan, rewrite_s = rewrite_question(question, gecmis or [], llm) if gecmis else (question, 0.0)
+    hits = retriever.search(aranan, profile=profile, mode="hybrid_rerank")
     context = build_context(hits, retriever.chunks, maddeler, budget=budget, rel_rerank=rel_rerank,
                             max_sources=max_sources, links=links, repealed=repealed)
-    notes = term_notes(question, getattr(retriever, "expander", None))
+    notes = term_notes(aranan, getattr(retriever, "expander", None))
     profile = profile or {}
-    messages = build_messages(question, context, duzey=profile.get("duzey") or "belirtilmedi",
+    messages = build_messages(aranan, context, duzey=profile.get("duzey") or "belirtilmedi",
                               birim=profile.get("birim") or "belirtilmedi", terim_notlari=notes, istem=istem)
-    schema = ANSWER_SCHEMA_V3 if istem == "v3" else None
+    schema = {"v3": ANSWER_SCHEMA_V3, "v4": ANSWER_SCHEMA_V4}.get(istem)
     result = llm.chat(messages, schema=schema, think=think, max_tokens=max_tokens)
-    text, quotes, json_err = (render_v3(result.text, context) if istem == "v3" else (result.text, [], False))
+    checker = SupportChecker(llm, context) if dogrula and istem in JSON_VERSIONS else None
+    if istem in JSON_VERSIONS:
+        text, quotes, json_err, removed = render(result.text, context, checker, sade=istem == "v4")
+    else:
+        text, quotes, json_err, removed = result.text, [], False, []
     checks = check_answer(text, context)
+    wall = result.wall_s + rewrite_s + (checker.wall_s if checker else 0.0)
     return Answer(
         soru=question, cevap=text, terim_notlari=notes, **checks,
         kaynaklar=[{"etiket": c.label, "madde_id": c.madde_id, "baslik": c.header, "token": approx_tokens(c.text),
                     "rerank": c.rerank, "bagli": c.bagli} for c in context],
         ilk_rerank=hits[0].izler.get("rerank") if hits else None,
-        sure_s=round(result.wall_s, 1), model=result.model, istem=istem,
-        ham=result.text if istem == "v3" else "", alintilar=quotes, json_hatasi=json_err,
-        prompt_tokens=result.prompt_tokens,
+        sure_s=round(wall, 1), model=result.model, istem=istem,
+        ham=result.text if istem in JSON_VERSIONS else "", alintilar=quotes, json_hatasi=json_err,
+        prompt_tokens=result.prompt_tokens, yeniden_yazilan=aranan if aranan != question else "",
+        cikarilan=removed,
     )
 
 

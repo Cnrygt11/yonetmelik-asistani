@@ -270,3 +270,22 @@ Kararlar:
 3. **Sıradaki teknik adım soruyu anlama:** öğrenci mesajı aramadan önce açık soru(lar)a çevrilir;
    belirsizse cevap iki okumayı da verir ya da geri sorar. Ardından doğrulama turu.
 4. Faz 4 en çok iki deneme daha sürer; sonra arayüz (takip sorusu desteği) ve yüksek lisans belgeleri.
+
+## Faz 4 bitiş · 13.10.2026 · proje sahibi A yolunu seçti (yerel, açık kaynak)
+
+Ölçüm altyapısı donduruldu; kör puanlama set1 (60 öğe, iki puanlayıcı) son kalibrasyon verisidir. Uyum:
+"yeterli" kararında 44'te 28; asistan daha katı (yanıltıcı: kullanıcı 4, asistan 12). Uzlaşmadan çıkan tanım:
+ana cevap doğru olsa bile öğrenciyi yanlış davranışa götürebilecek tek bir yanlış cümle cevabı yanıltıcı yapar;
+"hüküm yok" demek tek başına yanıltıcı değil, eksiktir. Genel yapay zekâ karşılaştırması (Claude Opus 4.6, BUÜ
+PDF'leri + internet; `eval/reports/web_ai_cevaplar_set1.txt`): BUÜ/2547 alıntılarının 61/71'i metinde birebir;
+tavanın bizim sistemden belirgin biçimde yukarıda olduğunu gösteriyor (eşit koşullu bir karşılaştırma değil).
+
+Son değişiklikler, canlı oturumda (notebook 9, `--kayit`) soru soru değerlendirilecek:
+- **İstem v4:** önce doğrudan cevap, en çok 2 kısa cümle ve 2 ayrıntı; "sen" diye sade dil; terim ilk geçtiği
+  yerde açıklanır; "bağlam/metin" gibi iç ifadeler yasak (kaçarsa programla değiştirilir).
+- **Cümle desteği kontrolü** (`generation.dogrulama`): cevap cümleleri ikinci bir model çağrısıyla bağlama
+  karşı denetlenir; desteklenmeyen cümle çıkarılır, ana cevabın hiçbir cümlesi kalmazsa ret. Hedef: yanıltıcı
+  cümleler. Bedel: bir model çağrısı daha.
+- **Takip sorusu** (`generation.takip`): arayüz son iki soruyu hatırlar; yeni mesaj aramadan önce tek başına
+  anlaşılır soruya çevrilir ve "Soruyu şöyle anladım" diye gösterilir; "Yeni konu" düğmesi hafızayı siler.
+- Arayüz değerlendirmesi tek seçim: Yeterli / Yanıltıcı bilgi var / Eksik ya da soruyu cevaplamadı / Emin değilim.
