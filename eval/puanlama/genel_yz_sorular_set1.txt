@@ -1,0 +1,171 @@
+Genel yapay zekâ ile karşılaştırma · set1 (60 soru, 6 parti)
+Her partiyi YENİ bir sohbette sor: önce aşağıdaki istemi, ardından o partinin 10 sorusunu yapıştır.
+Projemizden ya da bizim sistemimizden söz etme. Hangi yapay zekâyı ve tarihi kullandığını not et.
+Cevapları sırayla eval/reports/web_ai_cevaplar_set1.txt dosyasına yapıştır.
+
+======================================================================
+İSTEM
+======================================================================
+Bursa Uludağ Üniversitesi (BUÜ) öğrencisiyim. Aşağıdaki soruları BUÜ'nün yürürlükteki yönetmelik,
+yönerge ve resmî duyurularına dayanarak cevapla.
+
+Kurallar:
+1. Her soruyu diğerlerinden bağımsız cevapla.
+2. Yalnızca BUÜ'ye ait kaynakları, 2547 sayılı Kanun'u ve YÖK düzenlemelerini kullan. Başka üniversitelerin
+   kurallarını kullanma.
+3. Her bilgi için kaynak bağlantısını ve kaynaktaki ilgili cümleyi aynen ver.
+4. Cevabı güvenilir bir kaynakta bulamazsan "Bulamadım." yaz; tahmin etme.
+5. Kısa cevap ver: en fazla 4 cümle.
+
+Her soru için aynen şu biçimi kullan:
+### <soru numarası>
+CEVAP: <cevap>
+KAYNAK: <bağlantı> | "<kaynaktaki cümle>"
+(Birden çok kaynak varsa her biri ayrı bir KAYNAK satırında.)
+
+Sorular:
+
+======================================================================
+PARTİ 1 (sorular p01–p10)
+======================================================================
+### p01
+Hazırlıkta yeterlik sınavına girebilmek için ortalamam kaç olmalı?
+### p02 (Mühendislik Fakültesi, lisans)
+Açıklanan sınıf ortalamasına büte kalanlar da dahil ediliyor mu?
+### p03 (Mühendislik Fakültesi, lisans)
+DC büte girebiliyor mu
+### p04
+on kosullu ders ne demektir on kosul dersinden kalindiginda sonraki ders secilebilir mi
+### p05 (Mühendislik Fakültesi, lisans)
+Online derslerde devamsızlık limiti var mı?
+### p06 (Fen-Edebiyat Fakültesi, lisans)
+tek dersten kalınınca bitirme çalışması alınabiliyor mu
+### p07 (Mühendislik Fakültesi, lisans)
+Mezuniyet için okula herhangi bi belge imza vb gibi bişi vermemiz gerekiyor mu
+### p08 (Mühendislik Fakültesi, lisans)
+Bu muafiyet sınavı değil mi düşük alırsam neden ortalamamı etkiliyor
+### p09 (Mühendislik Fakültesi, lisans)
+Alttan aldığında devam zorunluluğu olmuyor mu yani
+### p10 (Mühendislik Fakültesi, lisans)
+geçen sene kimyadan koşullu geçtim bu sene almam zorunlu mu? 30 kredi limitim var kimyayı seçince 33 oluyor
+
+======================================================================
+PARTİ 2 (sorular p11–p20)
+======================================================================
+### p11
+sinav notlari unisiste aciklandiktan sonra resmi itiraz suresi kac gundur
+### p12 (Mühendislik Fakültesi, lisans)
+Hiç ders seçmeyince otomatik ders mi veriliyor? kayıt siliniyor mu?
+### p13 (Mühendislik Fakültesi, lisans)
+bi derste devamsızlıktan kalmak mı not ortalamasını daha çok kötü etkiler yoksa düşük puanla kalmak
+### p14 (Mühendislik Fakültesi, lisans)
+2. sınıf için öğrenci kaydı yenilemek gerekiyor mu
+### p15 (Mühendislik Fakültesi, lisans)
+dönem ortalaması 1.80 altında olunca o dönemden kalmış mı oluyoruz, yoksa birinci ve ikinci dönem ortalaması mı lazım
+### p16 (Mühendislik Fakültesi, lisans)
+muafiyet sınavını geçemezsen almak lazım değil mi?
+### p17 (Mühendislik Fakültesi, lisans)
+ing muafiyet sınavını geçemezsek alacağımız ing dersi seçmeli mi oluyor zorunlu mu oluyor
+### p18 (Mühendislik Fakültesi, lisans)
+Harf notu nasıl hesaplanıyor
+### p19
+Derslere yüzde kaç devam etmem zorunlu?
+### p20
+CC harf notunun katsayısı kaç?
+
+======================================================================
+PARTİ 3 (sorular p21–p30)
+======================================================================
+### p21
+ders kaydini yapip harci yatirmayi unutan ogrencinin donemi yanar mi
+### p22 (Mühendislik Fakültesi, lisans)
+Yaz okulu için denklik raporu lazım mı
+### p23 (Mühendislik Fakültesi, lisans)
+bizim bölümde geçici mezuniyet belgesi alınabiliyor mu
+### p24
+Hazırlığı en fazla kaç dönem okuyabilirim?
+### p25
+Kaydımı dondurmak istiyorum, dönem başlamadan ne kadar önce başvurmam lazım?
+### p26 (Fen-Edebiyat Fakültesi, lisans)
+belli bir ortalamadan sonra mutlak oluyor mu çan etkisiz olup
+### p27
+lisans mezuniyeti sonrasi erkek ogrencilerin askerlik tecil hakki kac yildir
+### p28
+vizeye girmedim rapor alsam mazeret sinavina kesin alirlar mi
+### p29
+Kampüste araç park etmek ücretli mi?
+### p30 (Mühendislik Fakültesi, lisans)
+31 kredi dolmak zorunda mı 29 da bıraksam problem olur mu
+
+======================================================================
+PARTİ 4 (sorular p31–p40)
+======================================================================
+### p31 (Fen-Edebiyat Fakültesi, lisans)
+Son senesi olup 41 kredi alabilen oldu mu
+### p32
+kaydini dondurmus bir ogrenci yatay gecis basvurusunda bulunabilir mi
+### p33
+yatay gecis yapan ogrencinin eski okulunda aldigi derslerin sayilmasi intibak sureci nasil isler
+### p34
+not dökümünde dz gorunmesi ne anlama geliyor bu dersi bütte kurtarabilir miyim
+### p35
+yuksek lisans basvurularinda kullanilan ales puaninin gecerlilik suresi kac yildir
+### p36 (Mühendislik Fakültesi, lisans)
+1.8 kalma ortalaması 2 kyk kesilme değil mi
+### p37
+danisman hoca ders secim onayini vermezse veya kacirirsa ders secimi gecersiz mi sayilir
+### p38 (Mühendislik Fakültesi, lisans)
+FF olan fazladan dersler otomatik mi siliniyor yoksa silmek için dilekçe mi vermemiz gerekiyor
+### p39
+hoca devamsizlik sinirini kendi istegiyle esnetebilir mi
+### p40
+yaz okulu sinavlarinda but hakki var mi yoksa tek sinavla mi bitiyor her sey
+
+======================================================================
+PARTİ 5 (sorular p41–p50)
+======================================================================
+### p41 (Mühendislik Fakültesi, lisans)
+şimdi ff dışında harf notu varsa geçmiş mi oluyoruz
+### p42 (Mühendislik Fakültesi, lisans)
+D notu devamsızlıktan kalınca mı oluyor? yaz okulunda o derse girme zorunluluğum var mı peki?
+### p43
+yuksek lisans yaparken ayni zamanda baska bir universitede lisans egitimi gormek yasal midir
+### p44 (Mühendislik Fakültesi, lisans)
+arkadaşlar koşullu geçmek için ortalamanın kaç olması lazım
+### p45 (Mühendislik Fakültesi, lisans)
+Yaz okulu kaydını yaptıktan sonra çıkan ücreti 7 ile çarpıp mı hesaplıyoruz
+### p46 (Mühendislik Fakültesi, lisans)
+Hocaların harf notu verirken çan uygulamama gibi bi durumu oluyor mu belli koşullar altındaysa
+### p47 (Mühendislik Fakültesi, lisans)
+Kaldığımız dersi yaz okulunda almak zorunda mıyız diğer dönemde alabiliyor muyuz
+### p48 (Mühendislik Fakültesi, lisans)
+Yaz okulu başvuruları başladı mı genelde ücret ne kadar oluyor
+### p49
+Ortalamam 1.80'in altına düştü, yeni ders alabilir miyim?
+### p50 (Mühendislik Fakültesi, lisans)
+Beni ingilizceden koşullu geçirmişler koşul ne?
+
+======================================================================
+PARTİ 6 (sorular p51–p60)
+======================================================================
+### p51 (Mühendislik Fakültesi, lisans)
+Muafiyetten geçtiğimiz için seçmeli olarak almanca veya fransızca mı seçmek zorundayız
+### p52
+alttan kalan secmeli dersin yerine sonraki donem tamamen farkli bir secmeli ders alinabilir mi
+### p53
+universite ici yatay gecis kontenjanlari neye gore belirlenir
+### p54 (Mühendislik Fakültesi, lisans)
+Hazırlık dediğin 1 sene değil mi?
+### p55 (Mühendislik Fakültesi, lisans)
+Hazırlık sınavı ne zaman olur
+### p56
+baska bir universiteye yatay gecis yapinca kyk bursu veya kredisi kesilir mi
+### p57 (Mühendislik Fakültesi, lisans)
+alttan dersim bu dönemdeki derslerin birisiyle çakışıyor hiç bi çözüm yok mu
+### p58
+Sınavda kopya çekmenin cezası nedir?
+### p59
+akademik takvimde belirtilen tarihler disinda sinav gunu degistirilebilir mi hoca kendi kafasina gore gun koyabilir mi
+### p60 (Mühendislik Fakültesi, lisans)
+başka üniversitede okuyan öğrenci bizim okuldan yaz okulu almak istiyor ne yapması gerekir
+
